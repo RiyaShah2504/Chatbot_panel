@@ -1,0 +1,355 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Subscription - ChatBot Panel</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/manage_subscription.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/dashboard.css') }}">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="dashboard-container">
+        <!-- Sidebar (same as dashboard) -->
+        <aside class="sidebar" id="sidebar">
+            <div class="sidebar-header">
+                <div class="logo">
+                    <svg width="32" height="32" viewBox="0 0 40 40" fill="none">
+                        <rect width="40" height="40" rx="8" fill="url(#gradient)"/>
+                        <path d="M20 10L30 16V24L20 30L10 24V16L20 10Z" fill="white" opacity="0.9"/>
+                        <defs>
+                            <linearGradient id="gradient" x1="0" y1="0" x2="40" y2="40">
+                                <stop offset="0%" stop-color="#667eea"/>
+                                <stop offset="100%" stop-color="#764ba2"/>
+                            </linearGradient>
+                        </defs>
+                    </svg>
+                    <span>ChatBot Builder</span>
+                </div>
+            </div>
+
+            <nav class="nav-menu">
+                <div class="nav-section">
+                    <a href="{{ url_for('dashboard') }}" class="nav-item active" data-page="dashboard">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <rect x="3" y="3" width="7" height="7"></rect>
+                            <rect x="14" y="3" width="7" height="7"></rect>
+                            <rect x="14" y="14" width="7" height="7"></rect>
+                            <rect x="3" y="14" width="7" height="7"></rect>
+                        </svg>
+                        <span>Dashboard</span>
+                    </a>
+                </div>
+
+                <div class="nav-section">
+                <div class="nav-section-title">Workspace</div>
+                <a href="#" class="nav-item" id="botsMenu">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path>
+                    </svg>
+                    <span>Bots</span>
+                    <svg class="chevron" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <polyline points="9 18 15 12 9 6"></polyline>
+                    </svg>
+                </a>
+                <div class="submenu" id="botsSubmenu">
+                    {% if chatbots %}
+                        {% for chatbot in chatbots %}
+                        <a href="{{ url_for('preview_chatbot', chatbot_id=chatbot.id) }}" class="submenu-item" data-chatbot-id="{{ chatbot.id }}">
+                            <span class="dot"></span>
+                            <span>{{ chatbot.name }}</span>
+                            <span class="status-indicator {{ 'active' if chatbot.is_active else 'inactive' }}"></span>
+                        </a>
+                        {% endfor %}
+                    {% else %}
+                        <div class="submenu-item empty">
+                            <span class="dot"></span>
+                            <span>No chatbots created yet</span>
+                        </div>
+                    {% endif %}
+                </div>
+
+                <!--<a href="#" class="nav-item" data-page="analytics">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <line x1="12" y1="20" x2="12" y2="10"></line>
+                        <line x1="18" y1="20" x2="18" y2="4"></line>
+                        <line x1="6" y1="20" x2="6" y2="16"></line>
+                    </svg>
+                    <span>Analytics</span>
+                </a>
+
+                <a href="#" class="nav-item" data-page="integration">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <circle cx="12" cy="12" r="3"></circle>
+                        <path d="M12 1v6m0 6v6m-6-6H1m6 0h6"></path>
+                    </svg>
+                    <span>Integration</span>
+                </a>
+            </div>-->
+
+                <div class="nav-section">
+                    <div class="nav-section-title">Account</div>
+                    <a href="#" class="nav-item" id="accountMenu">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+                            <circle cx="12" cy="7" r="4"></circle>
+                        </svg>
+                        <span>My Account</span>
+                        <svg class="chevron" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <polyline points="9 18 15 12 9 6"></polyline>
+                        </svg>
+                    </a>
+                    <div class="submenu" id="accountSubmenu">
+                        <a href="{{ url_for('edit_profile') }}" class="submenu-item">
+                            <span class="dot"></span>
+                            <span>Edit Profile</span>
+                        </a>
+                        <a href="{{ url_for('change_password') }}" class="submenu-item">
+                            <span class="dot"></span>
+                            <span>Change Password</span>
+                        </a>
+                        <a href="{{ url_for('manage_subscription') }}" class="submenu-item active">
+                            <span class="dot"></span>
+                            <span>Subscription</span>
+                        </a>
+                    </div>
+                </div>
+            </nav>
+
+            <div class="user-section">
+                <div class="user-info">
+                    <div class="user-avatar">{{ user.username[0].upper() }}</div>
+                    <div class="user-details">
+                        <div class="user-name">{{ user.username }}</div>
+                        <div class="user-email">{{ user.email }}</div>
+                    </div>
+                </div>
+                <a href="{{ url_for('logout') }}" class="logout-btn" title="Logout">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"></path>
+                        <polyline points="16 17 21 12 16 7"></polyline>
+                        <line x1="21" y1="12" x2="9" y2="12"></line>
+                    </svg>
+                </a>
+            </div>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <header class="page-header">
+                <div>
+                    <h1>My Subscription</h1>
+                    <p>Manage your plans and features</p>
+                </div>
+            </header>
+
+            <!-- Payment Pending Alert -->
+            {% if subscription.payment_pending %}
+            <div class="alert-banner warning">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <circle cx="12" cy="12" r="10"></circle>
+                    <line x1="12" y1="8" x2="12" y2="12"></line>
+                    <line x1="12" y1="16" x2="12.01" y2="16"></line>
+                </svg>
+                <p>Payment pending for {{ subscription.plan.display_name }} plan. Our sales team will contact you shortly with payment details.</p>
+            </div>
+            {% endif %}
+
+            <!-- Trial Expiry Warning -->
+            {% if subscription.is_trial and subscription.days_remaining() <= 3 %}
+            <div class="alert-banner">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M10.29 3.86L1.82 18a2 2 0 001.71 3h16.94a2 2 0 001.71-3L13.71 3.86a2 2 0 00-3.42 0z"></path>
+                    <line x1="12" y1="9" x2="12" y2="13"></line>
+                    <line x1="12" y1="17" x2="12.01" y2="17"></line>
+                </svg>
+                <p>Your trial expires in {{ subscription.days_remaining() }} day{{ 's' if subscription.days_remaining() != 1 else '' }}! Upgrade now to continue using all features.</p>
+            </div>
+            {% endif %}
+
+            <!-- Expiring Soon Warning -->
+            {% if not subscription.is_trial and subscription.days_remaining() <= 7 and subscription.days_remaining() > 0 %}
+            <div class="alert-banner warning">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <circle cx="12" cy="12" r="10"></circle>
+                    <line x1="12" y1="8" x2="12" y2="12"></line>
+                    <line x1="12" y1="16" x2="12.01" y2="16"></line>
+                </svg>
+                <p>Your subscription expires in {{ subscription.days_remaining() }} day{{ 's' if subscription.days_remaining() != 1 else '' }}. Renew now to avoid service interruption.</p>
+            </div>
+            {% endif %}
+
+            <!-- Subscription Details -->
+            <div class="subscription-details">
+                <div class="subscription-header-info">
+                    <div class="plan-info">
+                        <span class="plan-badge {{ subscription.plan.name }}">{{ subscription.plan.display_name }}</span>
+                        <h2>{{ subscription.plan.display_name }} Plan</h2>
+                        <p class="plan-price">
+                            {% if subscription.plan.price == 0 %}
+                                Free Trial
+                            {% else %}
+                                ${{ "%.2f"|format(subscription.plan.price) }}/month
+                            {% endif %}
+                        </p>
+                    </div>
+                    <div>
+                        <div class="status-indicator {{ 'pending' if subscription.payment_pending else 'trial' if subscription.is_trial else 'active' if not subscription.is_expired() else 'expired' }}">
+                            <span class="status-dot"></span>
+                            {% if subscription.payment_pending %}
+                                Payment Pending
+                            {% elif subscription.is_trial %}
+                                Trial Active
+                            {% elif subscription.is_expired() %}
+                                Expired
+                            {% else %}
+                                Active
+                            {% endif %}
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Usage Statistics -->
+                <h3 style="font-size: 18px; font-weight: 700; color: #1a202c; margin-bottom: 16px;">Current Usage</h3>
+                <div class="usage-stats">
+                    <div class="usage-card">
+                        <h4>Chatbots</h4>
+                        <div class="usage-value">{{ subscription.chatbots_created }}</div>
+                        <div class="usage-limit">
+                            of {{ subscription.plan.max_chatbots if subscription.plan.max_chatbots != -1 else 'Unlimited' }}
+                        </div>
+                        {% if subscription.plan.max_chatbots != -1 %}
+                        <div class="progress-bar">
+                            {% set usage_percent = (subscription.chatbots_created / subscription.plan.max_chatbots * 100) %}
+                            <div class="progress-fill {{ 'warning' if usage_percent > 70 else '' }} {{ 'danger' if usage_percent > 90 else '' }}"
+                                 style="width: {{ usage_percent }}%"></div>
+                        </div>
+                        {% endif %}
+                    </div>
+
+                    <div class="usage-card">
+                        <h4>Messages This Month</h4>
+                        <div class="usage-value">{{ subscription.messages_this_month }}</div>
+                        <div class="usage-limit">
+                            of {{ subscription.plan.max_messages_per_month if subscription.plan.max_messages_per_month != -1 else 'Unlimited' }}
+                        </div>
+                        {% if subscription.plan.max_messages_per_month != -1 %}
+                        <div class="progress-bar">
+                            {% set msg_percent = (subscription.messages_this_month / subscription.plan.max_messages_per_month * 100) %}
+                            <div class="progress-fill {{ 'warning' if msg_percent > 70 else '' }} {{ 'danger' if msg_percent > 90 else '' }}"
+                                 style="width: {{ msg_percent }}%"></div>
+                        </div>
+                        {% endif %}
+                    </div>
+
+                    <div class="usage-card">
+                        <h4>Subscription Period</h4>
+                        <div class="usage-value" style="font-size: 24px;">{{ subscription.days_remaining() }}</div>
+                        <div class="usage-limit">days remaining</div>
+                    </div>
+                </div>
+
+                <!-- Features -->
+                <h3 style="font-size: 18px; font-weight: 700; color: #1a202c; margin: 24px 0 16px 0;">Plan Features</h3>
+                <div class="features-grid">
+                    {% set features = subscription.plan.features|from_json %}
+                    <div class="feature-box">
+                        <div class="feature-icon {{ 'enabled' if features.ml_training else 'disabled' }}">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                {% if features.ml_training %}
+                                <polyline points="20 6 9 17 4 12"></polyline>
+                                {% else %}
+                                <line x1="18" y1="6" x2="6" y2="18"></line>
+                                <line x1="6" y1="6" x2="18" y2="18"></line>
+                                {% endif %}
+                            </svg>
+                        </div>
+                        <span class="feature-text">ML Training</span>
+                    </div>
+
+                    <div class="feature-box">
+                        <div class="feature-icon {{ 'enabled' if features.custom_branding else 'disabled' }}">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                {% if features.custom_branding %}
+                                <polyline points="20 6 9 17 4 12"></polyline>
+                                {% else %}
+                                <line x1="18" y1="6" x2="6" y2="18"></line>
+                                <line x1="6" y1="6" x2="18" y2="18"></line>
+                                {% endif %}
+                            </svg>
+                        </div>
+                        <span class="feature-text">Custom Branding</span>
+                    </div>
+
+                    <div class="feature-box">
+                        <div class="feature-icon enabled">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <polyline points="20 6 9 17 4 12"></polyline>
+                            </svg>
+                        </div>
+                        <span class="feature-text">{{ features.analytics|title }} Analytics</span>
+                    </div>
+
+                    <div class="feature-box">
+                        <div class="feature-icon {{ 'enabled' if features.api_access else 'disabled' }}">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                {% if features.api_access %}
+                                <polyline points="20 6 9 17 4 12"></polyline>
+                                {% else %}
+                                <line x1="18" y1="6" x2="6" y2="18"></line>
+                                <line x1="6" y1="6" x2="18" y2="18"></line>
+                                {% endif %}
+                            </svg>
+                        </div>
+                        <span class="feature-text">API Access</span>
+                    </div>
+
+                    <div class="feature-box">
+                        <div class="feature-icon enabled">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <polyline points="20 6 9 17 4 12"></polyline>
+                            </svg>
+                        </div>
+                        <span class="feature-text">{{ features.support|title }} Support</span>
+                    </div>
+
+                    {% if features.get('priority_support') %}
+                    <div class="feature-box">
+                        <div class="feature-icon enabled">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <polyline points="20 6 9 17 4 12"></polyline>
+                            </svg>
+                        </div>
+                        <span class="feature-text">Priority Support</span>
+                    </div>
+                    {% endif %}
+                </div>
+
+                <!-- Action Buttons -->
+                <div class="action-buttons">
+                    {% if subscription.plan.name != 'advanced' %}
+                    <a href="{{ url_for('subscription_plans') }}" class="btn-upgrade">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="display: inline; margin-right: 8px; vertical-align: middle;">
+                            <line x1="12" y1="19" x2="12" y2="5"></line>
+                            <polyline points="5 12 12 5 19 12"></polyline>
+                        </svg>
+                        Upgrade Plan
+                    </a>
+                    {% else %}
+                    <a href="{{ url_for('subscription_plans') }}" class="btn-upgrade">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="display: inline; margin-right: 8px; vertical-align: middle;">
+                            <polyline points="23 4 23 10 17 10"></polyline>
+                            <path d="M20.49 15a9 9 0 1 1-2.12-9.36L23 10"></path>
+                        </svg>
+                        Renew Subscription
+                    </a>
+                    {% endif %}
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script src="{{ url_for('static', filename='js/dashboard.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/manage_subscription.js') }}"></script>
+</body>
+</html>

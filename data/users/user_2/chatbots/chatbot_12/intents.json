@@ -1,0 +1,31 @@
+{
+  "intents": [
+    {
+      "tag": "qa_1",
+      "patterns": [
+        "hello"
+      ],
+      "responses": [
+        "hi"
+      ]
+    },
+    {
+      "tag": "qa_2",
+      "patterns": [
+        "what are you doing"
+      ],
+      "responses": [
+        "development"
+      ]
+    },
+    {
+      "tag": "qa_3",
+      "patterns": [
+        "how many staff members in your company?"
+      ],
+      "responses": [
+        "20"
+      ]
+    }
+  ]
+}

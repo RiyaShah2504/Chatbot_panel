@@ -1,0 +1,35 @@
+[
+  {
+    "intent": "qa_1",
+    "tag": "qa_1",
+    "patterns": [
+      "hello"
+    ],
+    "responses": [
+      "hi"
+    ],
+    "chatbot_id": 12
+  },
+  {
+    "intent": "qa_2",
+    "tag": "qa_2",
+    "patterns": [
+      "what are you doing"
+    ],
+    "responses": [
+      "development"
+    ],
+    "chatbot_id": 12
+  },
+  {
+    "intent": "qa_3",
+    "tag": "qa_3",
+    "patterns": [
+      "how many staff members in your company?"
+    ],
+    "responses": [
+      "20"
+    ],
+    "chatbot_id": 12
+  }
+]

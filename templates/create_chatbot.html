@@ -1,0 +1,439 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Create Chatbot - Chatbot Panel</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/create.css') }}">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="dashboard-container"><!-- Sidebar -->
+        <aside class="sidebar" id="sidebar">
+            <div class="sidebar-header">
+                <div class="logo">
+                    <svg width="32" height="32" viewBox="0 0 40 40" fill="none">
+                        <rect width="40" height="40" rx="8" fill="url(#gradient)"/>
+                        <path d="M20 10L30 16V24L20 30L10 24V16L20 10Z" fill="white" opacity="0.9"/>
+                        <defs>
+                            <linearGradient id="gradient" x1="0" y1="0" x2="40" y2="40">
+                                <stop offset="0%" stop-color="#667eea"/>
+                                <stop offset="100%" stop-color="#764ba2"/>
+                            </linearGradient>
+                        </defs>
+                    </svg>
+                    <span>ChatBot Builder</span>
+                </div>
+            </div>
+
+            <nav class="nav-menu">
+                <div class="nav-section">
+                    <a href="{{ url_for('dashboard') }}" class="nav-item active" data-page="dashboard">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <rect x="3" y="3" width="7" height="7"></rect>
+                            <rect x="14" y="3" width="7" height="7"></rect>
+                            <rect x="14" y="14" width="7" height="7"></rect>
+                            <rect x="3" y="14" width="7" height="7"></rect>
+                        </svg>
+                        <span>Dashboard</span>
+                    </a>
+                </div>
+
+                <div class="nav-section">
+                    <div class="nav-section-title">Workspace</div>
+                    <a href="#" class="nav-item" id="botsMenu">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path>
+                        </svg>
+                        <span>Bots</span>
+                        <svg class="chevron" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <polyline points="9 18 15 12 9 6"></polyline>
+                        </svg>
+                    </a>
+                    <div class="submenu" id="botsSubmenu">
+                        {% if chatbots %}
+                            {% for chatbot in chatbots %}
+                            <a href="{{ url_for('preview_chatbot', chatbot_id=chatbot.id) }}" class="submenu-item" data-chatbot-id="{{ chatbot.id }}">
+                                <span class="dot"></span>
+                                <span>{{ chatbot.name }}</span>
+                                <span class="status-indicator {{ 'active' if chatbot.is_active else 'inactive' }}"></span>
+                            </a>
+                            {% endfor %}
+                        {% else %}
+                            <div class="submenu-item empty">
+                                <span class="dot"></span>
+                                <span>No chatbots created yet</span>
+                            </div>
+                        {% endif %}
+                    </div>
+
+                    <!--<a href="#" class="nav-item" data-page="analytics">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <line x1="12" y1="20" x2="12" y2="10"></line>
+                            <line x1="18" y1="20" x2="18" y2="4"></line>
+                            <line x1="6" y1="20" x2="6" y2="16"></line>
+                        </svg>
+                        <span>Analytics</span>
+                    </a>
+
+                    <a href="#" class="nav-item" data-page="integration">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <circle cx="12" cy="12" r="3"></circle>
+                            <path d="M12 1v6m0 6v6m-6-6H1m6 0h6"></path>
+                        </svg>
+                        <span>Integration</span>
+                    </a>
+                </div>-->
+
+                <div class="nav-section">
+                    <div class="nav-section-title">Account</div>
+                    <a href="#" class="nav-item" id="accountMenu">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+                            <circle cx="12" cy="7" r="4"></circle>
+                        </svg>
+                        <span>My Account</span>
+                        <svg class="chevron" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <polyline points="9 18 15 12 9 6"></polyline>
+                        </svg>
+                    </a>
+                    <div class="submenu" id="accountSubmenu">
+                        <a href="{{ url_for('edit_profile') }}" class="submenu-item">
+                            <span class="dot"></span>
+                            <span>Edit Profile</span>
+                        </a>
+                        <a href="{{ url_for('change_password') }}" class="submenu-item">
+                            <span class="dot"></span>
+                            <span>Change Password</span>
+                        </a>
+                        <a href="{{ url_for('manage_subscription') }}" class="submenu-item">
+                            <span class="dot"></span>
+                            <span>Subscription</span>
+                        </a>
+                    </div>
+                </div>
+            </nav>
+            <div class="user-section">
+                <div class="user-info">
+                    <div class="user-avatar">{{ session.username[0].upper() }}</div>
+                    <div class="user-details">
+                        <div class="user-name">{{ session.username }}</div>
+                        <div class="user-email">{{ session.email }}</div>
+                    </div>
+                </div>
+                <a href="{{ url_for('logout') }}" class="logout-btn" title="Logout">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"></path>
+                        <polyline points="16 17 21 12 16 7"></polyline>
+                        <line x1="21" y1="12" x2="9" y2="12"></line>
+                    </svg>
+                </a>
+            </div>
+        </aside>
+
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <div class="page-header">
+                <div>
+                    <h1>Create Chatbot</h1>
+                    <p>Configure your chatbot settings</p>
+                </div>
+                <a href="{{ url_for('dashboard') }}" class="btn-secondary">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <line x1="19" y1="12" x2="5" y2="12"></line>
+                        <polyline points="12 19 5 12 12 5"></polyline>
+                    </svg>
+                    Back to Dashboard
+                </a>
+            </div>
+
+            <div class="form-container">
+                <form method="POST" id="createChatbotForm" class="chatbot-form" enctype="multipart/form-data">
+
+                    <!-- Two Column Layout -->
+                    <div class="two-column-layout">
+
+                        <!-- Left Column: Form Sections -->
+                        <div class="form-column">
+
+                            <!-- Basic Information -->
+                            <div class="form-section compact">
+                                <h2>Basic Information</h2>
+
+                                <div class="form-row">
+                                    <div class="form-group">
+                                        <label for="name">Chatbot Name <span class="required">*</span></label>
+                                        <input type="text" id="name" name="name" required placeholder="e.g., Customer Support Bot">
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label for="bot_name">Bot Display Name <span class="required">*</span></label>
+                                        <input type="text" id="bot_name" name="bot_name" value="AI Assistant" required placeholder="e.g., Sarah">
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="description">Description</label>
+                                    <textarea id="description" name="description" rows="2" placeholder="Describe what your chatbot does..."></textarea>
+                                </div>
+                            </div>
+
+                           <!-- Bot Avatar -->
+                            <div class="form-section compact">
+                                <h2>Bot Avatar</h2>
+                                <div class="avatar-section">
+                                    <!-- AVATAR WRAPPER -->
+                                    <div class="avatar-upload-wrapper">
+
+                                        <div class="avatar-preview-container">
+                                            <div class="avatar-preview small" id="avatarPreview">
+                                                    <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                                        <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+                                                        <circle cx="12" cy="7" r="4"></circle>
+                                                    </svg>
+                                            </div>
+                                        </div>
+
+            <div class="avatar-controls-group">
+                <input type="file" id="bot_avatar" name="bot_avatar" accept="image/*" style="display: none;">
+
+                <button type="button" class="btn-upload small" onclick="document.getElementById('bot_avatar').click()">
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+                        <polyline points="17 8 12 3 7 8"></polyline>
+                        <line x1="12" y1="3" x2="12" y2="15"></line>
+                    </svg>
+                    Choose Image
+                </button>
+
+                <button type="button" class="btn-adjust small" id="adjustAvatarBtn" onclick="openAvatarEditor()" style="display: none;">
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <circle cx="12" cy="12" r="1"></circle>
+                        <path d="M4.6 4.6l2.8 2.8"></path>
+                        <path d="M19.4 19.4l-2.8-2.8"></path>
+                        <path d="M4.6 19.4l2.8-2.8"></path>
+                        <path d="M19.4 4.6l-2.8 2.8"></path>
+                        <path d="M12 2v3m0 12v3"></path>
+                        <path d="M2 12h3m12 0h3"></path>
+                    </svg>
+                    Adjust Image
+                </button>
+
+                <button type="button" class="btn-remove small" id="removeAvatar" style="display: none">
+                    Remove
+                </button>
+
+                <!-- FIXED: Added hidden input for avatar data -->
+                <input type="hidden" id="bot_avatar_data" name="bot_avatar_data" value="">
+                <input type="hidden" id="remove_avatar_flag" name="remove_avatar" value="false">
+                <p class="info-text">💡 Upload an image and use adjust button to position and zoom.</p>
+            </div>
+
+        <!-- CLOSE THE WRAPPER DIV -->
+        </div>
+    </div>
+</div>
+                            <!-- Appearance & Colors -->
+                            <div class="form-section compact">
+                                <h2>Appearance & Colors</h2>
+
+                                <div class="color-grid compact">
+                                    <div class="form-group">
+                                        <label for="theme_color">Theme Color</label>
+                                        <div class="color-picker-wrapper">
+                                            <input type="color" id="theme_color" name="theme_color" value="#4F46E5">
+                                            <span class="color-value">#4F46E5</span>
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label for="chat_background_color">Chat BG</label>
+                                        <div class="color-picker-wrapper">
+                                            <input type="color" id="chat_background_color" name="chat_background_color" value="#F7FAFC">
+                                            <span class="color-value-bg">#F7FAFC</span>
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label for="bot_message_color">Bot Bubble</label>
+                                        <div class="color-picker-wrapper">
+                                            <input type="color" id="bot_message_color" name="bot_message_color" value="#FFFFFF">
+                                            <span class="color-value-bot-bg">#FFFFFF</span>
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label for="bot_text_color">Bot Text</label>
+                                        <div class="color-picker-wrapper">
+                                            <input type="color" id="bot_text_color" name="bot_text_color" value="#1A202C">
+                                            <span class="color-value-bot-text">#1A202C</span>
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label for="user_text_color">User Text</label>
+                                        <div class="color-picker-wrapper">
+                                            <input type="color" id="user_text_color" name="user_text_color" value="#FFFFFF">
+                                            <span class="color-value-user-text">#FFFFFF</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Welcome Message & Buttons -->
+                            <div class="form-section compact">
+                                <h2>Welcome Message & Buttons</h2>
+
+                                <div class="form-group">
+                                    <label for="welcome_message">Welcome Message <span class="required">*</span></label>
+                                    <textarea id="welcome_message" name="welcome_message" rows="2" required placeholder="Hello! How can I help you?">Hello! How can I help you?</textarea>
+                                </div>
+
+                                <!-- Welcome Buttons Container -->
+                                <div class="welcome-buttons-section">
+                                    <div class="section-header">
+                                        <label>Welcome Buttons</label>
+                                        <button type="button" class="btn-add-button" id="addWelcomeButton">
+                                            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                                <line x1="12" y1="5" x2="12" y2="19"></line>
+                                                <line x1="5" y1="12" x2="19" y2="12"></line>
+                                            </svg>
+                                            Add Button
+                                        </button>
+                                    </div>
+
+                                    <div id="welcomeButtonsList" class="welcome-buttons-list">
+                                        <!-- Buttons will be added here dynamically -->
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+
+                        <!-- Right Column: Live Preview -->
+                        <div class="preview-column">
+                            <div class="preview-sticky">
+                                <h2>Live Preview</h2>
+                                <div class="chatbot-preview">
+                                    <div class="preview-header" id="previewHeader">
+                                        <div class="preview-bot-icon" id="previewIcon">
+                                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                                <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path>
+                                            </svg>
+                                        </div>
+                                        <span id="previewBotName">AI Assistant</span>
+                                    </div>
+                                    <div class="preview-body" id="previewBody">
+                                        <div class="preview-message bot">
+                                            <div class="message-avatar" id="previewAvatar">A</div>
+                                            <div class="message-wrapper">
+                                                <div class="message-content bot-message" id="previewWelcome">Hello! How can I help you?</div>
+                                                <div class="preview-buttons-container" id="previewButtonsContainer">
+                                                    <!-- Preview buttons will appear here -->
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="preview-message user">
+                                            <div class="message-content user-message">This is how user messages look</div>
+                                        </div>
+                                    </div>
+                                    <div class="preview-footer">
+                                        <label>
+                                            <input type="text" placeholder="Type your message..." disabled>
+                                        </label>
+                                        <button type="button" disabled id="previewSendBtn">
+                                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                                <line x1="22" y1="2" x2="11" y2="13"></line>
+                                                <polygon points="22 2 15 22 11 13 2 9 22 2"></polygon>
+                                            </svg>
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <!-- Hidden input to store button data -->
+                    <input type="hidden" id="welcome_buttons" name="welcome_buttons" value="[]">
+
+                    <div class="form-actions">
+                        <a href="{{ url_for('dashboard') }}" class="btn-cancel">Cancel</a>
+                        <button type="submit" class="btn-submit">Create Chatbot</button>
+                    </div>
+                </form>
+            </div>
+        </main>
+    </div>
+
+     <!-- Avatar Editor Modal -->
+    <div class="modal" id="avatarEditorModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>Adjust Your Avatar</h3>
+                <button class="btn-close" type="button" onclick="closeAvatarEditor()">✕</button>
+            </div>
+
+            <div class="image-editor">
+                <!-- Preview Window -->
+                <div class="preview-window">
+                    <div class="preview-circle" id="previewCircle">
+                        <canvas id="previewCanvas" style="width: 100%; height: 100%;"></canvas>
+                    </div>
+                </div>
+
+                <!-- Controls -->
+                <div class="controls-group">
+                    <!-- Zoom Control -->
+                    <div class="control-item">
+                        <label>Zoom Level</label>
+                        <label for="zoomSlider"></label>
+                        <input type="range" id="zoomSlider" min="0" max="100" value="100" step="1" />
+                        <span class="value-display"><span id="zoomValue">100</span>%</span>
+                    </div>
+
+                    <!-- X Position Control -->
+                    <div class="control-item">
+                        <label>Horizontal Position</label>
+                        <label for="xSlider"></label>
+                        <input type="range" id="xSlider" min="-150" max="150" value="0" step="5" />
+                        <span class="value-display" id="xValue">0px</span>
+                    </div>
+
+                    <!-- Y Position Control -->
+                    <div class="control-item">
+                        <label>Vertical Position</label>
+                        <label for="ySlider"></label>
+                        <input type="range" id="ySlider" min="-150" max="150" value="0" step="5" />
+                        <span class="value-display" id="yValue">0px</span>
+                    </div>
+
+                    <!-- Reset Button -->
+                    <button class="btn-upload" style="margin-top: 8px; width: 100%; justify-content: center;" type="button" onclick="resetAvatarImage()">
+                        Reset to Default
+                    </button>
+                </div>
+            </div>
+
+            <!-- Modal Actions -->
+            <div class="modal-actions">
+                <button class="btn-cancel" type="button" onclick="closeAvatarEditor()">Cancel</button>
+                <button class="btn-save" type="button" onclick="saveAvatarImage()">Apply Changes</button>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- Mobile Menu Toggle -->
+    <button class="mobile-menu-toggle" id="mobileMenuToggle">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <line x1="3" y1="12" x2="21" y2="12"></line>
+            <line x1="3" y1="6" x2="21" y2="6"></line>
+            <line x1="3" y1="18" x2="21" y2="18"></line>
+        </svg>
+    </button>
+
+    <script src="{{ url_for('static', filename='js/create.js') }}"></script>
+</body>
+</html>

@@ -1,0 +1,49 @@
+{
+  "intents": [
+    {
+      "tag": "qa_1",
+      "patterns": [
+        "How many types of Loans are you providing?"
+      ],
+      "responses": [
+        "Business Loan, Home Loan, Personal Loan"
+      ]
+    },
+    {
+      "tag": "qa_2",
+      "patterns": [
+        "Which services are you providing?"
+      ],
+      "responses": [
+        "we are providing all types of loans with attractive cashback offers and referral policies with good bank loan offers."
+      ]
+    },
+    {
+      "tag": "qa_3",
+      "patterns": [
+        "What are your business hours?"
+      ],
+      "responses": [
+        "We are open Monday to Saturday, 10:30 AM to 7 PM."
+      ]
+    },
+    {
+      "tag": "qa_4",
+      "patterns": [
+        "How can I contact support?"
+      ],
+      "responses": [
+        "You can email us at support@example.com"
+      ]
+    },
+    {
+      "tag": "qa_5",
+      "patterns": [
+        "Do you offer refunds?"
+      ],
+      "responses": [
+        "Yes, we offer 30-day money-back guarantee."
+      ]
+    }
+  ]
+}

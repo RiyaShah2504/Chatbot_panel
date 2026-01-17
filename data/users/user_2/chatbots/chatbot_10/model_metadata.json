@@ -1,0 +1,23 @@
+{
+  "chatbot_id": 10,
+  "user_id": 2,
+  "trained_at": "2026-01-03T06:26:21.108585+00:00",
+  "accuracy": 0.6545454545454545,
+  "models": {
+    "naive_bayes": {
+      "accuracy": 0.6545454545454545,
+      "status": "success"
+    },
+    "svm": {
+      "accuracy": 0.5636363636363636,
+      "status": "success"
+    },
+    "neural_network": {
+      "accuracy": 0.05454545454545454,
+      "status": "success"
+    }
+  },
+  "total_intents": 40,
+  "total_patterns": 274,
+  "general_intents_included": true
+}

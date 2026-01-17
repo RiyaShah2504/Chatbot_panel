@@ -1,0 +1,527 @@
+* { margin: 0; padding: 0; box-sizing: border-box; }
+html, body { width: 100%; height: 100%; overflow: hidden; }
+body { font-family: 'Inter', sans-serif; -webkit-font-smoothing: antialiased; background: transparent; }
+
+/* ========== LAUNCHER BUTTON ========== */
+.launcher {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    width: 60px;
+    height: 60px;
+    border: none;
+    border-radius: 50%;
+    color: white;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 9999;
+    box-shadow: 0 4px 16px rgba(0,0,0,0.2);
+    transition: all 0.3s ease;
+    overflow: visible; /* ✅ Changed from hidden to visible for tooltip */
+    padding: 0;
+}
+
+/* ✅ Default background (no avatar) */
+.launcher:not(.has-avatar) {
+    background: var(--primary, #4F46E5);
+}
+
+/* ✅ White background when avatar uploaded */
+.launcher.has-avatar {
+    background: white;
+}
+
+.launcher:hover {
+    transform: scale(1.08);
+    box-shadow: 0 6px 20px rgba(0,0,0,0.3);
+}
+
+/* ========== LAUNCHER AVATAR (User Uploaded) ========== */
+.launcher-avatar {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 50%;
+    opacity: 1;
+    transition: opacity 0.3s;
+}
+
+.launcher.open .launcher-avatar {
+    opacity: 0;
+}
+
+/* ========== LAUNCHER ICON (Default Message Icon) ========== */
+.launcher-icon {
+    width: 30px;
+    height: 30px;
+    stroke: white;
+    fill: none;
+    transition: all 0.3s;
+    opacity: 1;
+}
+
+.launcher.open .launcher-icon {
+    opacity: 0;
+    transform: scale(0) rotate(180deg);
+}
+
+/* ========== LAUNCHER CLOSE ICON ========== */
+.launcher-close {
+    position: absolute;
+    width: 28px;
+    height: 28px;
+    opacity: 0;
+    transform: scale(0) rotate(-180deg);
+    transition: all 0.3s;
+    z-index: 3;
+    fill: none;
+    stroke-width: 2.5;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+    /* Color is set inline in HTML with theme color */
+}
+
+/*When launcher opens, show X icon */
+.launcher.open .launcher-close {
+    opacity: 1;
+    transform: scale(1) rotate(0deg);
+}
+
+/*Make X icon visible on white background when no avatar */
+.launcher:not(.has-avatar).open {
+    background: white;
+}
+
+/*Keep theme background when closed and no avatar */
+.launcher:not(.has-avatar):not(.open) {
+    background: var(--primary, #4F46E5);
+}
+
+/* ========== HELP MESSAGE TOOLTIP ========== */
+.help-message {
+    position: absolute;
+    right: 75px;
+    top: 50%;
+    transform: translateY(-50%);
+    background: white;
+    color: #1a202c;
+    padding: 12px 18px;
+    border-radius: 12px;
+    font-size: 14px;
+    font-weight: 500;
+    white-space: nowrap;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.15);
+    opacity: 1;
+    visibility: visible;
+    transition: all 0.3s ease;
+    pointer-events: none;
+    z-index: 9997;
+}
+
+/* Arrow pointing to launcher */
+.help-message::after {
+    content: '';
+    position: absolute;
+    right: -8px;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 0;
+    height: 0;
+    border-left: 8px solid white;
+    border-top: 8px solid transparent;
+    border-bottom: 8px solid transparent;
+}
+
+/* Hide when widget opens or manually hidden */
+.launcher.open .help-message,
+.help-message.hidden {
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(-50%) translateX(-10px);
+}
+
+/* ========== WIDGET ========== */
+.widget {
+    position: fixed;
+    bottom: 95px;
+    right: 20px;
+    width: 420px;
+    height: 500px;
+    background: white;
+    border-radius: 16px;
+    box-shadow: 0 8px 40px rgba(0,0,0,0.18);
+    display: flex;
+    flex-direction: column;
+    z-index: 9998;
+    opacity: 0;
+    visibility: hidden;
+    transform: scale(0.9) translateY(20px);
+    transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+    overflow: hidden;
+}
+
+.widget.open {
+    opacity: 1;
+    visibility: visible;
+    transform: scale(1) translateY(0);
+}
+
+/* ========== HEADER ========== */
+.header {
+    padding: 18px 20px;
+    background: linear-gradient(135deg, var(--primary, #4F46E5) 0%, var(--primary-dark, #3730A3) 100%);
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-shrink: 0;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+}
+
+.header-info {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    flex: 1;
+}
+
+.avatar {
+    width: 38px;
+    height: 38px;
+    border-radius: 50%;
+    background: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    overflow: hidden;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+}
+
+.avatar img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.avatar svg {
+    width: 34px;
+    height: 34px;
+}
+
+.header-text h3 {
+    font-size: 14px;
+    font-weight: 600;
+    margin: 0;
+    letter-spacing: -0.01em;
+}
+
+.header-text p {
+    font-size: 12px;
+    opacity: 0.9;
+    margin: 2px 0 0 0;
+}
+
+.close-btn {
+    background: rgba(255,255,255,0.15);
+    border: none;
+    color: white;
+    cursor: pointer;
+    padding: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 8px;
+    transition: all 0.2s;
+}
+
+.close-btn:hover { background: rgba(255,255,255,0.25); }
+.close-btn svg { width: 18px; height: 18px; }
+
+/* ========== MESSAGES ========== */
+.messages {
+    flex: 1;
+    padding: 16px;
+    overflow-y: auto;
+    background: var(--bg-chat, #F7FAFC);
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+}
+
+.messages::-webkit-scrollbar { width: 6px; }
+.messages::-webkit-scrollbar-track { background: transparent; }
+.messages::-webkit-scrollbar-thumb {
+    background: rgba(0,0,0,0.12);
+    border-radius: 3px;
+}
+.messages::-webkit-scrollbar-thumb:hover { background: rgba(0,0,0,0.18); }
+
+.message {
+    display: flex;
+    gap: 10px;
+    align-items: flex-start;
+    animation: slideIn 0.3s ease-out;
+}
+
+@keyframes slideIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.message.bot {
+    justify-content: flex-start;
+}
+
+.message.user {
+    justify-content: flex-end;
+    margin-left: auto;
+}
+
+/* ========== MESSAGE AVATAR (BOT ONLY) ========== */
+.msg-avatar {
+    width: 38px;
+    height: 38px;
+    min-width: 38px;
+    min-height: 38px;
+    border-radius: 50%;
+    background: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    overflow: hidden;
+    border: 2px solid #e2e8f0;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.08);
+    padding: 5px;
+}
+
+.msg-avatar img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 50%;
+}
+
+.msg-avatar svg {
+    width: 100%;
+    height: 100%;
+}
+
+.message.user .msg-avatar {
+    display: none;
+}
+
+/* ========== MESSAGE CONTENT ========== */
+.msg-content {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    max-width: 72%;
+}
+
+.msg-bubble {
+    padding: 11px 15px;
+    border-radius: 12px;
+    font-size: 12px;
+    line-height: 1.5;
+    word-wrap: break-word;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.08);
+}
+
+.message.bot .msg-bubble {
+    background: var(--bot-bg, #FFFFFF);
+    color: var(--bot-text, #1A202C);
+    border: 1px solid #e2e8f0;
+}
+
+.message.user .msg-bubble {
+    background: var(--user-bg, #4F46E5);
+    color: var(--user-text, #FFFFFF);
+}
+
+/* ✅ CLICKABLE LINKS IN BOT MESSAGES */
+.msg-bubble a {
+    color: var(--primary, #4F46E5);
+    text-decoration: underline;
+    font-weight: 500;
+    transition: all 0.2s ease;
+    word-break: break-all;
+}
+
+.msg-bubble a:hover {
+    color: var(--primary-dark, #3730A3);
+    text-decoration: none;
+}
+
+/* Special styling for links in bot messages */
+.message.bot .msg-bubble a {
+    color: var(--primary, #4F46E5);
+}
+
+/* Ensure links are visible in user messages too */
+.message.user .msg-bubble a {
+    color: white;
+    text-decoration: underline;
+}
+
+/* ========== BUTTONS ========== */
+.buttons {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-top: 8px;
+}
+
+.btn {
+    padding: 9px 16px;
+    background: white;
+    border: 2px solid var(--primary, #4F46E5);
+    border-radius: 8px;
+    color: var(--primary, #4F46E5);
+    font-size: 12px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    font-family: inherit;
+}
+
+.btn:hover {
+    background: var(--primary, #4F46E5);
+    color: white;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+}
+
+.btn:active {
+    transform: translateY(0);
+}
+
+.btn.full-width {
+    width: 100%;
+    margin-bottom: 4px;
+}
+
+/* ========== BACK BUTTON ========== */
+.btn.back-button {
+    background: #f8fafc !important;
+    border-color: #64748b !important;
+    color: #64748b !important;
+    font-weight: 600;
+    width: 100%;
+    margin-bottom: 10px;
+}
+
+.btn.back-button:hover {
+    background: #64748b !important;
+    color: white !important;
+}
+
+/* ========== TYPING INDICATOR ========== */
+.typing-indicator {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    padding: 12px 16px;
+    background: white;
+    border: 1px solid #e2e8f0;
+    border-radius: 12px;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.08);
+}
+
+.typing-dot {
+    width: 8px;
+    height: 8px;
+    background: var(--primary, #4F46E5);
+    border-radius: 50%;
+    animation: typing 1.4s infinite;
+}
+
+.typing-dot:nth-child(2) { animation-delay: 0.2s; }
+.typing-dot:nth-child(3) { animation-delay: 0.4s; }
+
+@keyframes typing {
+    0%, 60%, 100% { opacity: 0.3; transform: translateY(0); }
+    30% { opacity: 1; transform: translateY(-6px); }
+}
+
+/* ========== INPUT AREA ========== */
+.input-area {
+    padding: 14px 16px;
+    background: white;
+    border-top: 1px solid #e2e8f0;
+    display: flex;
+    gap: 10px;
+    align-items: center;
+    flex-shrink: 0;
+    box-shadow: 0 -2px 8px rgba(0,0,0,0.04);
+}
+
+#input {
+    flex: 1;
+    padding: 11px 16px;
+    border: 2px solid #e2e8f0;
+    border-radius: 24px;
+    font-size: 14px;
+    background: #f9fafb;
+    transition: all 0.2s;
+    font-family: inherit;
+}
+
+#input:focus {
+    outline: none;
+    border-color: var(--primary, #4F46E5);
+    background: white;
+    box-shadow: 0 0 0 4px rgba(79, 70, 229, 0.1);
+}
+
+#sendBtn {
+    width: 42px;
+    height: 42px;
+    border: none;
+    border-radius: 50%;
+    background: var(--primary, #4F46E5);
+    color: white;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    transition: all 0.2s;
+    box-shadow: 0 2px 8px rgba(79, 70, 229, 0.3);
+}
+
+#sendBtn:hover {
+    transform: scale(1.08);
+    box-shadow: 0 4px 12px rgba(79, 70, 229, 0.4);
+}
+#sendBtn:active { transform: scale(0.95); }
+#sendBtn:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+    transform: scale(1);
+}
+
+#sendBtn svg { width: 18px; height: 18px; }
+
+/* ========== RESPONSIVE ========== */
+@media (max-width: 480px) {
+    .widget {
+        bottom: 85px;
+        right: 10px;
+        width: calc(100vw - 20px);
+        height: calc(100vh - 110px);
+        max-height: 600px;
+    }
+    .msg-content { max-width: 80%; }
+}
+
+@media (max-width: 360px) {
+    .widget {
+        width: calc(100vw - 16px);
+        right: 8px;
+    }
+}

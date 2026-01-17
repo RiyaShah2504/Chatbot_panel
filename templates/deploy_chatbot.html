@@ -1,0 +1,343 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Deploy - {{ chatbot.name }} | ChatBot Builder</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/deploy.css') }}">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+     <div class="dashboard-container">
+        <!-- Sidebar -->
+        <aside class="sidebar" id="sidebar">
+            <div class="sidebar-header">
+                <div class="logo">
+                    <svg width="32" height="32" viewBox="0 0 40 40" fill="none">
+                        <rect width="40" height="40" rx="8" fill="url(#gradient)"/>
+                        <path d="M20 10L30 16V24L20 30L10 24V16L20 10Z" fill="white" opacity="0.9"/>
+                        <defs>
+                            <linearGradient id="gradient" x1="0" y1="0" x2="40" y2="40">
+                                <stop offset="0%" stop-color="#667eea"/>
+                                <stop offset="100%" stop-color="#764ba2"/>
+                            </linearGradient>
+                        </defs>
+                    </svg>
+                    <span>ChatBot Builder</span>
+                </div>
+            </div>
+
+            <nav class="nav-menu">
+                <div class="nav-section">
+                    <a href="{{ url_for('dashboard') }}" class="nav-item active" data-page="dashboard">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <rect x="3" y="3" width="7" height="7"></rect>
+                            <rect x="14" y="3" width="7" height="7"></rect>
+                            <rect x="14" y="14" width="7" height="7"></rect>
+                            <rect x="3" y="14" width="7" height="7"></rect>
+                        </svg>
+                        <span>Dashboard</span>
+                    </a>
+                </div>
+
+                <div class="nav-section">
+                    <div class="nav-section-title">Workspace</div>
+                    <a href="#" class="nav-item" id="botsMenu">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path>
+                    </svg>
+                    <span>Bots</span>
+                    <svg class="chevron" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <polyline points="9 18 15 12 9 6"></polyline>
+                    </svg>
+                </a>
+                <div class="submenu" id="botsSubmenu">
+                    {% if chatbots %}
+                        {% for chatbot in chatbots %}
+                        <a href="{{ url_for('preview_chatbot', chatbot_id=chatbot.id) }}" class="submenu-item" data-chatbot-id="{{ chatbot.id }}">
+                            <span class="dot"></span>
+                            <span>{{ chatbot.name }}</span>
+                            <span class="status-indicator {{ 'active' if chatbot.is_active else 'inactive' }}"></span>
+                        </a>
+                        {% endfor %}
+                    {% else %}
+                        <div class="submenu-item empty">
+                            <span class="dot"></span>
+                            <span>No chatbots created yet</span>
+                        </div>
+                    {% endif %}
+                </div>
+                    <!--<a href="#" class="nav-item" data-page="analytics">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <line x1="12" y1="20" x2="12" y2="10"></line>
+                            <line x1="18" y1="20" x2="18" y2="4"></line>
+                            <line x1="6" y1="20" x2="6" y2="16"></line>
+                        </svg>
+                        <span>Analytics</span>
+                    </a>
+
+                    <a href="#" class="nav-item" data-page="integration">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <circle cx="12" cy="12" r="3"></circle>
+                            <path d="M12 1v6m0 6v6m-6-6H1m6 0h6"></path>
+                        </svg>
+                        <span>Integration</span>
+                    </a>
+                </div>-->
+
+                <div class="nav-section">
+                    <div class="nav-section-title">Account</div>
+                    <a href="#" class="nav-item" id="accountMenu">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+                            <circle cx="12" cy="7" r="4"></circle>
+                        </svg>
+                        <span>My Account</span>
+                        <svg class="chevron" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <polyline points="9 18 15 12 9 6"></polyline>
+                        </svg>
+                    </a>
+                    <div class="submenu" id="accountSubmenu">
+                        <a href="{{ url_for('edit_profile') }}" class="submenu-item" data-page="Edit Profile">
+                            <span class="dot"></span>
+                            <span>Edit Profile</span>
+                        </a>
+                        <a href="{{ url_for('change_password') }}" class="submenu-item" data-page="Change Password">
+                            <span class="dot"></span>
+                            <span>Change Password</span>
+                        </a>
+                        <a href="{{ url_for('manage_subscription') }}" class="submenu-item" data-page="Subscription">
+                            <span class="dot"></span>
+                            <span>Subscription</span>
+                        </a>
+                    </div>
+                </div>
+            </nav>
+            <div class="user-section">
+                <div class="user-info">
+                    <div class="user-avatar">{{ session.username[0].upper() }}</div>
+                    <div class="user-details">
+                        <div class="user-name">{{ session.username }}</div>
+                        <div class="user-email">{{ session.email }}</div>
+                    </div>
+                </div>
+                <a href="{{ url_for('logout') }}" class="logout-btn" title="Logout">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"></path>
+                        <polyline points="16 17 21 12 16 7"></polyline>
+                        <line x1="21" y1="12" x2="9" y2="12"></line>
+                    </svg>
+                </a>
+            </div>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <!-- Header -->
+            <header class="page-header">
+                <div class="header-content">
+                    <h1> Deploy: {{ chatbot.name }}</h1>
+                    <p>{{ chatbot.name }} is ready to go live!</p>
+                </div>
+                <a href="{{ url_for('dashboard') }}" class="btn btn-secondary">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <line x1="19" y1="12" x2="5" y2="12"></line>
+                        <polyline points="12 19 5 12 12 5"></polyline>
+                    </svg>
+                    Back to Dashboard
+                </a>
+            </header>
+
+
+                <!-- Deployment Options -->
+                <div class="deploy-grid">
+
+                    <!-- Embed Code Card -->
+                    <div class="deploy-card">
+                        <div class="card-header">
+                            <div class="card-icon">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <polyline points="16 18 22 12 16 6"></polyline>
+                                    <polyline points="8 6 2 12 8 18"></polyline>
+                                </svg>
+                            </div>
+                            <div class="card-title-group">
+                                <h3>Embed Code</h3>
+                                <p>Add this code to your website</p>
+                            </div>
+                        </div>
+
+                        <div class="card-body">
+                            <div class="code-block">
+                                <pre><code id="embedCode">{{ iframe_code }}</code></pre>
+                                <button class="btn-copy" onclick="copyEmbedCode()" aria-label="Copy embed code">
+                                    <svg class="copy-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                        <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+                                        <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+                                    </svg>
+                                    <svg class="check-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                        <polyline points="20 6 9 17 4 12"></polyline>
+                                    </svg>
+                                    <span class="btn-text">Copy Code</span>
+                                </button>
+                            </div>
+
+                            <div class="code-instructions">
+                                <div class="instruction-item">
+                                    <span class="step-badge">1</span>
+                                    <span>Copy the embed code above</span>
+                                </div>
+                                <div class="instruction-item">
+                                    <span class="step-badge">2</span>
+                                    <span>Paste it into your website's HTML</span>
+                                </div>
+                                <div class="instruction-item">
+                                    <span class="step-badge">3</span>
+                                    <span>Publish your site - Done!</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Direct Link Card -->
+                    <div class="deploy-card">
+                        <div class="card-header">
+                            <div class="card-icon">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path>
+                                    <path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path>
+                                </svg>
+                            </div>
+                            <div class="card-title-group">
+                                <h3>Direct Link</h3>
+                                <p>Share this link anywhere</p>
+                            </div>
+                        </div>
+
+                        <div class="card-body">
+                            <div class="link-input-group">
+                                <label for="directLink"></label><input type="text"
+                                                                       id="directLink"
+                                                                       value="{{ request.host_url.rstrip('/') }}/embed/{{ chatbot.embed_code }}"
+                                                                       readonly
+                                                                       class="link-input">
+                                <button class="btn-copy" onclick="copyDirectLink()" aria-label="Copy link">
+                                    <svg class="copy-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                        <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+                                        <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+                                    </svg>
+                                    <svg class="check-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                        <polyline points="20 6 9 17 4 12"></polyline>
+                                    </svg>
+                                </button>
+                            </div>
+
+                            <div class="link-actions">
+                                <a href="{{ request.host_url.rstrip('/') }}/embed/{{ chatbot.embed_code }}"
+                                   target="_blank"
+                                   class="btn btn-outline">
+                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                        <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path>
+                                        <polyline points="15 3 21 3 21 9"></polyline>
+                                        <line x1="10" y1="14" x2="21" y2="3"></line>
+                                    </svg>
+                                    Test Widget
+                                </a>
+                                <button onclick="shareOnSocial()" class="btn btn-outline">
+                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                        <circle cx="18" cy="5" r="3"></circle>
+                                        <circle cx="6" cy="12" r="3"></circle>
+                                        <circle cx="18" cy="19" r="3"></circle>
+                                        <line x1="8.59" y1="13.51" x2="15.42" y2="17.49"></line>
+                                        <line x1="15.41" y1="6.51" x2="8.59" y2="10.49"></line>
+                                    </svg>
+                                    Share
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+<!--                    &lt;!&ndash; Widget Preview Card &ndash;&gt;-->
+<!--                    <div class="deploy-card preview-card">-->
+<!--                        <div class="card-header">-->
+<!--                            <div class="card-title-group">-->
+<!--                                <h3>Live Preview</h3>-->
+<!--                                <p>See how it looks on your site</p>-->
+<!--                            </div>-->
+<!--                        </div>-->
+
+<!--                        <div class="card-body">-->
+<!--                            <div class="preview-container">-->
+<!--                                <iframe-->
+<!--                                    src="{{ request.host_url.rstrip('/') }}/embed/{{ chatbot.embed_code }}"-->
+<!--                                    class="preview-iframe"-->
+<!--                                    title="Chatbot Preview"-->
+<!--                                    loading="lazy">-->
+<!--                                </iframe>-->
+<!--                            </div>-->
+<!--                        </div>-->
+<!--                    </div>-->
+
+<!--                </div>-->
+
+                <!-- Quick Actions -->
+                <div class="quick-actions">
+                    <a href="{{ url_for('edit_chatbot', chatbot_id=chatbot.id) }}" class="action-btn">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"></path>
+                            <path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"></path>
+                        </svg>
+                        <span>Edit Settings</span>
+                    </a>
+                    <a href="{{ url_for('train_chatbot', chatbot_id=chatbot.id) }}" class="action-btn">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"></path>
+                            <path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"></path>
+                        </svg>
+                        <span>Train Bot</span>
+                    </a>
+                    <a href="{{ url_for('chatbot_analytics', chatbot_id=chatbot.id) }}" class="action-btn">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <line x1="12" y1="20" x2="12" y2="10"></line>
+                            <line x1="18" y1="20" x2="18" y2="4"></line>
+                            <line x1="6" y1="20" x2="6" y2="16"></line>
+                        </svg>
+                        <span>View Analytics</span>
+                    </a>
+                    <button onclick="downloadQRCode()" class="action-btn">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <rect x="3" y="3" width="7" height="7"></rect>
+                            <rect x="14" y="3" width="7" height="7"></rect>
+                            <rect x="14" y="14" width="7" height="7"></rect>
+                            <rect x="3" y="14" width="7" height="7"></rect>
+                        </svg>
+                        <span>Get QR Code</span>
+                    </button>
+                </div>
+
+            </div>
+        </main>
+    </div>
+
+    <!-- Mobile Menu Toggle -->
+    <button class="mobile-menu-toggle" id="mobileMenuToggle" aria-label="Toggle menu">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <line x1="3" y1="12" x2="21" y2="12"></line>
+            <line x1="3" y1="6" x2="21" y2="6"></line>
+            <line x1="3" y1="18" x2="21" y2="18"></line>
+        </svg>
+    </button>
+
+    <!-- Scripts -->
+    <script>
+        // Pass chatbot data to JavaScript
+        window.CHATBOT_DATA = {
+            id: {{ chatbot.id }},
+            name: '{{ chatbot.name }}',
+            embedCode: '{{ chatbot.embed_code }}',
+            directLink: '{{ request.host_url.rstrip("/") }}/embed/{{ chatbot.embed_code }}'
+        };
+    </script>
+    <script src="{{ url_for('static', filename='js/deploy.js') }}"></script>
+</body>
+</html>

@@ -1,0 +1,674 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Train Chatbot - {{ chatbot.name }}</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/train.css') }}">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Sidebar -->
+    <div class="dashboard-container">
+        <aside class="sidebar" id="sidebar">
+            <div class="sidebar-header">
+                <div class="logo">
+                    <svg width="32" height="32" viewBox="0 0 40 40" fill="none">
+                        <rect width="40" height="40" rx="8" fill="url(#gradient)"/>
+                        <path d="M20 10L30 16V24L20 30L10 24V16L20 10Z" fill="white" opacity="0.9"/>
+                        <defs>
+                            <linearGradient id="gradient" x1="0" y1="0" x2="40" y2="40">
+                                <stop offset="0%" stop-color="#667eea"/>
+                                <stop offset="100%" stop-color="#764ba2"/>
+                            </linearGradient>
+                        </defs>
+                    </svg>
+                    <span>ChatBot Builder</span>
+                </div>
+            </div>
+
+            <nav class="nav-menu">
+                <div class="nav-section">
+                    <a href="{{ url_for('dashboard') }}" class="nav-item active" data-page="dashboard">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <rect x="3" y="3" width="7" height="7"></rect>
+                            <rect x="14" y="3" width="7" height="7"></rect>
+                            <rect x="14" y="14" width="7" height="7"></rect>
+                            <rect x="3" y="14" width="7" height="7"></rect>
+                        </svg>
+                        <span>Dashboard</span>
+                    </a>
+                </div>
+
+                <div class="nav-section">
+                    <div class="nav-section-title">Workspace</div>
+                    <a href="#" class="nav-item" id="botsMenu">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path>
+                        </svg>
+                        <span>Bots</span>
+                        <svg class="chevron" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <polyline points="9 18 15 12 9 6"></polyline>
+                        </svg>
+                    </a>
+                    <div class="submenu" id="botsSubmenu">
+                        {% if chatbots %}
+                            {% for chatbot in chatbots %}
+                            <a href="{{ url_for('preview_chatbot', chatbot_id=chatbot.id) }}" class="submenu-item" data-chatbot-id="{{ chatbot.id }}">
+                                <span class="dot"></span>
+                                <span>{{ chatbot.name }}</span>
+                                <span class="status-indicator {{ 'active' if chatbot.is_active else 'inactive' }}"></span>
+                            </a>
+                            {% endfor %}
+                        {% else %}
+                            <div class="submenu-item empty">
+                                <span class="dot"></span>
+                                <span>No chatbots created yet</span>
+                            </div>
+                        {% endif %}
+                    </div>
+
+                    <!--<a href="#" class="nav-item" data-page="analytics">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <line x1="12" y1="20" x2="12" y2="10"></line>
+                            <line x1="18" y1="20" x2="18" y2="4"></line>
+                            <line x1="6" y1="20" x2="6" y2="16"></line>
+                        </svg>
+                        <span>Analytics</span>
+                    </a>
+
+                    <a href="#" class="nav-item" data-page="integration">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <circle cx="12" cy="12" r="3"></circle>
+                            <path d="M12 1v6m0 6v6m-6-6H1m6 0h6"></path>
+                        </svg>
+                        <span>Integration</span>
+                    </a>
+                </div>-->
+
+                <div class="nav-section">
+                    <div class="nav-section-title">Account</div>
+                    <a href="#" class="nav-item" id="accountMenu">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+                            <circle cx="12" cy="7" r="4"></circle>
+                        </svg>
+                        <span>My Account</span>
+                        <svg class="chevron" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <polyline points="9 18 15 12 9 6"></polyline>
+                        </svg>
+                    </a>
+                    <div class="submenu" id="accountSubmenu">
+                        <a href="{{ url_for('edit_profile') }}" class="submenu-item" data-page="Edit Profile">
+                            <span class="dot"></span>
+                            <span>Edit Profile</span>
+                        </a>
+                        <a href="{{ url_for('change_password') }}" class="submenu-item" data-page="Change Password">
+                            <span class="dot"></span>
+                            <span>Change Password</span>
+                        </a>
+                        <a href="{{ url_for('manage_subscription') }}" class="submenu-item" data-page="Subscription">
+                            <span class="dot"></span>
+                            <span>Subscription</span>
+                        </a>
+                    </div>
+                </div>
+            </nav>
+            <div class="user-section">
+                <div class="user-info">
+                    <div class="user-avatar">{{ session.username[0].upper() }}</div>
+                    <div class="user-details">
+                        <div class="user-name">{{ session.username }}</div>
+                        <div class="user-email">{{ session.email }}</div>
+                    </div>
+                </div>
+                <a href="{{ url_for('logout') }}" class="logout-btn" title="Logout">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"></path>
+                        <polyline points="16 17 21 12 16 7"></polyline>
+                        <line x1="21" y1="12" x2="9" y2="12"></line>
+                    </svg>
+                </a>
+            </div>
+        </aside>
+
+        <!-- Mobile Menu Toggle -->
+        <button class="mobile-menu-toggle" id="mobileMenuToggle">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <line x1="3" y1="12" x2="21" y2="12"></line>
+                <line x1="3" y1="6" x2="21" y2="6"></line>
+                <line x1="3" y1="18" x2="21" y2="18"></line>
+            </svg>
+        </button>
+
+        <main class="main-content">
+            <div class="page-header">
+                <div>
+                    <h1>Train: {{ chatbot.name }}</h1>
+                    <p>Manage training data for {{ chatbot.name }}</p>
+                </div>
+                <div class="header-actions">
+                    {% if chatbot.training_data %}
+                    <button class="btn-download" onclick="downloadIntents()">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+                            <polyline points="7 10 12 15 17 10"></polyline>
+                            <line x1="12" y1="15" x2="12" y2="3"></line>
+                        </svg>
+                        Download Intents
+                    </button>
+                    {% endif %}
+                    <a href="{{ url_for('dashboard') }}" class="btn-secondary">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <line x1="19" y1="12" x2="5" y2="12"></line>
+                            <polyline points="12 19 5 12 12 5"></polyline>
+                        </svg>
+                        Back to Dashboard
+                    </a>
+                </div>
+            </div>
+
+            <div id="alertContainer"></div>
+
+            <!-- ===== MAIN PAGE - Q&A LIST VIEW ===== -->
+            <div id="mainPage" class="main-page">
+                <div class="training-container">
+                    {% if chatbot.training_data %}
+                    <!-- HAS DATA: Show Q&A Cards -->
+                    <div class="main-page-header">
+                        <div>
+                            <h2>Training Data Overview</h2>
+                            <p class="main-page-subtitle">Manage your chatbot's knowledge base</p>
+                        </div>
+                        <div class="main-page-actions">
+                            <button class="btn-add-data" onclick="showUploadPage('append')">
+                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <line x1="12" y1="5" x2="12" y2="19"></line>
+                                    <line x1="5" y1="12" x2="19" y2="12"></line>
+                                </svg>
+                                Add More Data
+                            </button>
+                            <button class="btn-replace-data" onclick="showUploadPage('replace')">
+                                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                        <polyline points="23 4 23 10 17 10"></polyline>
+                                        <path d="M20.49 15a9 9 0 1 1-2-8.83"></path>
+                                    </svg>
+                                Replace All Data
+                            </button>
+
+                            <button class="btn-danger" onclick="deleteAllTrainingData()">
+                                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <polyline points="3 6 5 6 21 6"></polyline>
+                                    <path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6"></path>
+                                </svg>
+                                Delete All Data
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Search & Filter Section -->
+                    <div class="search-section">
+                        <div class="search-bar-wrapper">
+                            <div class="search-input-group">
+                                <svg class="search-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <circle cx="11" cy="11" r="8"></circle>
+                                    <path d="m21 21-4.35-4.35"></path>
+                                </svg>
+                                <label for="searchInput"></label><input type="text" id="searchInput" class="search-input" placeholder="Search questions or answers...">
+                                <button class="btn-clear-search" id="clearSearchBtn" style="display: none;">
+                                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                        <line x1="18" y1="6" x2="6" y2="18"></line>
+                                        <line x1="6" y1="6" x2="18" y2="18"></line>
+                                    </svg>
+                                </button>
+                            </div>
+
+                            <div class="filter-chips">
+                                <button class="filter-chip active" data-filter="all">
+                                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                        <circle cx="12" cy="12" r="10"></circle>
+                                        <polyline points="12 6 12 12 16 14"></polyline>
+                                    </svg>
+                                    All
+                                </button>
+                                <button class="filter-chip" data-filter="recent">
+                                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                        <polyline points="23 4 23 10 17 10"></polyline>
+                                        <path d="M20.49 15a9 9 0 1 1-2-8.83"></path>
+                                    </svg>
+                                    Recent
+                                </button>
+                            </div>
+                        </div>
+
+                        <div class="search-results-header">
+                            <div class="results-info">
+                                <span class="results-count">Showing <strong id="resultsCount">0</strong> of <strong id="totalCount">0</strong> Q&A pairs</span>
+                            </div>
+                            <div class="sort-options">
+                                <label for="sortSelect">Sort by:</label>
+                                <select id="sortSelect" class="sort-select">
+                                    <option value="recent">Most Recent</option>
+                                    <option value="oldest">Oldest First</option>
+                                    <option value="az">A-Z (Question)</option>
+                                    <option value="za">Z-A (Question)</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Q&A Cards Grid -->
+                    <div id="qaCardsContainer" class="qa-cards-container">
+                        <!-- Loaded by JavaScript -->
+                    </div>
+
+                    {% else %}
+                    <!-- NO DATA: Show Empty State -->
+                    <div class="empty-state">
+                        <svg width="80" height="80" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                            <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+                            <polyline points="14 2 14 8 20 8"></polyline>
+                            <line x1="16" y1="13" x2="8" y2="13"></line>
+                            <line x1="16" y1="17" x2="8" y2="17"></line>
+                            <polyline points="10 9 9 9 8 9"></polyline>
+                        </svg>
+                        <h2>No Training Data Yet</h2>
+                        <p>Start training your chatbot by uploading your first dataset</p>
+                        <button class="btn-primary-large" onclick="showUploadPage('replace')">
+                            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+                                <polyline points="17 8 12 3 7 8"></polyline>
+                                <line x1="12" y1="3" x2="12" y2="15"></line>
+                            </svg>
+                            Add Training Data
+                        </button>
+                    </div>
+                    {% endif %}
+                </div>
+            </div>
+
+            <!-- ===== UPLOAD PAGE - TAB VIEW ===== -->
+            <div id="uploadPage" class="upload-page" style="display: none;">
+                <div class="training-container">
+                    <div class="upload-page-header">
+                        <button class="btn-back" onclick="backToMainPage()">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <line x1="19" y1="12" x2="5" y2="12"></line>
+                                <polyline points="12 19 5 12 12 5"></polyline>
+                            </svg>
+                            Back
+                        </button>
+                        <div>
+                            <h2 id="uploadPageTitle">Upload Training Data</h2>
+                            <p class="upload-page-subtitle" id="uploadPageSubtitle">Choose your preferred method</p>
+                        </div>
+                    </div>
+
+                    <!-- Tab Navigation -->
+                    <div class="tab-navigation">
+                        <button class="tab-btn active" data-tab="json">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path>
+                                <polyline points="13 2 13 9 20 9"></polyline>
+                            </svg>
+                            JSON File
+                        </button>
+                        <button class="tab-btn" data-tab="text">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+                                <polyline points="14 2 14 8 20 8"></polyline>
+                                <line x1="16" y1="13" x2="8" y2="13"></line>
+                                <line x1="16" y1="17" x2="8" y2="17"></line>
+                            </svg>
+                            Text/HTML File
+                        </button>
+                        <button class="tab-btn" data-tab="excel">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+                                <polyline points="14 2 14 8 20 8"></polyline>
+                                <line x1="9" y1="15" x2="15" y2="15"></line>
+                            </svg>
+                            Excel File
+                        </button>
+                        <button class="tab-btn" data-tab="manual">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"></path>
+                                <path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"></path>
+                            </svg>
+                            Simple Q&A
+                        </button>
+                    </div>
+
+                    <!-- Tab Content -->
+                    <div class="tab-content-wrapper">
+                        <!-- JSON Upload Tab -->
+                        <div id="jsonTab" class="tab-content active">
+                            <div class="tab-card">
+                                <div class="tab-card-header">
+                                    <h3>Upload JSON File</h3>
+                                    <div class="tab-card-actions">
+                                        <button class="btn-view-format" onclick="toggleFormatExample('json')">
+                                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                                <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path>
+                                                <circle cx="12" cy="12" r="3"></circle>
+                                            </svg>
+                                            View Format
+                                        </button>
+                                        <button class="btn-download-sample" onclick="downloadSample('json')">
+                                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                                <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+                                                <polyline points="7 10 12 15 17 10"></polyline>
+                                                <line x1="12" y1="15" x2="12" y2="3"></line>
+                                            </svg>
+                                            Sample
+                                        </button>
+                                    </div>
+                                </div>
+                                <p class="tab-card-description">Upload a JSON file with training data. We support multiple formats!</p>
+
+                                <!-- Format Example -->
+                                <div class="format-example" id="jsonFormatExample" style="display: none;">
+                                    <div class="format-close">
+                                        <button onclick="toggleFormatExample('json')" class="btn-close-format">
+                                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                                <line x1="18" y1="6" x2="6" y2="18"></line>
+                                                <line x1="6" y1="6" x2="18" y2="18"></line>
+                                            </svg>
+                                        </button>
+                                    </div>
+                                    <h4>✅ Supported Formats:</h4>
+                                    <pre><code>// Format 1: Intent-based (Recommended)
+{
+  "intents": [
+    {
+      "tag": "greeting",
+      "patterns": ["Hi", "Hello", "Hey"],
+      "responses": ["Hello! How can I help?"]
+    }
+  ]
+}
+
+// Format 2: Q&A Pairs (Auto-converts)
+{
+  "training_data": [
+    {
+      "question": "What are your hours?",
+      "answer": "We're open 9 AM to 6 PM"
+    }
+  ]
+}</code></pre>
+                                </div>
+
+                                <form id="uploadForm" enctype="multipart/form-data">
+                                    <div class="upload-area" id="uploadArea">
+                                        <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                            <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+                                            <polyline points="17 8 12 3 7 8"></polyline>
+                                            <line x1="12" y1="3" x2="12" y2="15"></line>
+                                        </svg>
+                                        <h3>Drop your JSON file here</h3>
+                                        <p>or click to browse</p>
+                                        <input type="file" id="fileInput" name="training_file" accept=".json" hidden>
+                                    </div>
+
+                                    <div id="fileInfo" class="file-info" style="display: none;">
+                                        <div class="file-details">
+                                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                                <path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path>
+                                                <polyline points="13 2 13 9 20 9"></polyline>
+                                            </svg>
+                                            <div>
+                                                <div class="file-name" id="fileName"></div>
+                                                <div class="file-size" id="fileSize"></div>
+                                            </div>
+                                        </div>
+                                        <button type="button" id="removeFile" class="btn-remove">
+                                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                                <line x1="18" y1="6" x2="6" y2="18"></line>
+                                                <line x1="6" y1="6" x2="18" y2="18"></line>
+                                            </svg>
+                                        </button>
+                                    </div>
+
+                                    <div class="progress-bar" id="progressBar" style="display: none;">
+                                        <div class="progress-fill" id="progressFill"></div>
+                                    </div>
+
+                                    <button type="submit" id="uploadBtn" class="btn-primary" disabled>
+                                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                            <polyline points="20 6 9 17 4 12"></polyline>
+                                        </svg>
+                                        Upload & Train
+                                    </button>
+                                </form>
+                            </div>
+                        </div>
+
+                        <!-- Text/HTML Upload Tab -->
+                        <div id="textTab" class="tab-content">
+                            <div class="tab-card">
+                                <div class="tab-card-header">
+                                    <h3>Upload Text/HTML File</h3>
+                                    <div class="tab-card-actions">
+                                        <button class="btn-view-format" onclick="toggleFormatExample('text')">
+                                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                                <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path>
+                                                <circle cx="12" cy="12" r="3"></circle>
+                                            </svg>
+                                            View Format
+                                        </button>
+                                        <button class="btn-download-sample" onclick="downloadSample('text')">
+                                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                                <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+                                                <polyline points="7 10 12 15 17 10"></polyline>
+                                                <line x1="12" y1="15" x2="12" y2="3"></line>
+                                            </svg>
+                                            Sample
+                                        </button>
+                                    </div>
+                                </div>
+                                <p class="tab-card-description">Upload a text or HTML file. We'll extract Q&A pairs automatically!</p>
+
+                                <!-- Format Example -->
+                                <div class="format-example" id="textFormatExample" style="display: none;">
+                                    <div class="format-close">
+                                        <button onclick="toggleFormatExample('text')" class="btn-close-format">
+                                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                                <line x1="18" y1="6" x2="6" y2="18"></line>
+                                                <line x1="6" y1="6" x2="18" y2="18"></line>
+                                            </svg>
+                                        </button>
+                                    </div>
+                                    <h4>✅ Supported Formats:</h4>
+                                    <div class="format-tip">
+                                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                            <circle cx="12" cy="12" r="10"></circle>
+                                            <line x1="12" y1="16" x2="12" y2="12"></line>
+                                            <line x1="12" y1="8" x2="12.01" y2="8"></line>
+                                        </svg>
+                                        <span><strong>Best Practice:</strong> Include 10-20 Q&A pairs minimum. Clear formatting improves extraction accuracy!</span>
+                                    </div>
+                                    <pre><code>// Format 1: Q: / A: Pattern
+Q: What are your business hours?
+A: We are open Monday to Friday, 9 AM to 6 PM.
+
+Q: How can I contact support?
+A: You can email us at support@example.com
+
+// Format 2: Question: / Answer: Pattern
+Question: Do you offer refunds?
+Answer: Yes, we offer 30-day money-back guarantee.
+
+// Format 3: Alternating Lines
+What services do you provide?
+We provide web development, design, and consulting.</code></pre>
+                                </div>
+
+                                <form id="textUploadForm" enctype="multipart/form-data">
+                                    <div class="upload-area" id="textUploadArea">
+                                        <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                            <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+                                            <polyline points="14 2 14 8 20 8"></polyline>
+                                            <line x1="16" y1="13" x2="8" y2="13"></line>
+                                            <line x1="16" y1="17" x2="8" y2="17"></line>
+                                        </svg>
+                                        <h3>Drop your TXT/HTML file here</h3>
+                                        <p>or click to browse</p>
+                                        <input type="file" id="textFileInput" name="text_file" accept=".txt,.html,.htm" hidden>
+                                    </div>
+
+                                    <div id="textFileInfo" class="file-info" style="display: none;">
+                                        <div class="file-details">
+                                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                                <path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path>
+                                                <polyline points="13 2 13 9 20 9"></polyline>
+                                            </svg>
+                                            <div>
+                                                <div class="file-name" id="textFileName"></div>
+                                                <div class="file-size" id="textFileSize"></div>
+                                            </div>
+                                        </div>
+                                        <button type="button" id="removeTextFile" class="btn-remove">
+                                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                                <line x1="18" y1="6" x2="6" y2="18"></line>
+                                                <line x1="6" y1="6" x2="18" y2="18"></line>
+                                            </svg>
+                                        </button>
+                                    </div>
+
+                                    <div class="progress-bar" id="textProgressBar" style="display: none;">
+                                        <div class="progress-fill" id="textProgressFill"></div>
+                                    </div>
+
+                                    <button type="submit" id="textUploadBtn" class="btn-primary" disabled>
+                                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                            <polyline points="20 6 9 17 4 12"></polyline>
+                                        </svg>
+                                        Upload & Train
+                                    </button>
+                                </form>
+                            </div>
+                        </div>
+
+                        <!-- Excel Upload Tab -->
+                        <div id="excelTab" class="tab-content">
+                            <div class="tab-card">
+                                <div class="tab-card-header">
+                                    <h3>Upload Excel File</h3>
+                                    <div class="tab-card-actions">
+                                        <button class="btn-download-sample" onclick="downloadSample('excel')">
+                                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                                <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+                                                <polyline points="7 10 12 15 17 10"></polyline>
+                                                <line x1="12" y1="15" x2="12" y2="3"></line>
+                                            </svg>
+                                            Sample
+                                        </button>
+                                    </div>
+                                </div>
+                                <p class="tab-card-description">Upload an Excel file (.xlsx, .xls) with Question and Answer columns</p>
+
+                                <form id="excelUploadForm" enctype="multipart/form-data">
+                                    <div class="upload-area" id="excelUploadArea">
+                                        <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                            <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+                                            <polyline points="14 2 14 8 20 8"></polyline>
+                                            <line x1="9" y1="15" x2="15" y2="15"></line>
+                                        </svg>
+                                        <h3>Drop your Excel file here</h3>
+                                        <p>or click to browse</p>
+                                        <input type="file" id="excelFileInput" name="excel_file" accept=".xlsx,.xls" hidden>
+                                    </div>
+
+                                    <div id="excelFileInfo" class="file-info" style="display: none;">
+                                        <div class="file-details">
+                                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                                <path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path>
+                                                <polyline points="13 2 13 9 20 9"></polyline>
+                                            </svg>
+                                            <div>
+                                                <div class="file-name" id="excelFileName"></div>
+                                                <div class="file-size" id="excelFileSize"></div>
+                                            </div>
+                                        </div>
+                                        <button type="button" id="removeExcelFile" class="btn-remove">
+                                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                                <line x1="18" y1="6" x2="6" y2="18"></line>
+                                                <line x1="6" y1="6" x2="18" y2="18"></line>
+                                            </svg>
+                                        </button>
+                                    </div>
+
+                                    <div class="progress-bar" id="excelProgressBar" style="display: none;">
+                                        <div class="progress-fill" id="excelProgressFill"></div>
+                                    </div>
+
+                                    <button type="submit" id="excelUploadBtn" class="btn-primary" disabled>
+                                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                            <polyline points="20 6 9 17 4 12"></polyline>
+                                        </svg>
+                                        Upload & Train
+                                    </button>
+                                </form>
+                            </div>
+                        </div>
+
+                        <!-- Manual Q&A Tab -->
+                        <div id="manualTab" class="tab-content">
+                            <div class="tab-card">
+                                <div class="tab-card-header">
+                                    <h3>Simple Q&A Entry</h3>
+                                </div>
+                                <p class="tab-card-description">Enter questions and answers directly</p>
+
+                                <div class="qa-best-practices">
+                                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                        <circle cx="12" cy="12" r="10"></circle>
+                                        <line x1="12" y1="16" x2="12" y2="12"></line>
+                                        <line x1="12" y1="8" x2="12.01" y2="8"></line>
+                                    </svg>
+                                    <span><strong>Tip:</strong> Add at least 10-15 Q&A pairs for optimal performance!</span>
+                                </div>
+
+                                <div class="qa-container" id="qaContainer">
+                                    <!-- Q&A pairs loaded by JavaScript -->
+                                </div>
+
+                                <div class="manual-actions">
+                                    <button type="button" id="addQaBtn" class="btn-secondary">
+                                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                            <line x1="12" y1="5" x2="12" y2="19"></line>
+                                            <line x1="5" y1="12" x2="19" y2="12"></line>
+                                        </svg>
+                                        Add Q&A Pair
+                                    </button>
+
+                                    <button type="button" id="clearAllBtn" class="btn-clear">
+                                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                            <polyline points="3 6 5 6 21 6"></polyline>
+                                            <path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path>
+                                        </svg>
+                                        Clear All
+                                    </button>
+                                </div>
+
+                                <button type="button" id="saveManualBtn" class="btn-primary">
+                                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                        <polyline points="20 6 9 17 4 12"></polyline>
+                                    </svg>
+                                    Save & Train Chatbot
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script>
+        const CHATBOT_ID = {{ chatbot.id }};
+    </script>
+    <script src="{{ url_for('static', filename='js/train.js') }}"></script>
+</body>
+</html>

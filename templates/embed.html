@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ chatbot.bot_name }} - Chat Widget</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/embed.css') }}">
+</head>
+<body>
+
+<!-- Floating Launcher Button -->
+<!-- Floating Launcher Button -->
+<button class="launcher {% if bot_avatar_url %}has-avatar{% endif %}" id="launcher" title="Chat with {{ chatbot.bot_name }}">
+    {% if bot_avatar_url %}
+        <!-- User Uploaded Avatar -->
+        <img src="{{ bot_avatar_url }}" alt="{{ chatbot.bot_name }}" class="launcher-avatar">
+    {% else %}
+        <!-- Default Message Icon (Theme Colored) -->
+        <svg class="launcher-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path>
+        </svg>
+    {% endif %}
+
+    <!-- Close X Icon - ALWAYS present and visible when open -->
+    <svg class="launcher-close" viewBox="0 0 24 24" fill="none" stroke="{{ settings.themeColor }}" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+        <line x1="18" y1="6" x2="6" y2="18"></line>
+        <line x1="6" y1="6" x2="18" y2="18"></line>
+    </svg>
+
+    <!-- Help Message Tooltip with Emoji -->
+    <div class="help-message" id="helpMessage">👋 How may I help you?</div>
+</button>
+
+<!-- Chat Widget Window -->
+<div class="widget" id="widget">
+    <!-- Header -->
+    <div class="header">
+        <div class="header-info">
+            <div class="avatar">
+                {% if bot_avatar_url %}
+                    <img src="{{ bot_avatar_url }}" alt="{{ chatbot.bot_name }}">
+                {% else %}
+                    <!-- Default Robot Icon -->
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
+                        <rect x="16" y="24" width="32" height="28" rx="6" fill="{{ settings.themeColor }}"/>
+                        <line x1="32" y1="16" x2="32" y2="24" stroke="{{ settings.themeColor }}" stroke-width="2.5" stroke-linecap="round"/>
+                        <circle cx="32" cy="14" r="3" fill="{{ settings.themeColor }}"/>
+                        <circle cx="24" cy="34" r="3.5" fill="white"/>
+                        <circle cx="40" cy="34" r="3.5" fill="white"/>
+                        <path d="M 24 44 Q 32 48 40 44" stroke="white" stroke-width="2.5" fill="none" stroke-linecap="round"/>
+                        <rect x="10" y="30" width="6" height="14" rx="3" fill="{{ settings.themeColor }}" opacity="0.8"/>
+                        <rect x="48" y="30" width="6" height="14" rx="3" fill="{{ settings.themeColor }}" opacity="0.8"/>
+                    </svg>
+                {% endif %}
+            </div>
+            <div class="header-text">
+                <h3>{{ chatbot.bot_name }}</h3>
+                <p>Online</p>
+            </div>
+        </div>
+        <button class="close-btn" id="closeBtn" title="Close">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <line x1="18" y1="6" x2="6" y2="18"></line>
+                <line x1="6" y1="6" x2="18" y2="18"></line>
+            </svg>
+        </button>
+    </div>
+
+    <!-- Messages Area -->
+    <div class="messages" id="messages"></div>
+
+    <!-- Input Area -->
+    <div class="input-area">
+        <label for="input"></label><input type="text" id="input" placeholder="Type your message..." autocomplete="off">
+        <button id="sendBtn" title="Send">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <line x1="22" y1="2" x2="11" y2="13"></line>
+                <polygon points="22 2 15 22 11 13 2 9 22 2"></polygon>
+            </svg>
+        </button>
+    </div>
+</div>
+
+<script>
+window.chatConfig = {{ settings | tojson | safe }};
+</script>
+<script src="{{ url_for('static', filename='js/embed.js') }}"></script>
+
+</body>
+</html>

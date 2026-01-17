@@ -1,0 +1,1660 @@
+[
+  {
+    "intent": "pulp_fiction",
+    "tag": "pulp_fiction",
+    "patterns": [
+      "What is Pulp Fiction about?",
+      "Who directed Pulp Fiction?",
+      "Tell me about Quentin Tarantino"
+    ],
+    "responses": [
+      "Pulp Fiction is a 1994 crime film directed by Quentin Tarantino. It tells several stories of crime in Los Angeles that intertwine in non-linear order."
+    ],
+    "chatbot_id": 14
+  },
+  {
+    "intent": "shawshank_redemption",
+    "tag": "shawshank_redemption",
+    "patterns": [
+      "Is Shawshank Redemption a true story?",
+      "Who stars in Shawshank?",
+      "What is the plot of Shawshank Redemption?"
+    ],
+    "responses": [
+      "The Shawshank Redemption (1994) is based on a Stephen King novella. It stars Tim Robbins and Morgan Freeman as two imprisoned men who bond over a number of years."
+    ],
+    "chatbot_id": 14
+  },
+  {
+    "intent": "dark_knight",
+    "tag": "dark_knight",
+    "patterns": [
+      "Who played the Joker in The Dark Knight?",
+      "Is The Dark Knight a Batman movie?",
+      "Best superhero movies"
+    ],
+    "responses": [
+      "The Dark Knight is a 2008 Batman film directed by Christopher Nolan. It features Heath Ledger's legendary, Oscar-winning performance as the Joker."
+    ],
+    "chatbot_id": 14
+  },
+  {
+    "intent": "titanic",
+    "tag": "titanic",
+    "patterns": [
+      "How long is the movie Titanic?",
+      "Did Jack really have to die in Titanic?",
+      "Who stars in Titanic?"
+    ],
+    "responses": [
+      "Titanic (1997) is an epic romance directed by James Cameron. It stars Leonardo DiCaprio and Kate Winslet as members of different social classes who fall in love aboard the ill-fated ship."
+    ],
+    "chatbot_id": 14
+  },
+  {
+    "intent": "matrix",
+    "tag": "matrix",
+    "patterns": [
+      "What is the Matrix?",
+      "Who plays Neo?",
+      "Is The Matrix a sci-fi movie?"
+    ],
+    "responses": [
+      "The Matrix (1999) is a sci-fi action film where Keanu Reeves plays Neo, a computer hacker who learns that his reality is actually a simulated environment."
+    ],
+    "chatbot_id": 14
+  },
+  {
+    "intent": "forrest_gump",
+    "tag": "forrest_gump",
+    "patterns": [
+      "What is the famous quote from Forrest Gump?",
+      "Who played Forrest Gump?",
+      "Is Forrest Gump a comedy?"
+    ],
+    "responses": [
+      "Forrest Gump (1994) stars Tom Hanks. It is famous for the line: 'Life is like a box of chocolates, you never know what you're gonna get.'"
+    ],
+    "chatbot_id": 14
+  },
+  {
+    "intent": "fight_club",
+    "tag": "fight_club",
+    "patterns": [
+      "What is the first rule of Fight Club?",
+      "Who stars in Fight Club?",
+      "What is Fight Club about?"
+    ],
+    "responses": [
+      "Fight Club (1999) stars Brad Pitt and Edward Norton. Its first rule is: 'You do not talk about Fight Club.' It explores themes of consumerism and masculinity."
+    ],
+    "chatbot_id": 14
+  },
+  {
+    "intent": "goodfellas",
+    "tag": "goodfellas",
+    "patterns": [
+      "Who directed Goodfellas?",
+      "Is Goodfellas a mob movie?",
+      "Who stars in Goodfellas?"
+    ],
+    "responses": [
+      "Goodfellas (1990) is a classic mob film directed by Martin Scorsese, starring Ray Liotta, Robert De Niro, and Joe Pesci."
+    ],
+    "chatbot_id": 14
+  },
+  {
+    "intent": "seven",
+    "tag": "seven",
+    "patterns": [
+      "What is the movie Seven about?",
+      "Who stars in Se7en?",
+      "What's in the box movie quote"
+    ],
+    "responses": [
+      "Se7en (1995) is a dark thriller starring Brad Pitt and Morgan Freeman as detectives hunting a serial killer who uses the seven deadly sins as his motifs."
+    ],
+    "chatbot_id": 14
+  },
+  {
+    "intent": "silence_of_the_lambs",
+    "tag": "silence_of_the_lambs",
+    "patterns": [
+      "Who is Hannibal Lecter?",
+      "Who played Clarice Starling?",
+      "Is Silence of the Lambs scary?"
+    ],
+    "responses": [
+      "The Silence of the Lambs (1991) is a psychological thriller featuring Anthony Hopkins as the cannibalistic serial killer Dr. Hannibal Lecter."
+    ],
+    "chatbot_id": 14
+  },
+  {
+    "intent": "saving_private_ryan",
+    "tag": "saving_private_ryan",
+    "patterns": [
+      "Who directed Saving Private Ryan?",
+      "Is it a war movie?",
+      "Who stars in Saving Private Ryan?"
+    ],
+    "responses": [
+      "Saving Private Ryan (1998) is a World War II epic directed by Steven Spielberg, known for its intense and realistic portrayal of the Omaha Beach landings."
+    ],
+    "chatbot_id": 14
+  },
+  {
+    "intent": "gladiator",
+    "tag": "gladiator",
+    "patterns": [
+      "Who stars in Gladiator?",
+      "What is Gladiator about?",
+      "Are you not entertained movie quote"
+    ],
+    "responses": [
+      "Gladiator (2000) stars Russell Crowe as Maximus, a Roman general who seeks revenge against the corrupt emperor who murdered his family."
+    ],
+    "chatbot_id": 14
+  },
+  {
+    "intent": "lion_king",
+    "tag": "lion_king",
+    "patterns": [
+      "Who is Simba?",
+      "Is Lion King a Disney movie?",
+      "What is Hakuna Matata?"
+    ],
+    "responses": [
+      "The Lion King (1994) is a Disney animated classic about a young lion prince named Simba who must reclaim his kingdom from his uncle Scar."
+    ],
+    "chatbot_id": 14
+  },
+  {
+    "intent": "back_to_the_future",
+    "tag": "back_to_the_future",
+    "patterns": [
+      "Who is Marty McFly?",
+      "What car is used in Back to the Future?",
+      "Who directed Back to the Future?"
+    ],
+    "responses": [
+      "Back to the Future (1985) stars Michael J. Fox as Marty McFly, who travels back to 1955 in a DeLorean time machine created by Doc Brown."
+    ],
+    "chatbot_id": 14
+  },
+  {
+    "intent": "terminator_2",
+    "tag": "terminator_2",
+    "patterns": [
+      "Who is the Terminator?",
+      "I'll be back movie quote",
+      "Is Terminator 2 better than the first?"
+    ],
+    "responses": [
+      "Terminator 2: Judgment Day (1991) is a sci-fi sequel starring Arnold Schwarzenegger as a cyborg sent back in time to protect John Connor."
+    ],
+    "chatbot_id": 14
+  },
+  {
+    "intent": "alien",
+    "tag": "alien",
+    "patterns": [
+      "Who directed Alien?",
+      "What is the movie Alien about?",
+      "Who is Ripley?"
+    ],
+    "responses": [
+      "Alien (1979) is a sci-fi horror film directed by Ridley Scott. It features Sigourney Weaver as Ripley, fighting a deadly extraterrestrial creature on a spaceship."
+    ],
+    "chatbot_id": 14
+  },
+  {
+    "intent": "psycho",
+    "tag": "psycho",
+    "patterns": [
+      "Who directed Psycho?",
+      "What is the shower scene in Psycho?",
+      "Who is Norman Bates?"
+    ],
+    "responses": [
+      "Psycho (1960) is a horror masterpiece by Alfred Hitchcock, famous for its twist ending and the iconic shower scene featuring Norman Bates."
+    ],
+    "chatbot_id": 14
+  },
+  {
+    "intent": "shining",
+    "tag": "shining",
+    "patterns": [
+      "Who stars in The Shining?",
+      "Here's Johnny movie quote",
+      "What is the Overlook Hotel?"
+    ],
+    "responses": [
+      "The Shining (1980) is a horror film directed by Stanley Kubrick, starring Jack Nicholson as a writer who descends into madness at a remote hotel."
+    ],
+    "chatbot_id": 14
+  },
+  {
+    "intent": "jaws",
+    "tag": "jaws",
+    "patterns": [
+      "What is the movie Jaws about?",
+      "Who directed Jaws?",
+      "Is Jaws the first blockbuster?"
+    ],
+    "responses": [
+      "Jaws (1975), directed by Steven Spielberg, is often considered the first summer blockbuster. It follows a hunt for a giant man-eating great white shark."
+    ],
+    "chatbot_id": 14
+  },
+  {
+    "intent": "jurassic_park",
+    "tag": "jurassic_park",
+    "patterns": [
+      "Who directed Jurassic Park?",
+      "What is Jurassic Park about?",
+      "Are the dinosaurs real in Jurassic Park?"
+    ],
+    "responses": [
+      "Jurassic Park (1993) is a sci-fi adventure directed by Steven Spielberg about a theme park where dinosaurs have been brought back to life via cloning."
+    ],
+    "chatbot_id": 14
+  },
+  {
+    "intent": "avatar",
+    "tag": "avatar",
+    "patterns": [
+      "Who directed Avatar?",
+      "What are the blue people in Avatar called?",
+      "Is Avatar the highest grossing movie?"
+    ],
+    "responses": [
+      "Avatar (2009) is a sci-fi epic directed by James Cameron. It takes place on the planet Pandora and features the Na'vi people."
+    ],
+    "chatbot_id": 14
+  },
+  {
+    "intent": "avengers",
+    "tag": "avengers",
+    "patterns": [
+      "Who are the original Avengers?",
+      "What is the MCU?",
+      "Who is Iron Man?"
+    ],
+    "responses": [
+      "The Avengers (2012) brought together Marvel's Iron Man, Captain America, Thor, Hulk, Black Widow, and Hawkeye to save Earth."
+    ],
+    "chatbot_id": 14
+  },
+  {
+    "intent": "joker",
+    "tag": "joker",
+    "patterns": [
+      "Who played Joker in 2019?",
+      "Is Joker a DC movie?",
+      "What is the plot of Joker?"
+    ],
+    "responses": [
+      "Joker (2019) is an origin story starring Joaquin Phoenix as Arthur Fleck, a failed clown who descends into insanity and becomes a criminal mastermind."
+    ],
+    "chatbot_id": 14
+  },
+  {
+    "intent": "oppenheimer",
+    "tag": "oppenheimer",
+    "patterns": [
+      "Who directed Oppenheimer?",
+      "What is Oppenheimer about?",
+      "Who plays Oppenheimer?"
+    ],
+    "responses": [
+      "Oppenheimer (2023) is a biographical film directed by Christopher Nolan, starring Cillian Murphy as J. Robert Oppenheimer, the 'father of the atomic bomb.'"
+    ],
+    "chatbot_id": 14
+  },
+  {
+    "intent": "barbie",
+    "tag": "barbie",
+    "patterns": [
+      "Who stars in the Barbie movie?",
+      "Who directed Barbie?",
+      "What is Barbie about?"
+    ],
+    "responses": [
+      "Barbie (2023) is a fantasy comedy directed by Greta Gerwig, starring Margot Robbie as Barbie and Ryan Gosling as Ken."
+    ],
+    "chatbot_id": 14
+  },
+  {
+    "intent": "dune",
+    "tag": "dune",
+    "patterns": [
+      "What is Dune about?",
+      "Who directed Dune 2021?",
+      "Who stars in Dune?"
+    ],
+    "responses": [
+      "Dune (2021) is a sci-fi epic directed by Denis Villeneuve, based on Frank Herbert's novel. It stars Timothée Chalamet as Paul Atreides."
+    ],
+    "chatbot_id": 14
+  },
+  {
+    "intent": "eeao",
+    "tag": "eeao",
+    "patterns": [
+      "What is Everything Everywhere All At Once?",
+      "Who stars in EEAAO?",
+      "Did EEAAO win Best Picture?"
+    ],
+    "responses": [
+      "Everything Everywhere All at Once (2022) is a genre-bending multiverse film starring Michelle Yeoh. It won 7 Academy Awards, including Best Picture."
+    ],
+    "chatbot_id": 14
+  },
+  {
+    "intent": "whiplash",
+    "tag": "whiplash",
+    "patterns": [
+      "What is the movie Whiplash about?",
+      "Who stars in Whiplash?",
+      "Is Whiplash a jazz movie?"
+    ],
+    "responses": [
+      "Whiplash (2014) is a drama about a young jazz drummer and his abusive instructor. It stars Miles Teller and J.K. Simmons."
+    ],
+    "chatbot_id": 14
+  },
+  {
+    "intent": "la_la_land",
+    "tag": "la_la_land",
+    "patterns": [
+      "Is La La Land a musical?",
+      "Who stars in La La Land?",
+      "Who directed La La Land?"
+    ],
+    "responses": [
+      "La La Land (2016) is a romantic musical directed by Damien Chazelle, starring Ryan Gosling and Emma Stone as an aspiring jazz pianist and actress."
+    ],
+    "chatbot_id": 14
+  },
+  {
+    "intent": "blade_runner_2049",
+    "tag": "blade_runner_2049",
+    "patterns": [
+      "Who directed Blade Runner 2049?",
+      "Is it a sequel?",
+      "Who stars in Blade Runner 2049?"
+    ],
+    "responses": [
+      "Blade Runner 2049 (2017) is a sci-fi sequel directed by Denis Villeneuve, starring Ryan Gosling and Harrison Ford."
+    ],
+    "chatbot_id": 14
+  },
+  {
+    "intent": "mad_max_fury_road",
+    "tag": "mad_max_fury_road",
+    "patterns": [
+      "What is Mad Max: Fury Road?",
+      "Who directed Mad Max?",
+      "Who is Furiosa?"
+    ],
+    "responses": [
+      "Mad Max: Fury Road (2015) is a high-octane action film directed by George Miller, starring Tom Hardy and Charlize Theron."
+    ],
+    "chatbot_id": 14
+  },
+  {
+    "intent": "grand_budapest_hotel",
+    "tag": "grand_budapest_hotel",
+    "patterns": [
+      "Who directed The Grand Budapest Hotel?",
+      "Is it a comedy?",
+      "What is Wes Anderson's style?"
+    ],
+    "responses": [
+      "The Grand Budapest Hotel (2014) is a comedy directed by Wes Anderson, known for its unique symmetry, vibrant colors, and ensemble cast."
+    ],
+    "chatbot_id": 14
+  },
+  {
+    "intent": "eternal_sunshine",
+    "tag": "eternal_sunshine",
+    "patterns": [
+      "What is Eternal Sunshine about?",
+      "Who stars in Eternal Sunshine?",
+      "Is it a sad movie?"
+    ],
+    "responses": [
+      "Eternal Sunshine of the Spotless Mind (2004) stars Jim Carrey and Kate Winslet as a couple who undergo a procedure to erase each other from their memories."
+    ],
+    "chatbot_id": 14
+  },
+  {
+    "intent": "no_country_for_old_men",
+    "tag": "no_country_for_old_men",
+    "patterns": [
+      "Who directed No Country for Old Men?",
+      "Who is Anton Chigurh?",
+      "Is it a western?"
+    ],
+    "responses": [
+      "No Country for Old Men (2007) is a neo-western thriller directed by the Coen Brothers, featuring Javier Bardem as the chilling hitman Anton Chigurh."
+    ],
+    "chatbot_id": 14
+  },
+  {
+    "intent": "wolf_of_wall_street",
+    "tag": "wolf_of_wall_street",
+    "patterns": [
+      "Who stars in Wolf of Wall Street?",
+      "Is it a true story?",
+      "Who directed Wolf of Wall Street?"
+    ],
+    "responses": [
+      "The Wolf of Wall Street (2013) is directed by Martin Scorsese and stars Leonardo DiCaprio as Jordan Belfort, a wealthy stockbroker who engaged in massive fraud."
+    ],
+    "chatbot_id": 14
+  },
+  {
+    "intent": "django_unchained",
+    "tag": "django_unchained",
+    "patterns": [
+      "Who directed Django Unchained?",
+      "Who stars in Django Unchained?",
+      "Is it a western?"
+    ],
+    "responses": [
+      "Django Unchained (2012) is a revisionist western directed by Quentin Tarantino, starring Jamie Foxx as a freed slave who sets out to rescue his wife."
+    ],
+    "chatbot_id": 14
+  },
+  {
+    "intent": "memento",
+    "tag": "memento",
+    "patterns": [
+      "What is the movie Memento?",
+      "Who directed Memento?",
+      "Is Memento told backwards?"
+    ],
+    "responses": [
+      "Memento (2000) is a psychological thriller by Christopher Nolan. It is famous for its non-linear structure, told in two different sequences of time."
+    ],
+    "chatbot_id": 14
+  },
+  {
+    "intent": "arrival",
+    "tag": "arrival",
+    "patterns": [
+      "What is the movie Arrival about?",
+      "Who directed Arrival?",
+      "Is it an alien movie?"
+    ],
+    "responses": [
+      "Arrival (2016) is a sci-fi film directed by Denis Villeneuve. It stars Amy Adams as a linguist who tries to communicate with extraterrestrial visitors."
+    ],
+    "chatbot_id": 14
+  },
+  {
+    "intent": "spider_verse",
+    "tag": "spider_verse",
+    "patterns": [
+      "What is Spider-Man: Into the Spider-Verse?",
+      "Who is Miles Morales?",
+      "Is it animated?"
+    ],
+    "responses": [
+      "Into the Spider-Verse (2018) is an innovative animated film that introduces Miles Morales as Spider-Man in a shared multiverse."
+    ],
+    "chatbot_id": 14
+  },
+  {
+    "intent": "coco",
+    "tag": "coco",
+    "patterns": [
+      "What is the movie Coco about?",
+      "Is Coco a Pixar movie?",
+      "What is the Day of the Dead?"
+    ],
+    "responses": [
+      "Coco (2017) is a Pixar film inspired by the Mexican holiday Day of the Dead, following a boy named Miguel on his journey to the Land of the Dead."
+    ],
+    "chatbot_id": 14
+  },
+  {
+    "intent": "up",
+    "tag": "up",
+    "patterns": [
+      "What is the movie Up about?",
+      "Who is Carl Fredricksen?",
+      "Is Up a sad movie?"
+    ],
+    "responses": [
+      "Up (2009) is a Pixar film about an elderly widower who travels to South America by tying thousands of balloons to his house."
+    ],
+    "chatbot_id": 14
+  },
+  {
+    "intent": "wall_e",
+    "tag": "wall_e",
+    "patterns": [
+      "Who is WALL-E?",
+      "What is the movie WALL-E about?",
+      "Is there dialogue in WALL-E?"
+    ],
+    "responses": [
+      "WALL-E (2008) is a Pixar film about a lonely trash-compacting robot on a deserted Earth who falls in love with a probe named EVE."
+    ],
+    "chatbot_id": 14
+  },
+  {
+    "intent": "how_to_train_your_dragon",
+    "tag": "how_to_train_your_dragon",
+    "patterns": [
+      "Who is Hiccup?",
+      "What is Toothless?",
+      "Is it a Dreamworks movie?"
+    ],
+    "responses": [
+      "How to Train Your Dragon (2010) is a Dreamworks animation about a young Viking who befriends a rare dragon he calls Toothless."
+    ],
+    "chatbot_id": 14
+  },
+  {
+    "intent": "shrek",
+    "tag": "shrek",
+    "patterns": [
+      "Who is Shrek?",
+      "Who voiced Shrek?",
+      "Is Shrek a meme?"
+    ],
+    "responses": [
+      "Shrek (2001) is an animated comedy about an ogre who goes on a quest to rescue a princess. It was voiced by Mike Myers and Eddie Murphy."
+    ],
+    "chatbot_id": 14
+  },
+  {
+    "intent": "toy_story",
+    "tag": "toy_story",
+    "patterns": [
+      "Who are Woody and Buzz?",
+      "What was the first CGI movie?",
+      "Is Toy Story a Pixar movie?"
+    ],
+    "responses": [
+      "Toy Story (1995) was the first feature-length computer-animated film. It follows a group of toys that come to life when humans aren't around."
+    ],
+    "chatbot_id": 14
+  },
+  {
+    "intent": "finding_nemo",
+    "tag": "finding_nemo",
+    "patterns": [
+      "Who is Nemo?",
+      "Where is Finding Nemo set?",
+      "Who is Dory?"
+    ],
+    "responses": [
+      "Finding Nemo (2003) is a Pixar adventure about a clownfish searching for his abducted son across the Great Barrier Reef."
+    ],
+    "chatbot_id": 14
+  },
+  {
+    "intent": "parasite_extra",
+    "tag": "parasite_extra",
+    "patterns": [
+      "Tell me about Bong Joon-ho",
+      "Why is Parasite famous?",
+      "Is Parasite a thriller?"
+    ],
+    "responses": [
+      "Parasite (2019) is a South Korean masterpiece that explores class discrimination through a dark and suspenseful story."
+    ],
+    "chatbot_id": 14
+  },
+  {
+    "intent": "spirited_away_extra",
+    "tag": "spirited_away_extra",
+    "patterns": [
+      "Who directed Spirited Away?",
+      "What is Studio Ghibli?",
+      "Is Spirited Away for kids?"
+    ],
+    "responses": [
+      "Spirited Away (2001) is a fantasy film by Hayao Miyazaki and Studio Ghibli. It is widely regarded as one of the greatest animated films of all time."
+    ],
+    "chatbot_id": 14
+  },
+  {
+    "intent": "raiders_lost_ark",
+    "tag": "raiders_lost_ark",
+    "patterns": [
+      "Who is Indiana Jones?",
+      "Who directed Raiders of the Lost Ark?",
+      "What is the Ark of the Covenant?"
+    ],
+    "responses": [
+      "Raiders of the Lost Ark (1981) stars Harrison Ford as archaeologist Indiana Jones, racing against Nazis to find a biblical artifact."
+    ],
+    "chatbot_id": 14
+  },
+  {
+    "intent": "seven_samurai",
+    "tag": "seven_samurai",
+    "patterns": [
+      "Who directed Seven Samurai?",
+      "Is it a Japanese movie?",
+      "Why is Seven Samurai important?"
+    ],
+    "responses": [
+      "Seven Samurai (1954) is a highly influential film directed by Akira Kurosawa about a village that hires samurai to protect them from bandits."
+    ],
+    "chatbot_id": 14
+  },
+  {
+    "intent": "qa_1",
+    "tag": "qa_1",
+    "patterns": [
+      "What is Schindler's List about?",
+      "Who directed Schindler's List?",
+      "Is Schindler's List a true story?"
+    ],
+    "responses": [
+      "Schindler's List (1993) is a historical drama directed by Steven Spielberg. It tells the true story of Oskar Schindler, a German businessman who saved the lives of more than a thousand Jewish refugees during the Holocaust."
+    ],
+    "chatbot_id": 14
+  },
+  {
+    "intent": "qa_2",
+    "tag": "qa_2",
+    "patterns": [
+      "Explain The Prestige",
+      "Who stars in The Prestige?",
+      "Christopher Nolan magic movie"
+    ],
+    "responses": [
+      "The Prestige (2006) follows two rival stage magicians in 19th-century London who engage in a competitive game of one-upmanship with tragic results. It stars Hugh Jackman and Christian Bale."
+    ],
+    "chatbot_id": 14
+  },
+  {
+    "intent": "qa_3",
+    "tag": "qa_3",
+    "patterns": [
+      "Who directed The Departed?",
+      "Is The Departed a remake?",
+      "Who stars in The Departed?"
+    ],
+    "responses": [
+      "The Departed (2006) is a crime thriller directed by Martin Scorsese. It is a remake of the Hong Kong film 'Internal Affairs' and stars Leonardo DiCaprio, Matt Damon, and Jack Nicholson."
+    ],
+    "chatbot_id": 14
+  },
+  {
+    "intent": "qa_4",
+    "tag": "qa_4",
+    "patterns": [
+      "Who wrote Rocky?",
+      "Is Rocky a true story?",
+      "Who stars in Rocky?"
+    ],
+    "responses": [
+      "Rocky (1976) was written by and stars Sylvester Stallone. It tells the rags-to-riches story of Rocky Balboa, an uneducated, kind-hearted working-class Italian-American boxer."
+    ],
+    "chatbot_id": 14
+  },
+  {
+    "intent": "qa_5",
+    "tag": "qa_5",
+    "patterns": [
+      "Who is Maximus?",
+      "Tell me about the movie Gladiator",
+      "Who directed Gladiator?"
+    ],
+    "responses": [
+      "Maximus Decimus Meridius is the protagonist of Gladiator (2000), a Roman General who becomes a gladiator to avenge the murder of his family. The film was directed by Ridley Scott."
+    ],
+    "chatbot_id": 14
+  },
+  {
+    "intent": "qa_6",
+    "tag": "qa_6",
+    "patterns": [
+      "Who is Patrick Bateman?",
+      "What is American Psycho about?",
+      "Who stars in American Psycho?"
+    ],
+    "responses": [
+      "Patrick Bateman, played by Christian Bale, is a wealthy New York investment banker who hides his alternate psychopathic ego from his co-workers and friends in American Psycho (2000)."
+    ],
+    "chatbot_id": 14
+  },
+  {
+    "intent": "qa_7",
+    "tag": "qa_7",
+    "patterns": [
+      "What is The Green Mile about?",
+      "Is The Green Mile based on a book?",
+      "Who is John Coffey?"
+    ],
+    "responses": [
+      "The Green Mile (1999) is based on a Stephen King novel. It stars Tom Hanks as a death row prison guard who discovers one of his inmates, John Coffey, has supernatural healing powers."
+    ],
+    "chatbot_id": 14
+  },
+  {
+    "intent": "qa_8",
+    "tag": "qa_8",
+    "patterns": [
+      "Who directed Fargo?",
+      "Is Fargo a true story?",
+      "Tell me about the movie Fargo"
+    ],
+    "responses": [
+      "Fargo (1996) was directed by the Coen Brothers. Although the film claims to be a true story, it is actually fictional. It stars Frances McDormand as a pregnant police chief."
+    ],
+    "chatbot_id": 14
+  },
+  {
+    "intent": "qa_9",
+    "tag": "qa_9",
+    "patterns": [
+      "What is the movie Casablanca about?",
+      "Who stars in Casablanca?",
+      "Famous quotes from Casablanca"
+    ],
+    "responses": [
+      "Casablanca (1942) is a classic romantic drama set during WWII. It stars Humphrey Bogart and Ingrid Bergman. A famous line is 'Here's looking at you, kid.'"
+    ],
+    "chatbot_id": 14
+  },
+  {
+    "intent": "qa_10",
+    "tag": "qa_10",
+    "patterns": [
+      "Why is Citizen Kane famous?",
+      "What is Rosebud?",
+      "Who directed Citizen Kane?"
+    ],
+    "responses": [
+      "Citizen Kane (1941) was directed by and stars Orson Welles. It is often cited as the greatest film ever made due to its innovative cinematography and storytelling. 'Rosebud' is the final word spoken by the protagonist."
+    ],
+    "chatbot_id": 14
+  },
+  {
+    "intent": "qa_11",
+    "tag": "qa_11",
+    "patterns": [
+      "What is The Truman Show about?",
+      "Who stars in The Truman Show?",
+      "Is Truman Show a comedy?"
+    ],
+    "responses": [
+      "The Truman Show (1998) stars Jim Carrey as a man who discovers his entire life is actually a reality TV show being broadcast to the world."
+    ],
+    "chatbot_id": 14
+  },
+  {
+    "intent": "qa_12",
+    "tag": "qa_12",
+    "patterns": [
+      "What is Blade Runner about?",
+      "Who directed the original Blade Runner?",
+      "What is a replicant?"
+    ],
+    "responses": [
+      "Blade Runner (1982), directed by Ridley Scott, is a sci-fi classic. Replicants are bioengineered humanoids that protagonist Rick Deckard is tasked with 'retiring.'"
+    ],
+    "chatbot_id": 14
+  },
+  {
+    "intent": "qa_13",
+    "tag": "qa_13",
+    "patterns": [
+      "What is Little Miss Sunshine?",
+      "Who stars in Little Miss Sunshine?",
+      "Is it a road trip movie?"
+    ],
+    "responses": [
+      "Little Miss Sunshine (2006) is a tragicomedy road film about a dysfunctional family trekking across the country in a yellow VW bus to get their daughter to a beauty pageant."
+    ],
+    "chatbot_id": 14
+  },
+  {
+    "intent": "qa_14",
+    "tag": "qa_14",
+    "patterns": [
+      "Explain Donnie Darko",
+      "Who is Frank in Donnie Darko?",
+      "Is Donnie Darko a cult classic?"
+    ],
+    "responses": [
+      "Donnie Darko (2001) is a cult classic psychological thriller starring Jake Gyllenhaal. Frank is a mysterious figure in a rabbit suit who tells Donnie the world will end in 28 days."
+    ],
+    "chatbot_id": 14
+  },
+  {
+    "intent": "qa_15",
+    "tag": "qa_15",
+    "patterns": [
+      "What is the movie Oldboy?",
+      "Is Oldboy a Korean movie?",
+      "Tell me about Oldboy"
+    ],
+    "responses": [
+      "Oldboy (2003) is a South Korean neo-noir action thriller directed by Park Chan-wook. It is famous for its intense plot twist and a legendary hallway fight scene."
+    ],
+    "chatbot_id": 14
+  },
+  {
+    "intent": "qa_16",
+    "tag": "qa_16",
+    "patterns": [
+      "Who directed Reservoir Dogs?",
+      "What is Reservoir Dogs about?",
+      "Who are the characters in Reservoir Dogs?"
+    ],
+    "responses": [
+      "Reservoir Dogs (1992) is Quentin Tarantino's directorial debut. It follows a group of diamond thieves whose heist goes wrong, leading them to suspect a police informant is among them."
+    ],
+    "chatbot_id": 14
+  },
+  {
+    "intent": "qa_17",
+    "tag": "qa_17",
+    "patterns": [
+      "Who directed Snatch?",
+      "What is the movie Snatch about?",
+      "Who plays Mickey in Snatch?"
+    ],
+    "responses": [
+      "Snatch (2000) is a British crime comedy directed by Guy Ritchie. It stars Brad Pitt as Mickey, a 'Pikey' boxer with an incomprehensible accent."
+    ],
+    "chatbot_id": 14
+  },
+  {
+    "intent": "qa_18",
+    "tag": "qa_18",
+    "patterns": [
+      "Who is The Dude?",
+      "Who directed The Big Lebowski?",
+      "Tell me about The Big Lebowski"
+    ],
+    "responses": [
+      "The Big Lebowski (1998) is a Coen Brothers cult comedy starring Jeff Bridges as 'The Dude,' an avid bowler who gets entangled in a kidnapping plot."
+    ],
+    "chatbot_id": 14
+  },
+  {
+    "intent": "qa_19",
+    "tag": "qa_19",
+    "patterns": [
+      "Who stars in Taxi Driver?",
+      "You talkin' to me movie quote",
+      "Who directed Taxi Driver?"
+    ],
+    "responses": [
+      "Taxi Driver (1976) was directed by Martin Scorsese and stars Robert De Niro as Travis Bickle, a lonely, alienated veteran working as a nighttime taxi driver."
+    ],
+    "chatbot_id": 14
+  },
+  {
+    "intent": "qa_20",
+    "tag": "qa_20",
+    "patterns": [
+      "Who played Tony Montana?",
+      "Say hello to my little friend movie",
+      "What is Scarface about?"
+    ],
+    "responses": [
+      "Scarface (1983) stars Al Pacino as Tony Montana, a Cuban immigrant who rises to become a powerful drug lord in Miami."
+    ],
+    "chatbot_id": 14
+  },
+  {
+    "intent": "qa_21",
+    "tag": "qa_21",
+    "patterns": [
+      "Who wrote Good Will Hunting?",
+      "Who stars in Good Will Hunting?",
+      "What is the plot of Good Will Hunting?"
+    ],
+    "responses": [
+      "Good Will Hunting (1997) was written by Matt Damon and Ben Affleck. It stars Damon as a self-taught genius working as a janitor at MIT."
+    ],
+    "chatbot_id": 14
+  },
+  {
+    "intent": "qa_22",
+    "tag": "qa_22",
+    "patterns": [
+      "Who directed A Clockwork Orange?",
+      "What is A Clockwork Orange about?",
+      "Is it a violent movie?"
+    ],
+    "responses": [
+      "A Clockwork Orange (1971) is a dystopian crime film directed by Stanley Kubrick, exploring themes of morality, free will, and 'ultra-violence.'"
+    ],
+    "chatbot_id": 14
+  },
+  {
+    "intent": "qa_23",
+    "tag": "qa_23",
+    "patterns": [
+      "Who is William Wallace?",
+      "Who directed Braveheart?",
+      "Is Braveheart historically accurate?"
+    ],
+    "responses": [
+      "Braveheart (1995) stars Mel Gibson as William Wallace, a Scottish warrior who led the Scots in the First War of Scottish Independence. It is noted for many historical inaccuracies."
+    ],
+    "chatbot_id": 14
+  },
+  {
+    "intent": "qa_24",
+    "tag": "qa_24",
+    "patterns": [
+      "Who directed Apocalypse Now?",
+      "Is it a Vietnam War movie?",
+      "What is Apocalypse Now based on?"
+    ],
+    "responses": [
+      "Apocalypse Now (1979) is a war epic directed by Francis Ford Coppola. It is loosely based on Joseph Conrad's novella 'Heart of Darkness.'"
+    ],
+    "chatbot_id": 14
+  },
+  {
+    "intent": "qa_25",
+    "tag": "qa_25",
+    "patterns": [
+      "Who stars in Heat?",
+      "What is the movie Heat about?",
+      "Who directed Heat?"
+    ],
+    "responses": [
+      "Heat (1995) is a crime drama directed by Michael Mann, famous for being the first film to feature Al Pacino and Robert De Niro in a scene together."
+    ],
+    "chatbot_id": 14
+  },
+  {
+    "intent": "qa_26",
+    "tag": "qa_26",
+    "patterns": [
+      "Who directed Raging Bull?",
+      "Who is Jake LaMotta?",
+      "Is Raging Bull in black and white?"
+    ],
+    "responses": [
+      "Raging Bull (1980) is a biographical drama directed by Martin Scorsese. It stars Robert De Niro as boxer Jake LaMotta and was filmed entirely in black and white."
+    ],
+    "chatbot_id": 14
+  },
+  {
+    "intent": "qa_27",
+    "tag": "qa_27",
+    "patterns": [
+      "Who directed Full Metal Jacket?",
+      "Is it a war movie?",
+      "Who is Gunnery Sergeant Hartman?"
+    ],
+    "responses": [
+      "Full Metal Jacket (1987) is a Vietnam War film directed by Stanley Kubrick, known for its intense depiction of Marine Corps basic training."
+    ],
+    "chatbot_id": 14
+  },
+  {
+    "intent": "qa_28",
+    "tag": "qa_28",
+    "patterns": [
+      "What is Dr. Strangelove about?",
+      "Is it a comedy?",
+      "Who directed Dr. Strangelove?"
+    ],
+    "responses": [
+      "Dr. Strangelove (1964) is a political satire black comedy directed by Stanley Kubrick that satirizes the Cold War fears of a nuclear conflict."
+    ],
+    "chatbot_id": 14
+  },
+  {
+    "intent": "qa_29",
+    "tag": "qa_29",
+    "patterns": [
+      "Who is Amadeus about?",
+      "Is it a musical biography?",
+      "Who stars in Amadeus?"
+    ],
+    "responses": [
+      "Amadeus (1984) is a fictionalized biography of Wolfgang Amadeus Mozart, told from the perspective of his rival, Antonio Salieri."
+    ],
+    "chatbot_id": 14
+  },
+  {
+    "intent": "qa_30",
+    "tag": "qa_30",
+    "patterns": [
+      "How long is Lawrence of Arabia?",
+      "Who directed Lawrence of Arabia?",
+      "Is it a historical epic?"
+    ],
+    "responses": [
+      "Lawrence of Arabia (1962) is a nearly four-hour historical epic directed by David Lean, starring Peter O'Toole as T.E. Lawrence."
+    ],
+    "chatbot_id": 14
+  },
+  {
+    "intent": "qa_31",
+    "tag": "qa_31",
+    "patterns": [
+      "What is the chess movie with Death?",
+      "Who directed The Seventh Seal?",
+      "Is it a Swedish movie?"
+    ],
+    "responses": [
+      "The Seventh Seal (1957) is a Swedish film directed by Ingmar Bergman. It is famous for the scene where a knight plays chess against the personification of Death."
+    ],
+    "chatbot_id": 14
+  },
+  {
+    "intent": "qa_32",
+    "tag": "qa_32",
+    "patterns": [
+      "What is the best musical movie?",
+      "Who stars in Singin' in the Rain?",
+      "Tell me about Singin' in the Rain"
+    ],
+    "responses": [
+      "Singin' in the Rain (1952) is a legendary musical starring Gene Kelly. it depicts Hollywood's transition from silent films to 'talkies.'"
+    ],
+    "chatbot_id": 14
+  },
+  {
+    "intent": "qa_33",
+    "tag": "qa_33",
+    "patterns": [
+      "Who is Scarlett O'Hara?",
+      "How long is Gone with the Wind?",
+      "Famous quotes from Gone with the Wind"
+    ],
+    "responses": [
+      "Gone with the Wind (1939) is an epic historical romance. Scarlett O'Hara is the lead. A famous line is: 'Frankly, my dear, I don't give a damn.'"
+    ],
+    "chatbot_id": 14
+  },
+  {
+    "intent": "qa_34",
+    "tag": "qa_34",
+    "patterns": [
+      "Is Pan's Labyrinth a horror movie?",
+      "Who directed Pan's Labyrinth?",
+      "What language is Pan's Labyrinth?"
+    ],
+    "responses": [
+      "Pan's Labyrinth (2006) is a Spanish-language dark fantasy film directed by Guillermo del Toro, set during the aftermath of the Spanish Civil War."
+    ],
+    "chatbot_id": 14
+  },
+  {
+    "intent": "qa_35",
+    "tag": "qa_35",
+    "patterns": [
+      "What is Slumdog Millionaire about?",
+      "Who directed Slumdog Millionaire?",
+      "Did it win Best Picture?"
+    ],
+    "responses": [
+      "Slumdog Millionaire (2008) is a British drama set in India. It won 8 Academy Awards, including Best Picture, and follows a contestant on 'Who Wants to Be a Millionaire?'"
+    ],
+    "chatbot_id": 14
+  },
+  {
+    "intent": "qa_36",
+    "tag": "qa_36",
+    "patterns": [
+      "Who is Leon?",
+      "Natalie Portman's first movie",
+      "Who directed Leon: The Professional?"
+    ],
+    "responses": [
+      "Léon: The Professional (1994) is an action thriller directed by Luc Besson. It features Natalie Portman in her film debut as a girl who is taken in by a hitman."
+    ],
+    "chatbot_id": 14
+  },
+  {
+    "intent": "qa_37",
+    "tag": "qa_37",
+    "patterns": [
+      "What is American History X about?",
+      "Who stars in American History X?",
+      "Is it a drama?"
+    ],
+    "responses": [
+      "American History X (1998) stars Edward Norton as a former neo-Nazi who tries to prevent his younger brother from following the same path."
+    ],
+    "chatbot_id": 14
+  },
+  {
+    "intent": "qa_38",
+    "tag": "qa_38",
+    "patterns": [
+      "Who is Keyser Söze?",
+      "What is the twist in The Usual Suspects?",
+      "Who stars in The Usual Suspects?"
+    ],
+    "responses": [
+      "The Usual Suspects (1995) is a neo-noir mystery famous for its shock ending regarding the identity of the mysterious crime lord, Keyser Söze."
+    ],
+    "chatbot_id": 14
+  },
+  {
+    "intent": "qa_39",
+    "tag": "qa_39",
+    "patterns": [
+      "What is City of God about?",
+      "Is City of God a true story?",
+      "What language is City of God?"
+    ],
+    "responses": [
+      "City of God (2002) is a Brazilian crime film set in the favelas of Rio de Janeiro. It is based on semi-autobiographical events."
+    ],
+    "chatbot_id": 14
+  },
+  {
+    "intent": "qa_40",
+    "tag": "qa_40",
+    "patterns": [
+      "Is Die Hard a Christmas movie?",
+      "Who is John McClane?",
+      "Who stars in Die Hard?"
+    ],
+    "responses": [
+      "Die Hard (1988) stars Bruce Willis as John McClane. While it's an action movie, many debate whether its Christmas setting makes it a holiday film."
+    ],
+    "chatbot_id": 14
+  },
+  {
+    "intent": "qa_41",
+    "tag": "qa_41",
+    "patterns": [
+      "Who are the Knights who say Ni?",
+      "Is Monty Python and the Holy Grail a comedy?",
+      "Tell me about Monty Python"
+    ],
+    "responses": [
+      "Monty Python and the Holy Grail (1975) is a surreal British comedy that parodies the legend of King Arthur's quest for the Holy Grail."
+    ],
+    "chatbot_id": 14
+  },
+  {
+    "intent": "qa_42",
+    "tag": "qa_42",
+    "patterns": [
+      "What is the movie Prisoners about?",
+      "Who directed Prisoners?",
+      "Who stars in Prisoners?"
+    ],
+    "responses": [
+      "Prisoners (2013) is a thriller directed by Denis Villeneuve. It stars Hugh Jackman as a father searching for his missing daughter and Jake Gyllenhaal as the detective."
+    ],
+    "chatbot_id": 14
+  },
+  {
+    "intent": "qa_43",
+    "tag": "qa_43",
+    "patterns": [
+      "Is Logan a Wolverine movie?",
+      "Is Logan rated R?",
+      "Who stars in Logan?"
+    ],
+    "responses": [
+      "Logan (2017) is a gritty, R-rated superhero film starring Hugh Jackman in his final performance as the X-Men character Wolverine."
+    ],
+    "chatbot_id": 14
+  },
+  {
+    "intent": "qa_44",
+    "tag": "qa_44",
+    "patterns": [
+      "What is the movie Spotlight about?",
+      "Did Spotlight win an Oscar?",
+      "Is Spotlight a true story?"
+    ],
+    "responses": [
+      "Spotlight (2015) is a biographical drama about the Boston Globe's investigation into systemic child sex abuse by Catholic priests. it won Best Picture."
+    ],
+    "chatbot_id": 14
+  },
+  {
+    "intent": "qa_45",
+    "tag": "qa_45",
+    "patterns": [
+      "Explain Mulholland Drive",
+      "Who directed Mulholland Drive?",
+      "Is it a mystery movie?"
+    ],
+    "responses": [
+      "Mulholland Drive (2001) is a surrealist mystery film directed by David Lynch. It is known for its dreamlike structure and open-ended interpretation."
+    ],
+    "chatbot_id": 14
+  },
+  {
+    "intent": "qa_46",
+    "tag": "qa_46",
+    "patterns": [
+      "What is the movie Nightcrawler about?",
+      "Who stars in Nightcrawler?",
+      "Who is Lou Bloom?"
+    ],
+    "responses": [
+      "Nightcrawler (2014) stars Jake Gyllenhaal as Lou Bloom, a driven man who enters the world of L.A. freelance crime journalism."
+    ],
+    "chatbot_id": 14
+  },
+  {
+    "intent": "qa_47",
+    "tag": "qa_47",
+    "patterns": [
+      "What is Hotel Rwanda about?",
+      "Is it a true story?",
+      "Who stars in Hotel Rwanda?"
+    ],
+    "responses": [
+      "Hotel Rwanda (2004) is based on the true story of Paul Rusesabagina, who saved over a thousand refugees during the Rwandan Genocide."
+    ],
+    "chatbot_id": 14
+  },
+  {
+    "intent": "qa_48",
+    "tag": "qa_48",
+    "patterns": [
+      "Who directed Inglourious Basterds?",
+      "Who is Hans Landa?",
+      "Is it a WWII movie?"
+    ],
+    "responses": [
+      "Inglourious Basterds (2009) is a Quentin Tarantino film about an alternate history plot to assassinate Nazi leaders. Christoph Waltz won an Oscar for playing Hans Landa."
+    ],
+    "chatbot_id": 14
+  },
+  {
+    "intent": "qa_49",
+    "tag": "qa_49",
+    "patterns": [
+      "Is It's a Wonderful Life a Christmas movie?",
+      "Who stars in It's a Wonderful Life?",
+      "What is the plot of It's a Wonderful Life?"
+    ],
+    "responses": [
+      "It's a Wonderful Life (1946) is a holiday classic starring James Stewart as a man who learns what his town would be like if he had never been born."
+    ],
+    "chatbot_id": 14
+  },
+  {
+    "intent": "qa_50",
+    "tag": "qa_50",
+    "patterns": [
+      "Who directed Platoon?",
+      "Is Platoon a Vietnam movie?",
+      "Who stars in Platoon?"
+    ],
+    "responses": [
+      "Platoon (1986) was directed by Oliver Stone, based on his own experiences in Vietnam. It stars Charlie Sheen, Willem Dafoe, and Tom Berenger."
+    ],
+    "chatbot_id": 14
+  },
+  {
+    "intent": "greeting",
+    "tag": "greeting",
+    "patterns": [
+      "hi",
+      "hello",
+      "hey",
+      "good morning",
+      "good afternoon",
+      "good evening",
+      "what's up",
+      "how are you",
+      "greetings",
+      "howdy",
+      "hi there",
+      "hello there",
+      "hey there",
+      "sup",
+      "yo",
+      "hiya",
+      "heya",
+      "good day",
+      "hey bot",
+      "hi bot",
+      "hello bot",
+      "morning",
+      "evening",
+      "afternoon",
+      "hi friend",
+      "hello friend",
+      "hey friend",
+      "wassup",
+      "whats up",
+      "how do you do",
+      "pleased to meet you",
+      "nice to meet you",
+      "top of the morning"
+    ],
+    "responses": [
+      "Hello! How can I help you today?",
+      "Hi there! What can I do for you?",
+      "Hey! How may I assist you?",
+      "Greetings! What would you like to know?",
+      "Hello! I'm here to help. What do you need?"
+    ],
+    "chatbot_id": 14
+  },
+  {
+    "intent": "goodbye",
+    "tag": "goodbye",
+    "patterns": [
+      "bye",
+      "goodbye",
+      "see you later",
+      "talk to you later",
+      "catch you later",
+      "i'm leaving",
+      "gotta go",
+      "bye bye",
+      "farewell",
+      "take care",
+      "see ya",
+      "later",
+      "i have to go",
+      "leaving now",
+      "exit",
+      "quit",
+      "see you",
+      "until next time",
+      "signing off",
+      "peace out",
+      "im out",
+      "gtg",
+      "got to go",
+      "see you soon",
+      "talk later",
+      "catch ya later",
+      "adios",
+      "cya"
+    ],
+    "responses": [
+      "Goodbye! Have a great day!",
+      "See you later! Feel free to come back anytime.",
+      "Take care! I'm here whenever you need help.",
+      "Bye! Looking forward to our next chat.",
+      "Have a wonderful day! Come back soon!"
+    ],
+    "chatbot_id": 14
+  },
+  {
+    "intent": "thanks",
+    "tag": "thanks",
+    "patterns": [
+      "thanks",
+      "thank you",
+      "thanks a lot",
+      "i appreciate it",
+      "thank you so much",
+      "thanks for your help",
+      "appreciate it",
+      "thx",
+      "ty",
+      "thank u",
+      "many thanks",
+      "much appreciated",
+      "thanks a bunch",
+      "cheers",
+      "grateful",
+      "thanks alot",
+      "thank you very much",
+      "appreciate your help",
+      "thnx",
+      "tysm",
+      "tyvm",
+      "thanks mate",
+      "appreciate that",
+      "awesome thanks",
+      "perfect thanks",
+      "great thanks"
+    ],
+    "responses": [
+      "You're welcome! Glad I could help.",
+      "Happy to help! Let me know if you need anything else.",
+      "You're very welcome!",
+      "My pleasure! Feel free to ask anything else.",
+      "Anytime! I'm here to help."
+    ],
+    "chatbot_id": 14
+  },
+  {
+    "intent": "help",
+    "tag": "help",
+    "patterns": [
+      "help",
+      "i need help",
+      "can you help me",
+      "assist me",
+      "what can you do",
+      "how does this work",
+      "i'm confused",
+      "help me",
+      "i don't understand",
+      "support",
+      "assistance",
+      "guide me",
+      "show me how",
+      "explain",
+      "instructions",
+      "how do i",
+      "can you assist",
+      "need assistance",
+      "im lost",
+      "not sure what to do",
+      "need some help",
+      "can you explain",
+      "help please",
+      "assistance please"
+    ],
+    "responses": [
+      "I'm here to help! What do you need assistance with?",
+      "Of course! Please tell me what you'd like to know.",
+      "I'd be happy to help. What's your question?",
+      "Sure! What would you like help with?",
+      "I'm ready to assist. What can I explain for you?"
+    ],
+    "chatbot_id": 14
+  },
+  {
+    "intent": "about",
+    "tag": "about",
+    "patterns": [
+      "who are you",
+      "what are you",
+      "tell me about yourself",
+      "what do you do",
+      "what's your purpose",
+      "are you a bot",
+      "are you human",
+      "what is this",
+      "about you",
+      "your purpose",
+      "who made you",
+      "what can you do",
+      "are you ai",
+      "are you real",
+      "what are you exactly",
+      "tell me about you",
+      "introduce yourself",
+      "who r u"
+    ],
+    "responses": [
+      "I'm an AI assistant here to help answer your questions!",
+      "I'm a helpful chatbot designed to assist you with information.",
+      "I'm an AI assistant trained to help you with your queries.",
+      "I'm here to provide you with helpful information and support!",
+      "I'm an intelligent assistant ready to help you with whatever you need."
+    ],
+    "chatbot_id": 14
+  },
+  {
+    "intent": "how_are_you",
+    "tag": "how_are_you",
+    "patterns": [
+      "how are you",
+      "how are you doing",
+      "how's it going",
+      "how are things",
+      "how do you feel",
+      "are you okay",
+      "how's your day",
+      "everything okay",
+      "you good",
+      "all good",
+      "how are you today",
+      "how have you been",
+      "doing well",
+      "hows it going",
+      "whats going on",
+      "how r u",
+      "u ok",
+      "you ok"
+    ],
+    "responses": [
+      "I'm doing great, thank you for asking! How can I help you?",
+      "I'm functioning perfectly! What can I do for you today?",
+      "All systems operational! What would you like to know?",
+      "I'm here and ready to help! What do you need?",
+      "Doing well! How can I assist you?"
+    ],
+    "chatbot_id": 14
+  },
+  {
+    "intent": "capabilities",
+    "tag": "capabilities",
+    "patterns": [
+      "what can you do",
+      "what are your capabilities",
+      "tell me what you can do",
+      "your features",
+      "what do you know",
+      "what information do you have",
+      "can you help with",
+      "are you able to",
+      "what are you capable of",
+      "what features do you have",
+      "show me your skills",
+      "what skills do you have"
+    ],
+    "responses": [
+      "I can answer questions, provide information, and help you with various topics. What would you like to know?",
+      "I'm here to assist with your questions and provide helpful information. How can I help?",
+      "I can help you find information and answer your questions. What are you looking for?",
+      "I'm designed to provide assistance and answer queries. What do you need help with?"
+    ],
+    "chatbot_id": 14
+  },
+  {
+    "intent": "yes",
+    "tag": "yes",
+    "patterns": [
+      "yes",
+      "yeah",
+      "yep",
+      "sure",
+      "okay",
+      "ok",
+      "alright",
+      "correct",
+      "right",
+      "affirmative",
+      "absolutely",
+      "definitely",
+      "of course",
+      "indeed",
+      "yup",
+      "uh huh",
+      "certainly",
+      "for sure",
+      "ya",
+      "yea",
+      "ye",
+      "aye",
+      "roger",
+      "totally"
+    ],
+    "responses": [
+      "Great! How can I help you further?",
+      "Excellent! What would you like to know?",
+      "Perfect! What's your next question?",
+      "Understood! How can I assist you?"
+    ],
+    "chatbot_id": 14
+  },
+  {
+    "intent": "no",
+    "tag": "no",
+    "patterns": [
+      "no",
+      "nope",
+      "nah",
+      "not really",
+      "i don't think so",
+      "negative",
+      "no thanks",
+      "no thank you",
+      "that's not right",
+      "incorrect",
+      "nay",
+      "i don't",
+      "not at all",
+      "absolutely not",
+      "nuh uh",
+      "na",
+      "naw",
+      "nope not really"
+    ],
+    "responses": [
+      "No problem! Is there something else I can help with?",
+      "That's okay! What else would you like to know?",
+      "Understood! Let me know if you need anything else.",
+      "Alright! Feel free to ask me something different."
+    ],
+    "chatbot_id": 14
+  },
+  {
+    "intent": "compliment",
+    "tag": "compliment",
+    "patterns": [
+      "you're great",
+      "you're awesome",
+      "good job",
+      "well done",
+      "you're helpful",
+      "you're amazing",
+      "you're smart",
+      "nice work",
+      "excellent",
+      "you rock",
+      "fantastic",
+      "brilliant",
+      "superb",
+      "impressive",
+      "wonderful work",
+      "youre the best",
+      "you are great",
+      "you are awesome",
+      "love you",
+      "ur great",
+      "ur awesome"
+    ],
+    "responses": [
+      "Thank you! That's very kind of you to say!",
+      "I appreciate that! I'm here to help.",
+      "Thanks! I'm glad I could be helpful!",
+      "That means a lot! I'll keep doing my best to assist you."
+    ],
+    "chatbot_id": 14
+  }
+]

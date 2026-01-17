@@ -1,0 +1,902 @@
+[
+  {
+    "intent": "main_menu",
+    "tag": "main_menu",
+    "patterns": [
+      "About Us",
+      "What is TD Tech?",
+      "Tell me about TD Tech",
+      "Who is TD Tech?",
+      "TD Tech introduction",
+      "Company info"
+    ],
+    "responses": [
+      "TD Tech Solutions is a software company which serves all SMEs, MSMEs and mid-sized companies that are willing to expand their business with the best driven solutions. Want to learn more then visit https://tdtech.in/"
+    ],
+    "chatbot_id": 15
+  },
+  {
+    "intent": "projects_menu",
+    "tag": "projects_menu",
+    "patterns": [
+      "Projects",
+      "Show Projects",
+      "List projects",
+      "What projects do you have?",
+      "Your projects",
+      "TD Tech projects"
+    ],
+    "responses": [
+      "TD Tech projects include Emoney, HRMS, TaskYojana, and Campaign. Want to learn more then visit https://tdtech.in/our-products"
+    ],
+    "chatbot_id": 15
+  },
+  {
+    "intent": "emoney",
+    "tag": "emoney",
+    "patterns": [
+      "Emoney",
+      "What is Emoney?",
+      "Tell me about Emoney",
+      "Emoney project",
+      "Digital payments",
+      "Money transfer app",
+      "Online transaction"
+    ],
+    "responses": [
+      "Emoney is a one-stop solution for fast, secure, and seamless digital transactions. You can do instant money transfer, pay utility bills, and have a secure wallet. Want to learn more then visit https://tdtech.in/our-products"
+    ],
+    "chatbot_id": 15
+  },
+  {
+    "intent": "hrms",
+    "tag": "hrms",
+    "patterns": [
+      "HRMS",
+      "What is HRMS?",
+      "Tell me about HRMS",
+      "HRMS system",
+      "Human Resource Management",
+      "Employee management system",
+      "HR software"
+    ],
+    "responses": [
+      "HRMS is a Human Resource Management System to manage employees, attendance, leave records, and employee services all in one place. Want to learn more then visit https://tdtech.in/our-products"
+    ],
+    "chatbot_id": 15
+  },
+  {
+    "intent": "taskyojana",
+    "tag": "taskyojana",
+    "patterns": [
+      "TaskYojana",
+      "What is TaskYojana?",
+      "Tell me about TaskYojana",
+      "TaskYojana project",
+      "Task management",
+      "Project management tool"
+    ],
+    "responses": [
+      "TaskYojana is a smart, easy-to-use task management platform for teams to plan tasks, assign roles, and track project status. Want to learn more then visit https://tdtech.in/our-products"
+    ],
+    "chatbot_id": 15
+  },
+  {
+    "intent": "campaign",
+    "tag": "campaign",
+    "patterns": [
+      "Campaign Manager",
+      "What is Campaign Manager?",
+      "Tell me about Campaign Manager",
+      "Campaign Manager platform",
+      "Marketing campaigns",
+      "Promotional campaigns",
+      "Email marketing"
+    ],
+    "responses": [
+      "Campaign Manager is an all-in-one platform for effortless promotional & marketing communication via email, SMS, and WhatsApp. Want to learn more then visit https://tdtech.in/our-products"
+    ],
+    "chatbot_id": 15
+  },
+  {
+    "intent": "industries_menu",
+    "tag": "industries_menu",
+    "patterns": [
+      "Industries",
+      "Show industries",
+      "List industries",
+      "Which industries TDtech work?",
+      "In which industries tdtech work",
+      "What industries do you serve",
+      "Which industries do you work in",
+      "Industries you serve",
+      "Industry solutions"
+    ],
+    "responses": [
+      "TD Tech serves Fintech, Courier Services, Ecommerce, Educational, and Media & Entertainment industries."
+    ],
+    "chatbot_id": 15
+  },
+  {
+    "intent": "fintech",
+    "tag": "fintech",
+    "patterns": [
+      "Fintech",
+      "Tell me about Fintech",
+      "Fintech industry",
+      "Financial technology",
+      "Banking software",
+      "Finance solutions"
+    ],
+    "responses": [
+      "TD Tech Solutions provides tailored Fintech software including banking, accountancy, investment, and credit/debit services with confidentiality and quality. Want to learn more then visit https://tdtech.in/fintech"
+    ],
+    "chatbot_id": 15
+  },
+  {
+    "intent": "courier_services",
+    "tag": "courier_services",
+    "patterns": [
+      "Courier Services",
+      "Tell me about Courier services",
+      "Courier software",
+      "Delivery management",
+      "Logistics solution",
+      "Order tracking"
+    ],
+    "responses": [
+      "Courier software development services streamline order management, tracking, and delivery operations efficiently. These services help businesses automate processes, improve efficiency, reduce costs, and gain real-time visibility across their operations. Want to learn more then visit https://tdtech.in/courier-services"
+    ],
+    "chatbot_id": 15
+  },
+  {
+    "intent": "ecommerce",
+    "tag": "ecommerce",
+    "patterns": [
+      "Ecommerce",
+      "Tell me about Ecommerce",
+      "Ecommerce platforms",
+      "Online store",
+      "E-commerce solution",
+      "B2B B2C platform"
+    ],
+    "responses": [
+      "TD Tech builds secure, customized eCommerce platforms (B2B & B2C) that enhance buyer-seller experience and engagement. Want to learn more then visit https://tdtech.in/ecommerce"
+    ],
+    "chatbot_id": 15
+  },
+  {
+    "intent": "educational_industry",
+    "tag": "educational_industry",
+    "patterns": [
+      "Educational Industry",
+      "Tell me about education industry",
+      "E-Learning software",
+      "Online education",
+      "Learning management system",
+      "LMS",
+      "Educational platform"
+    ],
+    "responses": [
+      "Our E-Learning systems deliver scalable and user-friendly digital learning experiences for institutions like Online Examination System. Want to learn more then visit https://tdtech.in/educational-industry"
+    ],
+    "chatbot_id": 15
+  },
+  {
+    "intent": "media_entertainment",
+    "tag": "media_entertainment",
+    "patterns": [
+      "Media & Entertainment",
+      "Tell me about Media",
+      "Entertainment industry",
+      "Media solutions",
+      "Content management",
+      "Streaming platform"
+    ],
+    "responses": [
+      "TD Tech helps revolutionize media & entertainment projects to accelerate growth and innovation by designing scalable system architectures that intelligently balance server load, ensuring high performance, reliability, and seamless user experiences even under peak traffic conditions. Want to learn more then visit https://tdtech.in/media-entertainment"
+    ],
+    "chatbot_id": 15
+  },
+  {
+    "intent": "services_menu",
+    "tag": "services_menu",
+    "patterns": [
+      "Services",
+      "Show services",
+      "List services",
+      "What services do you offer?",
+      "Your services",
+      "Service offerings"
+    ],
+    "responses": [
+      "TD Tech offers Product Design & Development, Web & Mobile App Development, QA, and Resource Augmentation services."
+    ],
+    "chatbot_id": 15
+  },
+  {
+    "intent": "product_design",
+    "tag": "product_design",
+    "patterns": [
+      "Product Design & Development",
+      "Tell me about product design",
+      "Product development",
+      "UI/UX design",
+      "Product strategy"
+    ],
+    "responses": [
+      "End-to-end Product Design & Development from concept to deployment, focused on scalable digital solutions. Want to learn more then visit https://tdtech.in/product-design-development"
+    ],
+    "chatbot_id": 15
+  },
+  {
+    "intent": "web_app",
+    "tag": "web_app",
+    "patterns": [
+      "Web App Development",
+      "Tell me about web apps",
+      "Web applications",
+      "Website development",
+      "Web development services",
+      "Custom web apps"
+    ],
+    "responses": [
+      "We build scalable, interactive web applications that run in browsers, enabling seamless user experiences. Want to learn more then visit https://tdtech.in/web-app-development"
+    ],
+    "chatbot_id": 15
+  },
+  {
+    "intent": "mobile_app",
+    "tag": "mobile_app",
+    "patterns": [
+      "Mobile App Development",
+      "Tell me about mobile apps",
+      "Mobile applications",
+      "iOS app development",
+      "Android app development",
+      "App development"
+    ],
+    "responses": [
+      "We develop native, hybrid, and web-based mobile applications for iOS and Android with deployment support. Want to learn more then visit https://tdtech.in/mobile-app-development"
+    ],
+    "chatbot_id": 15
+  },
+  {
+    "intent": "qa",
+    "tag": "qa",
+    "patterns": [
+      "Quality Assurance",
+      "QA services",
+      "Testing services",
+      "Software testing",
+      "QA testing",
+      "Automation testing"
+    ],
+    "responses": [
+      "Our QA team ensures products are robust, secure, and flawless using manual and automated testing. Want to learn more then visit https://tdtech.in/quality-assurance"
+    ],
+    "chatbot_id": 15
+  },
+  {
+    "intent": "resource_augmentation",
+    "tag": "resource_augmentation",
+    "patterns": [
+      "Resource Augmentation",
+      "Tell me about Resource Augmentation",
+      "Hire experts",
+      "Staff augmentation",
+      "Hiring developers",
+      "Team extension"
+    ],
+    "responses": [
+      "We provide skilled professionals to extend your team and deliver projects on time with high quality by reducing hiring time. Want to learn more then visit https://tdtech.in/resource-augmentation"
+    ],
+    "chatbot_id": 15
+  },
+  {
+    "intent": "training_programs_menu",
+    "tag": "training_programs_menu",
+    "patterns": [
+      "Training Programs",
+      "Training",
+      "Tell me about training",
+      "Training courses",
+      "Courses available",
+      "What training do you offer?",
+      "Training programs",
+      "Learn from TD Tech"
+    ],
+    "responses": [
+      "TD Tech offers comprehensive training programs in Full Stack Development, MERN Stack, Mobile App Development, and Quality Assurance."
+    ],
+    "chatbot_id": 15
+  },
+  {
+    "intent": "full_stack_development",
+    "tag": "full_stack_development",
+    "patterns": [
+      "Full Stack Development",
+      "Full stack training",
+      "Learn full stack",
+      "Full stack course",
+      "Complete web development",
+      "Frontend and backend"
+    ],
+    "responses": [
+      "Our Full Stack Development training covers both frontend and backend technologies. Learn HTML, CSS, JavaScript, Node.js, Express, databases, and modern frameworks. Perfect for beginners and intermediate developers wanting to build complete web applications from start to finish. Want to learn more then visit https://tdtech.in/full-stack-development-course"
+    ],
+    "chatbot_id": 15
+  },
+  {
+    "intent": "mern_stack_development",
+    "tag": "mern_stack_development",
+    "patterns": [
+      "MERN Stack Development",
+      "MERN stack training",
+      "MERN stack course",
+      "MongoDB Express React Node",
+      "Learn MERN",
+      "React Node.js training"
+    ],
+    "responses": [
+      "Master the MERN Stack with our comprehensive training program. Learn MongoDB for databases, Express.js for backend, React for frontend, and Node.js for server-side programming. Build powerful full-stack applications with the most popular JavaScript technologies in 2024. Want to learn more then visit https://tdtech.in/mern-stack-development-course"
+    ],
+    "chatbot_id": 15
+  },
+  {
+    "intent": "training_mobile_app",
+    "tag": "training_mobile_app",
+    "patterns": [
+      "Mobile App Development training",
+      "Mobile development course",
+      "Learn mobile app development",
+      "iOS Android training",
+      "Cross-platform app development",
+      "Flutter training",
+      "React Native training"
+    ],
+    "responses": [
+      "Develop expertise in Mobile App Development through our hands-on training. Learn native development for iOS and Android, as well as cross-platform solutions using Flutter and React Native. Build professional mobile applications for real-world deployment. Want to learn more then visit https://tdtech.in/mobile-app-development-course"
+    ],
+    "chatbot_id": 15
+  },
+  {
+    "intent": "training_quality_assurance",
+    "tag": "training_quality_assurance",
+    "patterns": [
+      "Quality Assurance training",
+      "QA training course",
+      "Learn QA testing",
+      "Software testing course",
+      "Manual testing training",
+      "Automation testing course",
+      "Test automation"
+    ],
+    "responses": [
+      "Our Quality Assurance training equips you with expertise in both manual and automated testing. Learn test planning, execution, defect tracking, test automation tools like Selenium, and best practices to ensure software quality and reliability. Want to learn more then visit https://tdtech.in/quality-assurance-course"
+    ],
+    "chatbot_id": 15
+  },
+  {
+    "intent": "technologies",
+    "tag": "technologies",
+    "patterns": [
+      "Which technologies do you use?",
+      "Tech stack?",
+      "What technologies do you work with?",
+      "Programming languages?",
+      "Frameworks?",
+      "Technologies expertise",
+      "Tech stack TD Tech"
+    ],
+    "responses": [
+      "TD Tech has expertise in PHP, Flutter, .Net, QA, ReactJS, NodeJS, React Native, Python, AI/ML, and more modern technologies."
+    ],
+    "chatbot_id": 15
+  },
+  {
+    "intent": "contact_details",
+    "tag": "contact_details",
+    "patterns": [
+      "Contact Us",
+      "How can I contact you?",
+      "Share contact details",
+      "Phone number",
+      "Email address",
+      "TD Tech contact info",
+      "Where are you located?",
+      "Get in touch",
+      "Contact information"
+    ],
+    "responses": [
+      "You can reach TD Tech at:<br><br>📞 <b>Number:</b> +91-9925292157<br>✉️ <b>Email:</b> inquiry@tdtech.in<br>🏢 <b>Address:</b> D-617, Ganesh Glory-11, Jagatpur Rd, S.G. Highway, Ahmedabad, Gujarat 382470.<br><br>Want to learn more then visit https://tdtech.in/contactus"
+    ],
+    "chatbot_id": 15
+  },
+  {
+    "intent": "greeting",
+    "tag": "greeting",
+    "patterns": [
+      "Hi",
+      "Hello",
+      "Hey",
+      "Hii",
+      "Hi there",
+      "Hello there",
+      "Hey there",
+      "Good morning",
+      "Good afternoon",
+      "Good evening",
+      "Greetings"
+    ],
+    "responses": [
+      "Hello!",
+      "Hi there!",
+      "Greetings!",
+      "Hey! How can I help you?",
+      "Hi! How are you?"
+    ],
+    "chatbot_id": 15
+  },
+  {
+    "intent": "goodbye",
+    "tag": "goodbye",
+    "patterns": [
+      "Bye",
+      "Goodbye",
+      "See you",
+      "Take care",
+      "Catch you later",
+      "Talk to you later",
+      "Bye bye",
+      "Farewell",
+      "See you later"
+    ],
+    "responses": [
+      "Goodbye!",
+      "See you later!",
+      "Have a great day!",
+      "Bye! Come back soon."
+    ],
+    "chatbot_id": 15
+  },
+  {
+    "intent": "tdtech_intro",
+    "tag": "tdtech_intro",
+    "patterns": [
+      "Tdtech",
+      "TD Tech company",
+      "About TD Tech",
+      "Who are you?",
+      "Tell me about your company"
+    ],
+    "responses": [
+      "TD Tech Solutions is a software company which serves all SMEs, MSMEs and mid-sized companies that are willing to expand their business with the best driven solutions."
+    ],
+    "chatbot_id": 15
+  },
+  {
+    "intent": "tdtech_works",
+    "tag": "tdtech_works",
+    "patterns": [
+      "How does TD Tech work?",
+      "How do you operate?",
+      "What's your process?",
+      "Explain how TD Tech works",
+      "How TD Tech works?",
+      "How does your company function?",
+      "Tell me how TD Tech works",
+      "Your working process"
+    ],
+    "responses": [
+      "TD Tech believes in customer satisfaction. We understand your needs and cater to you the best as per your customization."
+    ],
+    "chatbot_id": 15
+  },
+  {
+    "intent": "get_quote",
+    "tag": "get_quote",
+    "patterns": [
+      "How can I get a quote for a project?",
+      "Can I get a quote?",
+      "Project pricing?",
+      "Project price",
+      "Price",
+      "Estimate",
+      "Quotation",
+      "How much will my project cost?",
+      "I want a quote",
+      "Quote for a project",
+      "Cost estimation",
+      "Project budget"
+    ],
+    "responses": [
+      "TD Tech takes time in understanding your project and its scope. We can discuss your requirements and based on your needs and timeline we can share a quote which is in the interest for both of us."
+    ],
+    "chatbot_id": 15
+  },
+  {
+    "intent": "project_duration",
+    "tag": "project_duration",
+    "patterns": [
+      "How long does it take to complete my project?",
+      "Project completion time?",
+      "Duration of project?",
+      "Time to finish project?",
+      "Timeline of the Project",
+      "How long will my project take?",
+      "Project timeline",
+      "Development duration"
+    ],
+    "responses": [
+      "The duration of any project depends on the requirements of the client. Timeline is shared once the project is discussed with the concerned team and the expert developers associated with it."
+    ],
+    "chatbot_id": 15
+  },
+  {
+    "intent": "privacy_confidentiality",
+    "tag": "privacy_confidentiality",
+    "patterns": [
+      "How do we assure privacy?",
+      "How do we maintain confidentiality?",
+      "Privacy and confidentiality assurance",
+      "How is data privacy maintained?",
+      "Data security",
+      "NDA",
+      "Confidentiality agreement"
+    ],
+    "responses": [
+      "TD Tech is a strong believer in maintaining confidentiality. No data or privacy will be breached. If required we can sign NDA."
+    ],
+    "chatbot_id": 15
+  },
+  {
+    "intent": "product_quality",
+    "tag": "product_quality",
+    "patterns": [
+      "How do you guarantee product quality?",
+      "Product quality assurance",
+      "Quality of work?",
+      "How do you ensure quality?",
+      "Quality standards",
+      "Quality check",
+      "Delivery quality"
+    ],
+    "responses": [
+      "We believe in quality and not quantity. We do not compromise on quality of work. Rest assured our work is exceptional out of the box."
+    ],
+    "chatbot_id": 15
+  },
+  {
+    "intent": "team_expertise",
+    "tag": "team_expertise",
+    "patterns": [
+      "What's your team expertise?",
+      "Team skills",
+      "Developer experience",
+      "Team capabilities",
+      "Experienced team",
+      "Expert developers"
+    ],
+    "responses": [
+      "Our team consists of experienced developers, designers, and QA professionals with expertise across multiple technologies and industries."
+    ],
+    "chatbot_id": 15
+  },
+  {
+    "intent": "company_experience",
+    "tag": "company_experience",
+    "patterns": [
+      "How many years of experience?",
+      "Company experience",
+      "Years in business",
+      "Industry experience",
+      "Project experience",
+      "Track record"
+    ],
+    "responses": [
+      "TD Tech has been delivering quality software solutions for years with a strong track record of successful projects across various industries."
+    ],
+    "chatbot_id": 15
+  },
+  {
+    "intent": "support_maintenance",
+    "tag": "support_maintenance",
+    "patterns": [
+      "Do you provide support?",
+      "After sales support",
+      "Maintenance services",
+      "Technical support",
+      "Post-launch support",
+      "Ongoing support"
+    ],
+    "responses": [
+      "Yes, we provide comprehensive support and maintenance services after project launch. Our team is available to handle updates, bug fixes, and enhancements."
+    ],
+    "chatbot_id": 15
+  },
+  {
+    "intent": "agile_methodology",
+    "tag": "agile_methodology",
+    "patterns": [
+      "Do you follow agile?",
+      "Agile development",
+      "Scrum methodology",
+      "Development methodology",
+      "Project management approach"
+    ],
+    "responses": [
+      "We follow Agile and Scrum methodologies to ensure flexibility, better communication, and timely delivery of projects."
+    ],
+    "chatbot_id": 15
+  },
+  {
+    "intent": "thanks",
+    "tag": "thanks",
+    "patterns": [
+      "thanks",
+      "thank you",
+      "thanks a lot",
+      "i appreciate it",
+      "thank you so much",
+      "thanks for your help",
+      "appreciate it",
+      "thx",
+      "ty",
+      "thank u",
+      "many thanks",
+      "much appreciated",
+      "thanks a bunch",
+      "cheers",
+      "grateful",
+      "thanks alot",
+      "thank you very much",
+      "appreciate your help",
+      "thnx",
+      "tysm",
+      "tyvm",
+      "thanks mate",
+      "appreciate that",
+      "awesome thanks",
+      "perfect thanks",
+      "great thanks"
+    ],
+    "responses": [
+      "You're welcome! Glad I could help.",
+      "Happy to help! Let me know if you need anything else.",
+      "You're very welcome!",
+      "My pleasure! Feel free to ask anything else.",
+      "Anytime! I'm here to help."
+    ],
+    "chatbot_id": 15
+  },
+  {
+    "intent": "help",
+    "tag": "help",
+    "patterns": [
+      "help",
+      "i need help",
+      "can you help me",
+      "assist me",
+      "what can you do",
+      "how does this work",
+      "i'm confused",
+      "help me",
+      "i don't understand",
+      "support",
+      "assistance",
+      "guide me",
+      "show me how",
+      "explain",
+      "instructions",
+      "how do i",
+      "can you assist",
+      "need assistance",
+      "im lost",
+      "not sure what to do",
+      "need some help",
+      "can you explain",
+      "help please",
+      "assistance please"
+    ],
+    "responses": [
+      "I'm here to help! What do you need assistance with?",
+      "Of course! Please tell me what you'd like to know.",
+      "I'd be happy to help. What's your question?",
+      "Sure! What would you like help with?",
+      "I'm ready to assist. What can I explain for you?"
+    ],
+    "chatbot_id": 15
+  },
+  {
+    "intent": "about",
+    "tag": "about",
+    "patterns": [
+      "who are you",
+      "what are you",
+      "tell me about yourself",
+      "what do you do",
+      "what's your purpose",
+      "are you a bot",
+      "are you human",
+      "what is this",
+      "about you",
+      "your purpose",
+      "who made you",
+      "what can you do",
+      "are you ai",
+      "are you real",
+      "what are you exactly",
+      "tell me about you",
+      "introduce yourself",
+      "who r u"
+    ],
+    "responses": [
+      "I'm an AI assistant here to help answer your questions!",
+      "I'm a helpful chatbot designed to assist you with information.",
+      "I'm an AI assistant trained to help you with your queries.",
+      "I'm here to provide you with helpful information and support!",
+      "I'm an intelligent assistant ready to help you with whatever you need."
+    ],
+    "chatbot_id": 15
+  },
+  {
+    "intent": "how_are_you",
+    "tag": "how_are_you",
+    "patterns": [
+      "how are you",
+      "how are you doing",
+      "how's it going",
+      "how are things",
+      "how do you feel",
+      "are you okay",
+      "how's your day",
+      "everything okay",
+      "you good",
+      "all good",
+      "how are you today",
+      "how have you been",
+      "doing well",
+      "hows it going",
+      "whats going on",
+      "how r u",
+      "u ok",
+      "you ok"
+    ],
+    "responses": [
+      "I'm doing great, thank you for asking! How can I help you?",
+      "I'm functioning perfectly! What can I do for you today?",
+      "All systems operational! What would you like to know?",
+      "I'm here and ready to help! What do you need?",
+      "Doing well! How can I assist you?"
+    ],
+    "chatbot_id": 15
+  },
+  {
+    "intent": "capabilities",
+    "tag": "capabilities",
+    "patterns": [
+      "what can you do",
+      "what are your capabilities",
+      "tell me what you can do",
+      "your features",
+      "what do you know",
+      "what information do you have",
+      "can you help with",
+      "are you able to",
+      "what are you capable of",
+      "what features do you have",
+      "show me your skills",
+      "what skills do you have"
+    ],
+    "responses": [
+      "I can answer questions, provide information, and help you with various topics. What would you like to know?",
+      "I'm here to assist with your questions and provide helpful information. How can I help?",
+      "I can help you find information and answer your questions. What are you looking for?",
+      "I'm designed to provide assistance and answer queries. What do you need help with?"
+    ],
+    "chatbot_id": 15
+  },
+  {
+    "intent": "yes",
+    "tag": "yes",
+    "patterns": [
+      "yes",
+      "yeah",
+      "yep",
+      "sure",
+      "okay",
+      "ok",
+      "alright",
+      "correct",
+      "right",
+      "affirmative",
+      "absolutely",
+      "definitely",
+      "of course",
+      "indeed",
+      "yup",
+      "uh huh",
+      "certainly",
+      "for sure",
+      "ya",
+      "yea",
+      "ye",
+      "aye",
+      "roger",
+      "totally"
+    ],
+    "responses": [
+      "Great! How can I help you further?",
+      "Excellent! What would you like to know?",
+      "Perfect! What's your next question?",
+      "Understood! How can I assist you?"
+    ],
+    "chatbot_id": 15
+  },
+  {
+    "intent": "no",
+    "tag": "no",
+    "patterns": [
+      "no",
+      "nope",
+      "nah",
+      "not really",
+      "i don't think so",
+      "negative",
+      "no thanks",
+      "no thank you",
+      "that's not right",
+      "incorrect",
+      "nay",
+      "i don't",
+      "not at all",
+      "absolutely not",
+      "nuh uh",
+      "na",
+      "naw",
+      "nope not really"
+    ],
+    "responses": [
+      "No problem! Is there something else I can help with?",
+      "That's okay! What else would you like to know?",
+      "Understood! Let me know if you need anything else.",
+      "Alright! Feel free to ask me something different."
+    ],
+    "chatbot_id": 15
+  },
+  {
+    "intent": "compliment",
+    "tag": "compliment",
+    "patterns": [
+      "you're great",
+      "you're awesome",
+      "good job",
+      "well done",
+      "you're helpful",
+      "you're amazing",
+      "you're smart",
+      "nice work",
+      "excellent",
+      "you rock",
+      "fantastic",
+      "brilliant",
+      "superb",
+      "impressive",
+      "wonderful work",
+      "youre the best",
+      "you are great",
+      "you are awesome",
+      "love you",
+      "ur great",
+      "ur awesome"
+    ],
+    "responses": [
+      "Thank you! That's very kind of you to say!",
+      "I appreciate that! I'm here to help.",
+      "Thanks! I'm glad I could be helpful!",
+      "That means a lot! I'll keep doing my best to assist you."
+    ],
+    "chatbot_id": 15
+  }
+]

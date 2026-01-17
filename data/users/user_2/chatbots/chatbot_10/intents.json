@@ -1,0 +1,566 @@
+{
+  "intents": [
+    {
+      "tag": "main_menu",
+      "patterns": [
+        "About Us",
+        "What is TD Tech?",
+        "Tell me about TD Tech",
+        "Who is TD Tech?",
+        "TD Tech introduction",
+        "Company info"
+      ],
+      "responses": [
+        "TD Tech Solutions is a software company which serves all SMEs, MSMEs and mid-sized companies that are willing to expand their business with the best driven solutions. Want to learn more then visit https://tdtech.in/"
+      ],
+      "description": "TD Tech Solutions is a software company which serves all SMEs, MSMEs and mid-sized companies that are willing to expand their business with the best driven solutions."
+    },
+    {
+      "tag": "projects_menu",
+      "patterns": [
+        "Projects",
+        "Show Projects",
+        "List projects",
+        "What projects do you have?",
+        "Your projects",
+        "TD Tech projects"
+      ],
+      "responses": [
+        "TD Tech projects include Emoney, HRMS, TaskYojana, and Campaign. Want to learn more then visit https://tdtech.in/our-products"
+      ],
+      "description": "TD Tech projects include Emoney, HRMS, TaskYojana, and Campaign."
+    },
+    {
+      "tag": "emoney",
+      "patterns": [
+        "Emoney",
+        "What is Emoney?",
+        "Tell me about Emoney",
+        "Emoney project",
+        "Digital payments",
+        "Money transfer app",
+        "Online transaction"
+      ],
+      "responses": [
+        "Emoney is a one-stop solution for fast, secure, and seamless digital transactions. You can do instant money transfer, pay utility bills, and have a secure wallet. Want to learn more then visit https://tdtech.in/our-products"
+      ]
+    },
+    {
+      "tag": "hrms",
+      "patterns": [
+        "HRMS",
+        "What is HRMS?",
+        "Tell me about HRMS",
+        "HRMS system",
+        "Human Resource Management",
+        "Employee management system",
+        "HR software"
+      ],
+      "responses": [
+        "HRMS is a Human Resource Management System to manage employees, attendance, leave records, and employee services all in one place. Want to learn more then visit https://tdtech.in/our-products"
+      ]
+    },
+    {
+      "tag": "taskyojana",
+      "patterns": [
+        "TaskYojana",
+        "What is TaskYojana?",
+        "Tell me about TaskYojana",
+        "TaskYojana project",
+        "Task management",
+        "Project management tool"
+      ],
+      "responses": [
+        "TaskYojana is a smart, easy-to-use task management platform for teams to plan tasks, assign roles, and track project status. Want to learn more then visit https://tdtech.in/our-products"
+      ]
+    },
+    {
+      "tag": "campaign",
+      "patterns": [
+        "Campaign Manager",
+        "What is Campaign Manager?",
+        "Tell me about Campaign Manager",
+        "Campaign Manager platform",
+        "Marketing campaigns",
+        "Promotional campaigns",
+        "Email marketing"
+      ],
+      "responses": [
+        "Campaign Manager is an all-in-one platform for effortless promotional & marketing communication via email, SMS, and WhatsApp. Want to learn more then visit https://tdtech.in/our-products"
+      ]
+    },
+    {
+      "tag": "industries_menu",
+      "patterns": [
+        "Industries",
+        "Show industries",
+        "List industries",
+        "Which industries TDtech work?",
+        "In which industries tdtech work",
+        "What industries do you serve",
+        "Which industries do you work in",
+        "Industries you serve",
+        "Industry solutions"
+      ],
+      "responses": [
+        "TD Tech serves Fintech, Courier Services, Ecommerce, Educational, and Media & Entertainment industries."
+      ],
+      "description": "TD Tech serves Fintech, Courier Services, Ecommerce, Educational, and Media & Entertainment industries."
+    },
+    {
+      "tag": "fintech",
+      "patterns": [
+        "Fintech",
+        "Tell me about Fintech",
+        "Fintech industry",
+        "Financial technology",
+        "Banking software",
+        "Finance solutions"
+      ],
+      "responses": [
+        "TD Tech Solutions provides tailored Fintech software including banking, accountancy, investment, and credit/debit services with confidentiality and quality. Want to learn more then visit https://tdtech.in/fintech"
+      ]
+    },
+    {
+      "tag": "courier_services",
+      "patterns": [
+        "Courier Services",
+        "Tell me about Courier services",
+        "Courier software",
+        "Delivery management",
+        "Logistics solution",
+        "Order tracking"
+      ],
+      "responses": [
+        "Courier software development services streamline order management, tracking, and delivery operations efficiently. These services help businesses automate processes, improve efficiency, reduce costs, and gain real-time visibility across their operations. Want to learn more then visit https://tdtech.in/courier-services"
+      ]
+    },
+    {
+      "tag": "ecommerce",
+      "patterns": [
+        "Ecommerce",
+        "Tell me about Ecommerce",
+        "Ecommerce platforms",
+        "Online store",
+        "E-commerce solution",
+        "B2B B2C platform"
+      ],
+      "responses": [
+        "TD Tech builds secure, customized eCommerce platforms (B2B & B2C) that enhance buyer-seller experience and engagement. Want to learn more then visit https://tdtech.in/ecommerce"
+      ]
+    },
+    {
+      "tag": "educational_industry",
+      "patterns": [
+        "Educational Industry",
+        "Tell me about education industry",
+        "E-Learning software",
+        "Online education",
+        "Learning management system",
+        "LMS",
+        "Educational platform"
+      ],
+      "responses": [
+        "Our E-Learning systems deliver scalable and user-friendly digital learning experiences for institutions like Online Examination System. Want to learn more then visit https://tdtech.in/educational-industry"
+      ]
+    },
+    {
+      "tag": "media_entertainment",
+      "patterns": [
+        "Media & Entertainment",
+        "Tell me about Media",
+        "Entertainment industry",
+        "Media solutions",
+        "Content management",
+        "Streaming platform"
+      ],
+      "responses": [
+        "TD Tech helps revolutionize media & entertainment projects to accelerate growth and innovation by designing scalable system architectures that intelligently balance server load, ensuring high performance, reliability, and seamless user experiences even under peak traffic conditions. Want to learn more then visit https://tdtech.in/media-entertainment"
+      ]
+    },
+    {
+      "tag": "services_menu",
+      "patterns": [
+        "Services",
+        "Show services",
+        "List services",
+        "What services do you offer?",
+        "Your services",
+        "Service offerings"
+      ],
+      "responses": [
+        "TD Tech offers Product Design & Development, Web & Mobile App Development, QA, and Resource Augmentation services."
+      ],
+      "description": "TD Tech offers Product Design & Development, Web & Mobile App Development, QA, and Resource Augmentation services."
+    },
+    {
+      "tag": "product_design",
+      "patterns": [
+        "Product Design & Development",
+        "Tell me about product design",
+        "Product development",
+        "UI/UX design",
+        "Product strategy"
+      ],
+      "responses": [
+        "End-to-end Product Design & Development from concept to deployment, focused on scalable digital solutions. Want to learn more then visit https://tdtech.in/product-design-development"
+      ]
+    },
+    {
+      "tag": "web_app",
+      "patterns": [
+        "Web App Development",
+        "Tell me about web apps",
+        "Web applications",
+        "Website development",
+        "Web development services",
+        "Custom web apps"
+      ],
+      "responses": [
+        "We build scalable, interactive web applications that run in browsers, enabling seamless user experiences. Want to learn more then visit https://tdtech.in/web-app-development"
+      ]
+    },
+    {
+      "tag": "mobile_app",
+      "patterns": [
+        "Mobile App Development",
+        "Tell me about mobile apps",
+        "Mobile applications",
+        "iOS app development",
+        "Android app development",
+        "App development"
+      ],
+      "responses": [
+        "We develop native, hybrid, and web-based mobile applications for iOS and Android with deployment support. Want to learn more then visit https://tdtech.in/mobile-app-development"
+      ]
+    },
+    {
+      "tag": "qa",
+      "patterns": [
+        "Quality Assurance",
+        "QA services",
+        "Testing services",
+        "Software testing",
+        "QA testing",
+        "Automation testing"
+      ],
+      "responses": [
+        "Our QA team ensures products are robust, secure, and flawless using manual and automated testing. Want to learn more then visit https://tdtech.in/quality-assurance"
+      ]
+    },
+    {
+      "tag": "resource_augmentation",
+      "patterns": [
+        "Resource Augmentation",
+        "Tell me about Resource Augmentation",
+        "Hire experts",
+        "Staff augmentation",
+        "Hiring developers",
+        "Team extension"
+      ],
+      "responses": [
+        "We provide skilled professionals to extend your team and deliver projects on time with high quality by reducing hiring time. Want to learn more then visit https://tdtech.in/resource-augmentation"
+      ]
+    },
+    {
+      "tag": "training_programs_menu",
+      "patterns": [
+        "Training Programs",
+        "Training",
+        "Tell me about training",
+        "Training courses",
+        "Courses available",
+        "What training do you offer?",
+        "Training programs",
+        "Learn from TD Tech"
+      ],
+      "responses": [
+        "TD Tech offers comprehensive training programs in Full Stack Development, MERN Stack, Mobile App Development, and Quality Assurance."
+      ],
+      "description": "TD Tech offers comprehensive training programs in Full Stack Development, MERN Stack, Mobile App Development, and Quality Assurance."
+    },
+    {
+      "tag": "full_stack_development",
+      "patterns": [
+        "Full Stack Development",
+        "Full stack training",
+        "Learn full stack",
+        "Full stack course",
+        "Complete web development",
+        "Frontend and backend"
+      ],
+      "responses": [
+        "Our Full Stack Development training covers both frontend and backend technologies. Learn HTML, CSS, JavaScript, Node.js, Express, databases, and modern frameworks. Perfect for beginners and intermediate developers wanting to build complete web applications from start to finish. Want to learn more then visit https://tdtech.in/full-stack-development-course"
+      ]
+    },
+    {
+      "tag": "mern_stack_development",
+      "patterns": [
+        "MERN Stack Development",
+        "MERN stack training",
+        "MERN stack course",
+        "MongoDB Express React Node",
+        "Learn MERN",
+        "React Node.js training"
+      ],
+      "responses": [
+        "Master the MERN Stack with our comprehensive training program. Learn MongoDB for databases, Express.js for backend, React for frontend, and Node.js for server-side programming. Build powerful full-stack applications with the most popular JavaScript technologies in 2024. Want to learn more then visit https://tdtech.in/mern-stack-development-course"
+      ]
+    },
+    {
+      "tag": "training_mobile_app",
+      "patterns": [
+        "Mobile App Development training",
+        "Mobile development course",
+        "Learn mobile app development",
+        "iOS Android training",
+        "Cross-platform app development",
+        "Flutter training",
+        "React Native training"
+      ],
+      "responses": [
+        "Develop expertise in Mobile App Development through our hands-on training. Learn native development for iOS and Android, as well as cross-platform solutions using Flutter and React Native. Build professional mobile applications for real-world deployment. Want to learn more then visit https://tdtech.in/mobile-app-development-course"
+      ]
+    },
+    {
+      "tag": "training_quality_assurance",
+      "patterns": [
+        "Quality Assurance training",
+        "QA training course",
+        "Learn QA testing",
+        "Software testing course",
+        "Manual testing training",
+        "Automation testing course",
+        "Test automation"
+      ],
+      "responses": [
+        "Our Quality Assurance training equips you with expertise in both manual and automated testing. Learn test planning, execution, defect tracking, test automation tools like Selenium, and best practices to ensure software quality and reliability. Want to learn more then visit https://tdtech.in/quality-assurance-course"
+      ]
+    },
+    {
+      "tag": "technologies",
+      "patterns": [
+        "Which technologies do you use?",
+        "Tech stack?",
+        "What technologies do you work with?",
+        "Programming languages?",
+        "Frameworks?",
+        "Technologies expertise",
+        "Tech stack TD Tech"
+      ],
+      "responses": [
+        "TD Tech has expertise in PHP, Flutter, .Net, QA, ReactJS, NodeJS, React Native, Python, AI/ML, and more modern technologies."
+      ]
+    },
+    {
+      "tag": "contact_details",
+      "patterns": [
+        "Contact Us",
+        "How can I contact you?",
+        "Share contact details",
+        "Phone number",
+        "Email address",
+        "TD Tech contact info",
+        "Where are you located?",
+        "Get in touch",
+        "Contact information"
+      ],
+      "responses": [
+        "You can reach TD Tech at:<br><br>\ud83d\udcde <b>Number:</b> +91-9925292157<br>\u2709\ufe0f <b>Email:</b> inquiry@tdtech.in<br>\ud83c\udfe2 <b>Address:</b> D-617, Ganesh Glory-11, Jagatpur Rd, S.G. Highway, Ahmedabad, Gujarat 382470.<br><br>Want to learn more then visit https://tdtech.in/contactus"
+      ]
+    },
+    {
+      "tag": "greeting",
+      "patterns": [
+        "Hi",
+        "Hello",
+        "Hey",
+        "Hii",
+        "Hi there",
+        "Hello there",
+        "Hey there",
+        "Good morning",
+        "Good afternoon",
+        "Good evening",
+        "Greetings"
+      ],
+      "responses": [
+        "Hello!",
+        "Hi there!",
+        "Greetings!",
+        "Hey! How can I help you?",
+        "Hi! How are you?"
+      ]
+    },
+    {
+      "tag": "goodbye",
+      "patterns": [
+        "Bye",
+        "Goodbye",
+        "See you",
+        "Take care",
+        "Catch you later",
+        "Talk to you later",
+        "Bye bye",
+        "Farewell",
+        "See you later"
+      ],
+      "responses": [
+        "Goodbye!",
+        "See you later!",
+        "Have a great day!",
+        "Bye! Come back soon."
+      ]
+    },
+    {
+      "tag": "tdtech_intro",
+      "patterns": [
+        "Tdtech",
+        "TD Tech company",
+        "About TD Tech",
+        "Who are you?",
+        "Tell me about your company"
+      ],
+      "responses": [
+        "TD Tech Solutions is a software company which serves all SMEs, MSMEs and mid-sized companies that are willing to expand their business with the best driven solutions."
+      ]
+    },
+    {
+      "tag": "tdtech_works",
+      "patterns": [
+        "How does TD Tech work?",
+        "How do you operate?",
+        "What's your process?",
+        "Explain how TD Tech works",
+        "How TD Tech works?",
+        "How does your company function?",
+        "Tell me how TD Tech works",
+        "Your working process"
+      ],
+      "responses": [
+        "TD Tech believes in customer satisfaction. We understand your needs and cater to you the best as per your customization."
+      ]
+    },
+    {
+      "tag": "get_quote",
+      "patterns": [
+        "How can I get a quote for a project?",
+        "Can I get a quote?",
+        "Project pricing?",
+        "Project price",
+        "Price",
+        "Estimate",
+        "Quotation",
+        "How much will my project cost?",
+        "I want a quote",
+        "Quote for a project",
+        "Cost estimation",
+        "Project budget"
+      ],
+      "responses": [
+        "TD Tech takes time in understanding your project and its scope. We can discuss your requirements and based on your needs and timeline we can share a quote which is in the interest for both of us."
+      ]
+    },
+    {
+      "tag": "project_duration",
+      "patterns": [
+        "How long does it take to complete my project?",
+        "Project completion time?",
+        "Duration of project?",
+        "Time to finish project?",
+        "Timeline of the Project",
+        "How long will my project take?",
+        "Project timeline",
+        "Development duration"
+      ],
+      "responses": [
+        "The duration of any project depends on the requirements of the client. Timeline is shared once the project is discussed with the concerned team and the expert developers associated with it."
+      ]
+    },
+    {
+      "tag": "privacy_confidentiality",
+      "patterns": [
+        "How do we assure privacy?",
+        "How do we maintain confidentiality?",
+        "Privacy and confidentiality assurance",
+        "How is data privacy maintained?",
+        "Data security",
+        "NDA",
+        "Confidentiality agreement"
+      ],
+      "responses": [
+        "TD Tech is a strong believer in maintaining confidentiality. No data or privacy will be breached. If required we can sign NDA."
+      ]
+    },
+    {
+      "tag": "product_quality",
+      "patterns": [
+        "How do you guarantee product quality?",
+        "Product quality assurance",
+        "Quality of work?",
+        "How do you ensure quality?",
+        "Quality standards",
+        "Quality check",
+        "Delivery quality"
+      ],
+      "responses": [
+        "We believe in quality and not quantity. We do not compromise on quality of work. Rest assured our work is exceptional out of the box."
+      ]
+    },
+    {
+      "tag": "team_expertise",
+      "patterns": [
+        "What's your team expertise?",
+        "Team skills",
+        "Developer experience",
+        "Team capabilities",
+        "Experienced team",
+        "Expert developers"
+      ],
+      "responses": [
+        "Our team consists of experienced developers, designers, and QA professionals with expertise across multiple technologies and industries."
+      ]
+    },
+    {
+      "tag": "company_experience",
+      "patterns": [
+        "How many years of experience?",
+        "Company experience",
+        "Years in business",
+        "Industry experience",
+        "Project experience",
+        "Track record"
+      ],
+      "responses": [
+        "TD Tech has been delivering quality software solutions for years with a strong track record of successful projects across various industries."
+      ]
+    },
+    {
+      "tag": "support_maintenance",
+      "patterns": [
+        "Do you provide support?",
+        "After sales support",
+        "Maintenance services",
+        "Technical support",
+        "Post-launch support",
+        "Ongoing support"
+      ],
+      "responses": [
+        "Yes, we provide comprehensive support and maintenance services after project launch. Our team is available to handle updates, bug fixes, and enhancements."
+      ]
+    },
+    {
+      "tag": "agile_methodology",
+      "patterns": [
+        "Do you follow agile?",
+        "Agile development",
+        "Scrum methodology",
+        "Development methodology",
+        "Project management approach"
+      ],
+      "responses": [
+        "We follow Agile and Scrum methodologies to ensure flexibility, better communication, and timely delivery of projects."
+      ]
+    }
+  ]
+}

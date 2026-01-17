@@ -1,0 +1,697 @@
+{
+  "intents": [
+    {
+      "tag": "qa_1",
+      "patterns": [
+        "Hi"
+      ],
+      "responses": [
+        "Hello! How can I help you today?"
+      ]
+    },
+    {
+      "tag": "qa_2",
+      "patterns": [
+        "Bye"
+      ],
+      "responses": [
+        "Goodbye! Have a great day!"
+      ]
+    },
+    {
+      "tag": "qa_3",
+      "patterns": [
+        "Thanks"
+      ],
+      "responses": [
+        "You're welcome!"
+      ]
+    },
+    {
+      "tag": "qa_4",
+      "patterns": [
+        "What are your hours?"
+      ],
+      "responses": [
+        "We're open Monday-Friday, 9 AM to 6 PM EST. Weekends 10 AM to 4 PM."
+      ]
+    },
+    {
+      "tag": "qa_5",
+      "patterns": [
+        "Where are you located?"
+      ],
+      "responses": [
+        "We're located at 123 Business Street, Suite 100, New York, NY 10001."
+      ]
+    },
+    {
+      "tag": "qa_6",
+      "patterns": [
+        "What's your phone number?"
+      ],
+      "responses": [
+        "You can reach us at (555) 123-4567."
+      ]
+    },
+    {
+      "tag": "qa_7",
+      "patterns": [
+        "What's your email?"
+      ],
+      "responses": [
+        "You can email us at support@company.com"
+      ]
+    },
+    {
+      "tag": "qa_8",
+      "patterns": [
+        "What's your refund policy?"
+      ],
+      "responses": [
+        "We offer a 30-day money-back guarantee on all purchases."
+      ]
+    },
+    {
+      "tag": "qa_9",
+      "patterns": [
+        "Do you ship?"
+      ],
+      "responses": [
+        "We offer free shipping on orders over $50. Standard shipping takes 3-5 business days."
+      ]
+    },
+    {
+      "tag": "qa_10",
+      "patterns": [
+        "What payment methods do you accept?"
+      ],
+      "responses": [
+        "We accept all major credit cards, PayPal, Apple Pay, and Google Pay."
+      ]
+    },
+    {
+      "tag": "qa_11",
+      "patterns": [
+        "How much does it cost?"
+      ],
+      "responses": [
+        "Our pricing starts at $29.99/month. Visit our pricing page for detailed plans!"
+      ]
+    },
+    {
+      "tag": "qa_12",
+      "patterns": [
+        "What features do you offer?"
+      ],
+      "responses": [
+        "Our product includes real-time analytics, 24/7 support, cloud storage, and mobile apps."
+      ]
+    },
+    {
+      "tag": "qa_13",
+      "patterns": [
+        "Do you have a free trial?"
+      ],
+      "responses": [
+        "Yes! We offer a 14-day free trial with full access to all features."
+      ]
+    },
+    {
+      "tag": "qa_14",
+      "patterns": [
+        "How do I create an account?"
+      ],
+      "responses": [
+        "Click 'Sign Up' on our homepage and follow the simple 3-step process!"
+      ]
+    },
+    {
+      "tag": "qa_15",
+      "patterns": [
+        "I forgot my password"
+      ],
+      "responses": [
+        "Click 'Forgot Password' on the login page and we'll send you a reset link via email."
+      ]
+    },
+    {
+      "tag": "qa_16",
+      "patterns": [
+        "I need technical support"
+      ],
+      "responses": [
+        "I'm sorry you're experiencing issues. Please contact our technical support team at support@company.com or call (555) 123-4567."
+      ]
+    },
+    {
+      "tag": "qa_17",
+      "patterns": [
+        "How do I cancel my subscription?"
+      ],
+      "responses": [
+        "You can cancel anytime from your account settings under 'Subscription Management'."
+      ]
+    },
+    {
+      "tag": "qa_18",
+      "patterns": [
+        "How do I upgrade?"
+      ],
+      "responses": [
+        "You can upgrade anytime from your account dashboard under 'Subscription'. Changes take effect immediately!"
+      ]
+    },
+    {
+      "tag": "qa_19",
+      "patterns": [
+        "Can I downgrade?"
+      ],
+      "responses": [
+        "Yes, you can downgrade anytime. Changes will take effect at the start of your next billing cycle."
+      ]
+    },
+    {
+      "tag": "qa_20",
+      "patterns": [
+        "Is my data safe?"
+      ],
+      "responses": [
+        "We use bank-level 256-bit encryption and never share your data with third parties."
+      ]
+    },
+    {
+      "tag": "qa_21",
+      "patterns": [
+        "Do you have a mobile app?"
+      ],
+      "responses": [
+        "Yes! Our mobile app is available for both iOS and Android. Download it from the App Store or Google Play."
+      ]
+    },
+    {
+      "tag": "qa_22",
+      "patterns": [
+        "What integrations do you support?"
+      ],
+      "responses": [
+        "We integrate with Slack, Google Workspace, Microsoft 365, Salesforce, and 100+ other apps."
+      ]
+    },
+    {
+      "tag": "qa_23",
+      "patterns": [
+        "Do you offer bulk discounts?"
+      ],
+      "responses": [
+        "Yes! We offer volume discounts starting at 5+ users. Contact sales@company.com for custom pricing."
+      ]
+    },
+    {
+      "tag": "qa_24",
+      "patterns": [
+        "Student discount?"
+      ],
+      "responses": [
+        "We offer 50% off for students with a valid .edu email address!"
+      ]
+    },
+    {
+      "tag": "qa_25",
+      "patterns": [
+        "Nonprofit discount?"
+      ],
+      "responses": [
+        "Nonprofits receive 30% off all plans. Contact us with your nonprofit documentation."
+      ]
+    },
+    {
+      "tag": "qa_26",
+      "patterns": [
+        "Do you have an API?"
+      ],
+      "responses": [
+        "Yes! Our REST API is available on Pro and Enterprise plans. Check our developer documentation at docs.company.com"
+      ]
+    },
+    {
+      "tag": "qa_27",
+      "patterns": [
+        "Can I export my data?"
+      ],
+      "responses": [
+        "Yes! You can export all your data anytime in CSV or JSON format from your account settings."
+      ]
+    },
+    {
+      "tag": "qa_28",
+      "patterns": [
+        "Can I import data?"
+      ],
+      "responses": [
+        "Yes! We support data import from CSV, Excel, and most major competitors. Check our import guide."
+      ]
+    },
+    {
+      "tag": "qa_29",
+      "patterns": [
+        "Are you GDPR compliant?"
+      ],
+      "responses": [
+        "Yes, we are fully GDPR compliant and provide data processing agreements upon request."
+      ]
+    },
+    {
+      "tag": "qa_30",
+      "patterns": [
+        "Are you HIPAA compliant?"
+      ],
+      "responses": [
+        "Yes, we are HIPAA compliant and offer BAA agreements for healthcare organizations."
+      ]
+    },
+    {
+      "tag": "qa_31",
+      "patterns": [
+        "What's your uptime?"
+      ],
+      "responses": [
+        "We guarantee 99.9% uptime with our SLA. Check our status page at status.company.com"
+      ]
+    },
+    {
+      "tag": "qa_32",
+      "patterns": [
+        "Do you backup data?"
+      ],
+      "responses": [
+        "We perform automatic backups every 6 hours with 30-day retention."
+      ]
+    },
+    {
+      "tag": "qa_33",
+      "patterns": [
+        "Do you offer training?"
+      ],
+      "responses": [
+        "Yes! We offer free onboarding sessions, video tutorials, and comprehensive documentation."
+      ]
+    },
+    {
+      "tag": "qa_34",
+      "patterns": [
+        "Certification available?"
+      ],
+      "responses": [
+        "We offer a professional certification program with three levels. Visit certifications.company.com to learn more."
+      ]
+    },
+    {
+      "tag": "qa_35",
+      "patterns": [
+        "Referral program?"
+      ],
+      "responses": [
+        "Refer friends and get $50 credit for each signup! Find your referral link in account settings."
+      ]
+    },
+    {
+      "tag": "qa_36",
+      "patterns": [
+        "Affiliate program?"
+      ],
+      "responses": [
+        "Join our affiliate program and earn 20% recurring commission! Apply at affiliates.company.com"
+      ]
+    },
+    {
+      "tag": "qa_37",
+      "patterns": [
+        "White label available?"
+      ],
+      "responses": [
+        "Yes! Enterprise plans include white-label options. Contact sales@company.com for details."
+      ]
+    },
+    {
+      "tag": "qa_38",
+      "patterns": [
+        "Custom development?"
+      ],
+      "responses": [
+        "We provide custom development for Enterprise clients. Contact sales@company.com to discuss your requirements."
+      ]
+    },
+    {
+      "tag": "qa_39",
+      "patterns": [
+        "Can I get a demo?"
+      ],
+      "responses": [
+        "Absolutely! Schedule a personalized demo at calendly.com/company-demo or email sales@company.com"
+      ]
+    },
+    {
+      "tag": "qa_40",
+      "patterns": [
+        "Do you have case studies?"
+      ],
+      "responses": [
+        "Yes! Check out our case studies at company.com/case-studies to see how companies are succeeding."
+      ]
+    },
+    {
+      "tag": "qa_41",
+      "patterns": [
+        "Do you work with my industry?"
+      ],
+      "responses": [
+        "We serve healthcare, finance, retail, education, and many other industries. Which industry are you in?"
+      ]
+    },
+    {
+      "tag": "qa_42",
+      "patterns": [
+        "What size companies do you work with?"
+      ],
+      "responses": [
+        "We work with everyone from startups to Fortune 500 companies. Plans scale to your size!"
+      ]
+    },
+    {
+      "tag": "qa_43",
+      "patterns": [
+        "How do you compare to competitors?"
+      ],
+      "responses": [
+        "We offer better pricing, more features, and award-winning support compared to alternatives. Check our comparison page!"
+      ]
+    },
+    {
+      "tag": "qa_44",
+      "patterns": [
+        "What are your reviews?"
+      ],
+      "responses": [
+        "We're rated 4.8/5 stars on G2 and Trustpilot with over 5,000 reviews!"
+      ]
+    },
+    {
+      "tag": "qa_45",
+      "patterns": [
+        "Have you won awards?"
+      ],
+      "responses": [
+        "We've won 'Best Software 2024', 'Customer Choice Award', and are Gartner recognized!"
+      ]
+    },
+    {
+      "tag": "qa_46",
+      "patterns": [
+        "Tell me about your company"
+      ],
+      "responses": [
+        "Founded in 2015, we've grown to serve 50,000+ customers across 100+ countries."
+      ]
+    },
+    {
+      "tag": "qa_47",
+      "patterns": [
+        "How big is your team?"
+      ],
+      "responses": [
+        "We're a team of 200+ professionals dedicated to making you successful!"
+      ]
+    },
+    {
+      "tag": "qa_48",
+      "patterns": [
+        "Who funds you?"
+      ],
+      "responses": [
+        "We're Series B funded by leading investors including Sequoia Capital and Andreessen Horowitz."
+      ]
+    },
+    {
+      "tag": "qa_49",
+      "patterns": [
+        "Are you hiring?"
+      ],
+      "responses": [
+        "Yes! Check out current openings at company.com/careers - we're growing fast!"
+      ]
+    },
+    {
+      "tag": "qa_50",
+      "patterns": [
+        "Do you allow remote work?"
+      ],
+      "responses": [
+        "We're a remote-first company with team members across the globe!"
+      ]
+    },
+    {
+      "tag": "qa_51",
+      "patterns": [
+        "Do you offer internships?"
+      ],
+      "responses": [
+        "Yes! We offer paid internships year-round. Apply at company.com/careers"
+      ]
+    },
+    {
+      "tag": "qa_52",
+      "patterns": [
+        "Press inquiries"
+      ],
+      "responses": [
+        "For press inquiries, contact press@company.com or visit company.com/press"
+      ]
+    },
+    {
+      "tag": "qa_53",
+      "patterns": [
+        "Partnership opportunities"
+      ],
+      "responses": [
+        "We'd love to explore partnerships! Email partnerships@company.com with your proposal."
+      ]
+    },
+    {
+      "tag": "qa_54",
+      "patterns": [
+        "Reseller program"
+      ],
+      "responses": [
+        "Join our reseller program with attractive margins and support! Details at company.com/partners"
+      ]
+    },
+    {
+      "tag": "qa_55",
+      "patterns": [
+        "System requirements"
+      ],
+      "responses": [
+        "Works on any modern browser (Chrome, Firefox, Safari, Edge). No special hardware needed!"
+      ]
+    },
+    {
+      "tag": "qa_56",
+      "patterns": [
+        "Which browsers are supported?"
+      ],
+      "responses": [
+        "Fully compatible with Chrome, Firefox, Safari, Edge, and all modern browsers."
+      ]
+    },
+    {
+      "tag": "qa_57",
+      "patterns": [
+        "Offline mode available?"
+      ],
+      "responses": [
+        "Our mobile apps offer offline mode for viewing and basic editing. Changes sync when you're back online."
+      ]
+    },
+    {
+      "tag": "qa_58",
+      "patterns": [
+        "Multiple languages?"
+      ],
+      "responses": [
+        "We support 25+ languages including Spanish, French, German, Chinese, and more!"
+      ]
+    },
+    {
+      "tag": "qa_59",
+      "patterns": [
+        "Accessibility features"
+      ],
+      "responses": [
+        "We're WCAG 2.1 AA compliant with full screen reader support and keyboard navigation."
+      ]
+    },
+    {
+      "tag": "qa_60",
+      "patterns": [
+        "Keyboard shortcuts"
+      ],
+      "responses": [
+        "Yes! Press '?' anytime to see all keyboard shortcuts. Common ones: Ctrl+S to save, Ctrl+N for new."
+      ]
+    },
+    {
+      "tag": "qa_61",
+      "patterns": [
+        "Dark mode available?"
+      ],
+      "responses": [
+        "Yes! Toggle dark mode in Settings > Appearance or use your system settings."
+      ]
+    },
+    {
+      "tag": "qa_62",
+      "patterns": [
+        "Notification settings"
+      ],
+      "responses": [
+        "Customize all notifications in Settings > Notifications. Control email, push, and in-app alerts separately."
+      ]
+    },
+    {
+      "tag": "qa_63",
+      "patterns": [
+        "Two factor authentication"
+      ],
+      "responses": [
+        "Enable 2FA in Settings > Security for extra account protection. We support authenticator apps and SMS."
+      ]
+    },
+    {
+      "tag": "qa_64",
+      "patterns": [
+        "Single sign-on"
+      ],
+      "responses": [
+        "Enterprise plans include SSO with SAML 2.0, Google, Microsoft, and Okta integration."
+      ]
+    },
+    {
+      "tag": "qa_65",
+      "patterns": [
+        "User permissions"
+      ],
+      "responses": [
+        "Set custom permissions with roles like Admin, Editor, Viewer, and custom roles on Pro+ plans."
+      ]
+    },
+    {
+      "tag": "qa_66",
+      "patterns": [
+        "Team collaboration"
+      ],
+      "responses": [
+        "Full collaboration with real-time editing, comments, @mentions, and activity feeds!"
+      ]
+    },
+    {
+      "tag": "qa_67",
+      "patterns": [
+        "Guest access"
+      ],
+      "responses": [
+        "Invite unlimited guests for free! They get view/comment access without needing a paid account."
+      ]
+    },
+    {
+      "tag": "qa_68",
+      "patterns": [
+        "How much storage?"
+      ],
+      "responses": [
+        "Storage ranges from 10GB (Basic) to unlimited (Enterprise). All plans include generous file limits."
+      ]
+    },
+    {
+      "tag": "qa_69",
+      "patterns": [
+        "What file types supported?"
+      ],
+      "responses": [
+        "We support all major file types: PDF, Word, Excel, PowerPoint, images (JPG, PNG, GIF), videos, and more!"
+      ]
+    },
+    {
+      "tag": "qa_70",
+      "patterns": [
+        "Maximum file size"
+      ],
+      "responses": [
+        "Individual file uploads up to 5GB on Pro plans, 10GB on Enterprise. No limits on total storage!"
+      ]
+    },
+    {
+      "tag": "qa_71",
+      "patterns": [
+        "Video call feature"
+      ],
+      "responses": [
+        "Built-in video calls for up to 100 participants on Business plans, or integrate with Zoom/Teams!"
+      ]
+    },
+    {
+      "tag": "qa_72",
+      "patterns": [
+        "Screen sharing"
+      ],
+      "responses": [
+        "Screen sharing available in video calls with one-click sharing and annotation tools."
+      ]
+    },
+    {
+      "tag": "qa_73",
+      "patterns": [
+        "Record meetings"
+      ],
+      "responses": [
+        "Record meetings with automatic transcription on Business+ plans. Recordings saved to your account."
+      ]
+    },
+    {
+      "tag": "qa_74",
+      "patterns": [
+        "hii"
+      ],
+      "responses": [
+        "hello"
+      ]
+    },
+    {
+      "tag": "qa_75",
+      "patterns": [
+        "how are you?"
+      ],
+      "responses": [
+        "i am fine what about you"
+      ]
+    },
+    {
+      "tag": "qa_76",
+      "patterns": [
+        "i want movie list"
+      ],
+      "responses": [
+        "uejk\nsdfih\nsdfnoid\ndfnio\nsdfnioe\nsdfknew\nsdfn\nsdddf"
+      ]
+    },
+    {
+      "tag": "qa_77",
+      "patterns": [
+        "movies"
+      ],
+      "responses": [
+        "freudfgd\nsdfbrovh\\\nrfhrifh\nfrejb\nsfbejkb\ndsfubc\nsdfbjkbv\ndbjkv"
+      ]
+    }
+  ]
+}
