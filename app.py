@@ -30,6 +30,7 @@ from werkzeug.utils import secure_filename
 from database import ChatSession, create_session, log_message, get_session_messages
 from database import SubscriptionPlan, Subscription, create_trial_subscription, initialize_subscription_plans
 from database import db, User, Chatbot, QAPair, save_qa_pairs_to_db
+from utils import SMART_CACHE, get_smart_response, OLLAMA_AVAILABLE, generate_ollama_response, clear_model_cache
 
 # ✅ LAZY IMPORT: Only import utils when needed (not on startup)
 # This prevents loading heavy ML models during app initialization
@@ -42,24 +43,49 @@ load_dotenv(dotenv_path=env_path)
 # APPLICATION FACTORY for better WSGI compatibility
 def create_app():
     app = Flask(__name__)
+
     # Import configuration
     from config import configure_app
     configure_app(app)
-    # Initialize database
-    db.init_app(app)
-    # Initialize other extensions
+
+    # DATABASE CONFIGURATION
+    DATABASE_URL = os.getenv('DATABASE_URL')
+
+    if not DATABASE_URL:
+        if os.getenv('FLASK_ENV') == 'production':
+            raise ValueError("DATABASE_URL must be set in production environment")
+        DATABASE_URL = 'mysql+pymysql://root:root@localhost:3306/chatbot_panel'
+        print("WARNING: Using local development database")
+
+    app.config['SQLALCHEMY_DATABASE_URI'] = DATABASE_URL
+    app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
+    app.config['SQLALCHEMY_ENGINE_OPTIONS'] = {
+        'pool_size': 10,
+        'pool_recycle': 3600,
+        'pool_pre_ping': True,
+        'max_overflow': 20,
+        'pool_timeout': 30,
+        'connect_args': {'connect_timeout': 10}
+    }
+
+    # Initialize extensions
     mail = Mail(app)
+
     return app
+
+
 app = create_app()
 
+
+# SECRET KEY CONFIGURATION
 SECRET_KEY = os.environ.get('SECRET_KEY')
 if not SECRET_KEY:
     if os.getenv('FLASK_ENV') == 'production':
         raise ValueError("SECRET_KEY must be set in production environment")
     else:
         SECRET_KEY = 'dev-secret-key-for-local-development-only'
+
 app.config['SECRET_KEY'] = SECRET_KEY
-print(secrets.token_urlsafe(32))
 
 # Production-ready configuration
 if os.getenv('FLASK_ENV') == 'production':
@@ -98,10 +124,14 @@ BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 BASE_DATA_FOLDER = os.getenv('BASE_DATA_FOLDER', os.path.join(BASE_DIR, 'data'))
 app.config['USER_DATA_FOLDER'] = os.getenv('USER_DATA_FOLDER', os.path.join(BASE_DATA_FOLDER, 'users'))
 app.config['UPLOAD_FOLDER'] = os.getenv('UPLOAD_FOLDER', os.path.join(BASE_DATA_FOLDER, 'uploads'))
+app.config['AVATARS_FOLDER'] = os.path.join(app.config['UPLOAD_FOLDER'], 'avatars')  # ← ADD THIS LINE
 
 # Get max content length from env (in bytes)
-max_content_mb = int(os.getenv('MAX_CONTENT_LENGTH', '16777216'))
+max_content_mb = int(os.getenv('MAX_CONTENT_LENGTH', '52428800'))  # 50MB default
 app.config['MAX_CONTENT_LENGTH'] = max_content_mb
+
+if app.config.get('DEBUG'):
+    print(f"✅ Max upload size: {max_content_mb / 1024 / 1024:.1f}MB")
 
 # File upload configuration from environment
 allowed_ext_str = os.getenv('ALLOWED_EXTENSIONS', 'png,jpg,jpeg,gif,svg')
@@ -130,6 +160,7 @@ def create_directory_structure():
     directories = [
         app.config['USER_DATA_FOLDER'],
         app.config['UPLOAD_FOLDER'],
+        app.config['AVATARS_FOLDER'],
         os.path.join(BASE_DATA_FOLDER, 'temp'),
         os.path.join(BASE_DATA_FOLDER, 'backups')
     ]
@@ -665,11 +696,20 @@ def process_button_action(action_type, action_value, chatbot):
             if not message_text:
                 return "No message provided."
 
-            # ✅ FIX 2: Use smart response instead of literal text
-            # This enables intent detection for message-type buttons
+            # ✅ FIX: Check if this looks like a direct answer (not a question)
+            # If it's a statement/answer, return it directly
+            # If it's a question, use smart response
+
+            if not any(message_text.lower().startswith(q) for q in
+                       ['what', 'who', 'when', 'where', 'why', 'how', 'is', 'are', 'can', 'do', 'does']):
+                # Looks like a statement/answer - return it directly
+                print(f"   ✓ Returning literal message")
+                return message_text
+
+            # Otherwise treat as a query
+            print(f"   → Using smart response for query")
             from utils import get_smart_response
 
-            print(f"   → Using smart response with intent detection")
             response = get_smart_response(
                 message_text,
                 chatbot.user_id,
@@ -681,8 +721,6 @@ def process_button_action(action_type, action_value, chatbot):
                 print(f"   ✓ Smart response generated")
                 return response
 
-            # Fallback: Return literal text if no intent detected
-            print(f"   → No intent detected, returning literal text")
             return message_text
 
         # ============================================================
@@ -2129,56 +2167,89 @@ def dashboard():
     )
 
 
-#CHATBOT CREATE ROUTE
+# ============================================================================
+# COMPLETE WORKING /chatbot/create ROUTE WITH AVATAR PROCESSING
+# Replace your existing route with this entire code block
+# ============================================================================
+
 @app.route('/chatbot/create', methods=['GET', 'POST'])
 @subscription_required
 def create_chatbot():
     """
-    FIXED: Create route with proper submenu handling
+    ✅ COMPLETE FIXED VERSION: Create chatbot with proper avatar handling
     """
     if 'user_id' not in session:
         return redirect(url_for('login'))
 
     user = db.session.get(User, session['user_id'])
 
-    #Check subscription limits
+    # ============================================================
+    # CHECK SUBSCRIPTION LIMITS
+    # ============================================================
     if user.subscription and not user.subscription.can_create_chatbot():
         max_limit = user.subscription.plan.max_chatbots
         limit_text = "unlimited" if max_limit == -1 else str(max_limit)
         flash(f'You have reached your chatbot limit ({limit_text}). Please upgrade your plan.', 'error')
         return redirect(url_for('subscription_plans'))
 
-    if request.method == 'POST':
-        name = request.form.get('name')
-        description = request.form.get('description')
-        welcome_message = request.form.get('welcome_message', 'Hello! How can I help you?')
+    # ============================================================
+    # GET REQUEST - Show form
+    # ============================================================
+    if request.method == 'GET':
+        chatbots = Chatbot.query.filter_by(user_id=user.id).order_by(Chatbot.created_at.desc()).all()
+        return render_template('create_chatbot.html', chatbots=chatbots, user=user)
+
+    # ============================================================
+    # POST REQUEST - Create chatbot
+    # ============================================================
+    try:
+        # ========================================
+        # STEP 1: Get Basic Form Data
+        # ========================================
+        name = request.form.get('name', '').strip()
+        description = request.form.get('description', '').strip()
+        welcome_message = request.form.get('welcome_message', 'Hello! How can I help you?').strip()
         theme_color = request.form.get('theme_color', '#4F46E5')
-        bot_name = request.form.get('bot_name', 'AI Assistant')
+        bot_name = request.form.get('bot_name', 'AI Assistant').strip()
         use_ml_model = request.form.get('use_ml_model') == 'on'
 
-        #Colors
+        # Validate required fields
+        if not name:
+            flash('Chatbot name is required', 'error')
+            return redirect(url_for('create_chatbot'))
+
+        # ========================================
+        # STEP 2: Get Color Settings
+        # ========================================
         chat_background_color = request.form.get('chat_background_color', '#F7FAFC')
         user_message_color = request.form.get('user_message_color', theme_color)
         bot_message_color = request.form.get('bot_message_color', '#FFFFFF')
         user_text_color = request.form.get('user_text_color', '#FFFFFF')
         bot_text_color = request.form.get('bot_text_color', '#1A202C')
 
-        #Welcome Buttons with Submenu Support
+        print(f"\n{'=' * 70}")
+        print(f"🤖 CREATE CHATBOT")
+        print(f"   Name: {name}")
+        print(f"   User ID: {user.id}")
+        print(f"{'=' * 70}")
+
+        # ========================================
+        # STEP 3: Process Welcome Buttons
+        # ========================================
         welcome_buttons_json = request.form.get('welcome_buttons', '[]')
 
         print(f"\n{'=' * 60}")
-        print(f" CREATE CHATBOT - Processing Welcome Buttons")
-        print(f"Raw data length: {len(welcome_buttons_json)}")
+        print(f"📋 PROCESSING WELCOME BUTTONS")
+        print(f"   Raw data length: {len(welcome_buttons_json)}")
         print(f"{'=' * 60}")
 
+        validated_buttons = []
         try:
             buttons_list = json.loads(welcome_buttons_json) if welcome_buttons_json else []
 
             if not isinstance(buttons_list, list):
                 buttons_list = []
 
-            #Validate and structure buttons with submenu support
-            validated_buttons = []
             valid_types = ['url', 'intent', 'message', 'submenu']
 
             for idx, button in enumerate(buttons_list):
@@ -2204,7 +2275,7 @@ def create_chatbot():
                     'has_submenu': has_submenu
                 }
 
-                #Validate submenu items
+                # Validate submenu items
                 if has_submenu and isinstance(submenu_items, list):
                     validated_submenu = []
                     for sub_item in submenu_items:
@@ -2224,69 +2295,92 @@ def create_chatbot():
                                 })
 
                     validated_button['submenu_items'] = validated_submenu
-                    print(f"    Button '{button_text}' with {len(validated_submenu)} submenu items")
+                    print(f"   ✓ Button '{button_text}' with {len(validated_submenu)} submenu items")
                 else:
                     validated_button['submenu_items'] = []
-                    print(f"    Button '{button_text}' (no submenu)")
+                    print(f"   ✓ Button '{button_text}' (no submenu)")
 
                 validated_buttons.append(validated_button)
 
             welcome_buttons = json.dumps(validated_buttons)
-            print(f"    Total validated: {len(validated_buttons)} buttons")
+            print(f"   ✅ Total validated: {len(validated_buttons)} buttons")
 
         except json.JSONDecodeError as e:
-            print(f"    JSON error: {e}")
+            print(f"   ❌ JSON error: {e}")
             welcome_buttons = '[]'
+            validated_buttons = []
         except Exception as e:
-            print(f"    Validation error: {e}")
+            print(f"   ❌ Validation error: {e}")
             welcome_buttons = '[]'
+            validated_buttons = []
 
-        #Avatar handling
+        # ========================================
+        # STEP 4: Process Avatar (Base64)
+        # ========================================
         bot_avatar = None
         bot_avatar_data = request.form.get('bot_avatar_data', '').strip()
+
+        print(f"\n{'=' * 60}")
+        print(f"🖼️ AVATAR PROCESSING")
+        print(f"   Data received: {len(bot_avatar_data)} chars")
+        print(f"{'=' * 60}")
 
         if bot_avatar_data and bot_avatar_data.startswith('data:image'):
             try:
                 import base64
                 import io
                 from PIL import Image
-                import time
 
+                # Parse base64
                 header, data = bot_avatar_data.split(',', 1)
                 image_data = base64.b64decode(data)
                 image = Image.open(io.BytesIO(image_data))
                 image = image.convert('RGBA')
 
-                timestamp = str(int(time.time()))
-                # Save to temporary location first (chatbot not created yet)
-                temp_folder = app.config['UPLOADS_FOLDER']
+                # Resize if needed
+                max_size = (500, 500)
+                if image.size[0] > max_size[0] or image.size[1] > max_size[1]:
+                    image.thumbnail(max_size, Image.Resampling.LANCZOS)
+                    print(f"   ✓ Resized to {image.size}")
+
+                # Save to temp folder
+                temp_folder = os.path.join(BASE_DIR, 'data', 'temp')
                 os.makedirs(temp_folder, exist_ok=True)
-                unique_filename = f"avatar_temp_{timestamp}.png"
+
+                timestamp = str(int(time.time() * 1000))
+                unique_filename = f"avatar_temp_{user.id}_{timestamp}.png"
                 temp_path = os.path.join(temp_folder, unique_filename)
+                temp_path = os.path.normpath(temp_path)
+
+                print(f"   → Saving to temp: {temp_path}")
+
+                # Save image
                 image.save(temp_path, 'PNG')
 
-                bot_avatar = f"temp_{unique_filename}"  # Mark as temporary
+                # Verify file was saved
+                if not os.path.exists(temp_path):
+                    raise Exception(f"Failed to save temp avatar to {temp_path}")
+
+                file_size = os.path.getsize(temp_path)
+                print(f"   ✅ Saved temp avatar: {file_size:,} bytes")
+                print(f"   ✅ File exists: {os.path.exists(temp_path)}")
+
+                # Mark as temporary (will be moved after chatbot creation)
+                bot_avatar = f"temp:{unique_filename}"
+                print(f"   ✅ Temp marker: {bot_avatar}")
 
             except Exception as e:
-                print(f"Avatar processing error: {e}")
-                flash('Error processing avatar image', 'error')
+                print(f"   ❌ Avatar processing error: {e}")
+                import traceback
+                traceback.print_exc()
+                flash('Error processing avatar image. Please try again.', 'error')
+                bot_avatar = None
 
-        elif 'bot_avatar' in request.files:
-            file = request.files['bot_avatar']
-            if file and file.filename and allowed_file(file.filename):
-                file.seek(0, os.SEEK_END)
-                file_size = file.tell()
-                file.seek(0)
+        print(f"{'=' * 60}\n")
 
-                if file_size > MAX_FILE_SIZE:
-                    flash('Avatar file size must be less than 2MB', 'error')
-                    return redirect(request.url)
-
-                filename = secure_filename(f"{secrets.token_urlsafe(8)}_{file.filename}")
-                filepath = os.path.join(app.config['AVATARS_FOLDER'], filename)
-                file.save(filepath)
-                bot_avatar = f'/static/uploads/avatars/{filename}'
-
+        # ========================================
+        # STEP 5: Create Chatbot in Database
+        # ========================================
         embed_code = secrets.token_urlsafe(16)
 
         new_chatbot = Chatbot(
@@ -2297,14 +2391,14 @@ def create_chatbot():
             bot_name=bot_name,
             use_ml_model=use_ml_model,
             embed_code=embed_code,
-            user_id=session['user_id'],
-            bot_avatar=bot_avatar,
+            user_id=user.id,
+            bot_avatar=bot_avatar,  # temp:filename or None
             chat_background_color=chat_background_color,
             user_message_color=user_message_color,
             bot_message_color=bot_message_color,
             user_text_color=user_text_color,
             bot_text_color=bot_text_color,
-            welcome_buttons=welcome_buttons  #Store validated JSON
+            welcome_buttons=welcome_buttons
         )
 
         db.session.add(new_chatbot)
@@ -2314,33 +2408,107 @@ def create_chatbot():
 
         db.session.commit()
 
-        #Move temporary avatar to chatbot folder
-        if bot_avatar and bot_avatar.startswith('temp_'):
-            try:
-                chatbot_folder = ensure_chatbot_folder(new_chatbot.user_id, new_chatbot.id)
-                old_filename = bot_avatar.replace('temp_', '')
-                old_path = os.path.join(app.config['UPLOADS_FOLDER'], old_filename)
-                new_filename = f"avatar.png"
-                new_path = os.path.join(chatbot_folder, new_filename)
+        print(f"   ✅ Chatbot created in database (ID: {new_chatbot.id})")
 
-                if os.path.exists(old_path):
+        # ========================================
+        # STEP 6: Move Temp Avatar to Chatbot Folder
+        # ========================================
+        if bot_avatar and bot_avatar.startswith('temp:'):
+            print(f"\n{'=' * 60}")
+            print(f"📦 MOVING TEMP AVATAR TO CHATBOT FOLDER")
+            print(f"   Chatbot ID: {new_chatbot.id}")
+            print(f"   User ID: {new_chatbot.user_id}")
+            print(f"   Temp marker: {bot_avatar}")
+            print(f"{'=' * 60}")
+
+            # Extract temp filename
+            temp_filename = bot_avatar.replace('temp:', '')
+            temp_folder = os.path.join(BASE_DIR, 'data', 'temp')
+            old_path = os.path.join(temp_folder, temp_filename)
+            old_path = os.path.normpath(old_path)
+
+            print(f"   → Temp file: {old_path}")
+            print(f"   → File exists: {os.path.exists(old_path)}")
+
+            if os.path.exists(old_path):
+                try:
+                    # Create chatbot folder
+                    chatbot_folder = os.path.join(
+                        BASE_DIR, 'data', 'users', f'user_{new_chatbot.user_id}',
+                        'chatbots', f'chatbot_{new_chatbot.id}'
+                    )
+                    chatbot_folder = os.path.normpath(chatbot_folder)
+                    os.makedirs(chatbot_folder, exist_ok=True)
+
+                    print(f"   ✓ Chatbot folder: {chatbot_folder}")
+
+                    # New avatar path
+                    new_filename = "avatar.png"
+                    new_path = os.path.join(chatbot_folder, new_filename)
+                    new_path = os.path.normpath(new_path)
+
+                    print(f"   → Moving from: {old_path}")
+                    print(f"   → Moving to:   {new_path}")
+
+                    # Move file
                     import shutil
                     shutil.move(old_path, new_path)
-                    new_chatbot.bot_avatar = f"/data/users/user_{new_chatbot.user_id}/chatbots/chatbot_{new_chatbot.id}/{new_filename}"
-                    db.session.commit()
-            except Exception as e:
-                print(f"Avatar move error: {e}")
 
-        print(f"\n{'=' * 60}")
-        print(f" CHATBOT CREATED")
+                    # Verify move succeeded
+                    if os.path.exists(new_path):
+                        file_size = os.path.getsize(new_path)
+                        print(f"   ✅ Moved successfully: {file_size:,} bytes")
+
+                        # Update database with final path
+                        db_path = f"/data/users/user_{new_chatbot.user_id}/chatbots/chatbot_{new_chatbot.id}/{new_filename}"
+                        new_chatbot.bot_avatar = db_path
+                        db.session.commit()
+
+                        print(f"   ✅ Database updated: {db_path}")
+                        print(f"   ✅ AVATAR PROCESSING COMPLETE!")
+                    else:
+                        print(f"   ❌ Move failed - file not found at destination")
+                        new_chatbot.bot_avatar = None
+                        db.session.commit()
+
+                except Exception as e:
+                    print(f"   ❌ Error moving avatar: {e}")
+                    import traceback
+                    traceback.print_exc()
+                    new_chatbot.bot_avatar = None
+                    db.session.commit()
+            else:
+                print(f"   ❌ Temp file not found at: {old_path}")
+                new_chatbot.bot_avatar = None
+                db.session.commit()
+
+            print(f"{'=' * 60}\n")
+
+        # ========================================
+        # STEP 7: Final Summary
+        # ========================================
+        print(f"\n{'=' * 70}")
+        print(f"✅ CHATBOT CREATION COMPLETE!")
         print(f"   ID: {new_chatbot.id}")
-        print(f"   Buttons: {len(validated_buttons)} stored")
-        print(f"{'=' * 60}\n")
+        print(f"   Name: {new_chatbot.name}")
+        print(f"   Avatar: {new_chatbot.bot_avatar if new_chatbot.bot_avatar else 'None (default icon)'}")
+        print(f"   Buttons: {len(validated_buttons)} welcome buttons")
+        print(f"   Embed Code: {new_chatbot.embed_code}")
+        print(f"{'=' * 70}\n")
+
         flash('Chatbot created successfully!', 'success')
         return redirect(url_for('dashboard'))
 
-    chatbots = Chatbot.query.filter_by(user_id=user.id).order_by(Chatbot.created_at.desc()).all()
-    return render_template('create_chatbot.html', chatbots=chatbots, user=user)
+    except Exception as e:
+        db.session.rollback()
+        print(f"\n{'=' * 70}")
+        print(f"❌ CHATBOT CREATION ERROR")
+        print(f"   Error: {str(e)}")
+        print(f"{'=' * 70}\n")
+        import traceback
+        traceback.print_exc()
+        flash(f'Error creating chatbot: {str(e)}', 'error')
+        return redirect(url_for('create_chatbot'))
 
 
 @app.route('/chatbot/edit/<int:chatbot_id>', methods=['GET', 'POST'])
@@ -2412,12 +2580,13 @@ def edit_chatbot(chatbot_id):
                     import base64
                     import io
                     from PIL import Image
-                    import time
 
-                    #Delete old avatar file if it exists
+                    # Delete old avatar file if it exists
                     if chatbot.bot_avatar and chatbot.bot_avatar.startswith('/data/users/'):
                         relative_path = chatbot.bot_avatar.replace('/data/', '')
-                        old_path = os.path.join('data', relative_path)
+                        old_path = os.path.join(BASE_DIR, 'data', relative_path)  # ✅ Use BASE_DIR
+                        old_path = os.path.normpath(old_path)  # ✅ Normalize
+
                         if os.path.exists(old_path):
                             try:
                                 os.remove(old_path)
@@ -2425,27 +2594,51 @@ def edit_chatbot(chatbot_id):
                             except Exception as e:
                                 print(f"   ⚠️ Could not delete old avatar: {e}")
 
-                    #Process new avatar
+                    # Process new avatar
                     header, data = bot_avatar_data.split(',', 1)
                     image_data = base64.b64decode(data)
                     image = Image.open(io.BytesIO(image_data))
                     image = image.convert('RGBA')
 
-                    #Create unique filename
-                    timestamp = str(int(time.time()))
-                    # Save to chatbot-specific folder
-                    chatbot_folder = ensure_chatbot_folder(chatbot.user_id, chatbot_id)
-                    unique_filename = f"avatar.png"
+                    # ✅ Resize if too large
+                    max_size = (500, 500)
+                    if image.size[0] > max_size[0] or image.size[1] > max_size[1]:
+                        image.thumbnail(max_size, Image.Resampling.LANCZOS)
+                        print(f"   ✓ Resized to {image.size}")
+
+                    # ✅ FIX: Build path using BASE_DIR for consistency
+                    chatbot_folder = os.path.join(
+                        BASE_DIR, 'data', 'users', f'user_{chatbot.user_id}',
+                        'chatbots', f'chatbot_{chatbot_id}'
+                    )
+                    chatbot_folder = os.path.normpath(chatbot_folder)
+
+                    # Ensure folder exists
+                    os.makedirs(chatbot_folder, exist_ok=True)
+
+                    unique_filename = "avatar.png"
                     file_path = os.path.join(chatbot_folder, unique_filename)
+                    file_path = os.path.normpath(file_path)
+
+                    print(f"   → Saving to: {file_path}")
+
+                    # Save the image
                     image.save(file_path, 'PNG')
 
-                    #Update chatbot with new avatar path
-                    chatbot.bot_avatar = f"/data/users/user_{chatbot.user_id}/chatbots/chatbot_{chatbot_id}/{unique_filename}"
+                    # ✅ Verify file was saved
+                    if not os.path.exists(file_path):
+                        raise Exception(f"Failed to save avatar to {file_path}")
 
-                    print(f"   ✓ Saved new avatar: {chatbot.bot_avatar}")
+                    file_size = os.path.getsize(file_path)
+                    print(f"   ✅ Saved avatar: {file_size:,} bytes")
+                    print(f"   ✅ File exists: {os.path.exists(file_path)}")
+
+                    # ✅ Update database path (relative for serving)
+                    chatbot.bot_avatar = f"/data/users/user_{chatbot.user_id}/chatbots/chatbot_{chatbot_id}/{unique_filename}"
+                    print(f"   ✅ Database path: {chatbot.bot_avatar}")
 
                 except Exception as e:
-                    print(f"    Avatar processing error: {e}")
+                    print(f"    ❌ Avatar processing error: {e}")
                     import traceback
                     traceback.print_exc()
                     flash('Error processing avatar image', 'error')
@@ -3501,24 +3694,53 @@ def train_ml_model_enhanced():
 
 @app.route('/data/users/<path:filepath>')
 def serve_user_data(filepath):
-    """Serve user data files with proper MIME types and security"""
+    """✅ FIXED: Serve user data files with proper path handling"""
     try:
-        # Construct full path
-        full_path = os.path.join('data', 'users', filepath)
+        # ✅ FIX: Normalize path separators for cross-platform compatibility
+        filepath = filepath.replace('/', os.sep).replace('\\', os.sep)
+        filepath = filepath.lstrip(os.sep)
 
-        # Security check - prevent directory traversal attacks
-        abs_data_path = os.path.abspath('data/users')
+        # ✅ FIX: Use BASE_DIR to construct absolute path consistently
+        full_path = os.path.join(BASE_DIR, 'data', 'users', filepath)
+        full_path = os.path.normpath(full_path)
+
+        # Debug logging
+        print(f"\n{'=' * 60}")
+        print(f"📁 SERVING FILE")
+        print(f"   Requested: {filepath}")
+        print(f"   Full path: {full_path}")
+        print(f"{'=' * 60}")
+
+        # ✅ Security check - prevent directory traversal attacks
+        abs_data_path = os.path.abspath(os.path.join(BASE_DIR, 'data', 'users'))
         abs_requested_path = os.path.abspath(full_path)
 
         if not abs_requested_path.startswith(abs_data_path):
-            print(f" SECURITY: Path outside data/users: {filepath}")
+            print(f"   ❌ SECURITY: Path outside data/users")
+            print(f"   → Allowed: {abs_data_path}")
+            print(f"   → Requested: {abs_requested_path}")
             return "Unauthorized", 403
 
+        # ✅ Check if file exists
         if not os.path.exists(full_path):
-            print(f" File not found: {full_path}")
-            return "File not found", 404
+            print(f"   ❌ File not found: {full_path}")
 
-        # Determine MIME type
+            # ✅ Try alternative path (without BASE_DIR)
+            alt_path = os.path.join('data', 'users', filepath)
+            alt_path = os.path.normpath(alt_path)
+            print(f"   → Trying alternative: {alt_path}")
+
+            if os.path.exists(alt_path):
+                full_path = alt_path
+                print(f"   ✅ Found at alternative path!")
+            else:
+                print(f"   ❌ Not found at alternative path either")
+                return "File not found", 404
+
+        file_size = os.path.getsize(full_path)
+        print(f"   ✅ File found: {file_size:,} bytes")
+
+        # ✅ Determine MIME type
         import mimetypes
         mime_type, _ = mimetypes.guess_type(full_path)
 
@@ -3531,11 +3753,13 @@ def serve_user_data(filepath):
                 '.jpeg': 'image/jpeg',
                 '.gif': 'image/gif',
                 '.svg': 'image/svg+xml',
-                '.webp': 'image/webp'
+                '.webp': 'image/webp',
+                '.ico': 'image/x-icon'
             }
             mime_type = mime_map.get(ext, 'application/octet-stream')
 
-        print(f" Serving: {full_path} ({mime_type})")
+        print(f"   ✅ MIME type: {mime_type}")
+        print(f"{'=' * 60}\n")
 
         return send_file(
             full_path,
@@ -3545,11 +3769,10 @@ def serve_user_data(filepath):
         )
 
     except Exception as e:
-        print(f" Error serving file: {e}")
+        print(f"\n❌ Error serving file: {e}")
         import traceback
         traceback.print_exc()
         return "Internal server error", 500
-
 
 @app.route('/chatbot/analytics/<int:chatbot_id>')
 @subscription_required

@@ -863,6 +863,11 @@ avatarInput.addEventListener('change', function(e) {
 
             removeAvatarBtn.style.display = 'inline-flex';
             adjustAvatarBtn.style.display = 'inline-flex';
+
+             if (botAvatarDataInput) {
+                botAvatarDataInput.value = event.target.result;
+            }
+
             if (removeAvatarFlag) {
                 removeAvatarFlag.value = 'false';
             }

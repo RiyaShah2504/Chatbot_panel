@@ -50,7 +50,8 @@
                     <svg class="chevron" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                         <polyline points="9 18 15 12 9 6"></polyline>
                     </svg>
-                </a>
+                    </a>
+                </div>
                 <div class="submenu" id="botsSubmenu">
                     {% if chatbots %}
                         {% for chatbot in chatbots %}
@@ -112,6 +113,7 @@
                         </a>
                     </div>
                 </div>
+
             </nav>
             <div class="user-section">
                 <div class="user-info">
@@ -296,14 +298,14 @@
                         </svg>
                         <span>Train Bot</span>
                     </a>
-                    <a href="{{ url_for('chatbot_analytics', chatbot_id=chatbot.id) }}" class="action-btn">
+                    <!--<a href="{{ url_for('chatbot_analytics', chatbot_id=chatbot.id) }}" class="action-btn">
                         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                             <line x1="12" y1="20" x2="12" y2="10"></line>
                             <line x1="18" y1="20" x2="18" y2="4"></line>
                             <line x1="6" y1="20" x2="6" y2="16"></line>
                         </svg>
                         <span>View Analytics</span>
-                    </a>
+                    </a>-->
                     <button onclick="downloadQRCode()" class="action-btn">
                         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                             <rect x="3" y="3" width="7" height="7"></rect>

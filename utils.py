@@ -99,17 +99,15 @@ try:
     if ollama_host:
         os.environ['OLLAMA_HOST'] = ollama_host
 
-    models = ollama.list()
+    # Just test connection instead of checking models
+    ollama.list()
+    OLLAMA_AVAILABLE = True
+    print("✓ Ollama available")
 
-    if models and len(models.get('models', [])) > 0:
-        OLLAMA_AVAILABLE = True
-        print("✓ Ollama available")
-    else:
-        OLLAMA_AVAILABLE = False
-        print(" Ollama installed but no models found")
-except:
+except Exception as e:
     OLLAMA_AVAILABLE = False
-    print(" Ollama not available")
+    print(" Ollama not available:", e)
+
 
 # Configuration from environment
 MAX_WORKERS = int(os.getenv('WORKERS', '50'))

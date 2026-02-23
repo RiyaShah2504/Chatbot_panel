@@ -1384,5 +1384,20 @@ window.changeQAPage = function (page) {
 };
 
 
+// ===== TOGGLE FORMAT EXAMPLES =====
+window.toggleFormatExample = function(type) {
+    const exampleId = `${type}FormatExample`;
+    const example = document.getElementById(exampleId);
+
+    if (!example) return;
+
+    if (example.style.display === 'none' || !example.style.display) {
+        example.style.display = 'block';
+    } else {
+        example.style.display = 'none';
+    }
+};
+
+
 // ===== INITIALIZATION COMPLETE =====
 console.log('Training page fully initialized');
