@@ -13,7 +13,6 @@ keras==2.15
 sentence-transformers==2.2.2
 torch==2.1.1
 python-Levenshtein==0.23.0
-difflib2==0.1.1
 openpyxl==3.1.2
 pandas==2.1.4
 Pillow==10.1.0
